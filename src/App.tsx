@@ -5,7 +5,7 @@ import './App.css';
 function App() {
 	const [number, setNumber] = useState(0);
 
-	function soma(value): void {
+	function soma(value: number) {
 		setNumber(number + value);
 	}
 

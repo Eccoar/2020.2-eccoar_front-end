@@ -52,7 +52,7 @@
 	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "lint-staged"
+			"pre-commit": "npm run check-types && lint-staged && npm run build"
 		}
 	},
 	"devDependencies": {
