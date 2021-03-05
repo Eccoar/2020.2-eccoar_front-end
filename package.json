@@ -26,7 +26,7 @@
 		"prettier": "prettier --ignore-path .gitignore --write \"**/*.+(js|json)\"",
 		"format": "npm run prettier -- --write",
 		"check-format": "npm run prettier -- --list-different",
-		"validate": "npm-run-all --parallel check-types check-format lint build"
+		"validate": "npm-run-all --parallel check-types check-format lint"
 	},
 	"browserslist": {
 		"production": [
@@ -52,7 +52,7 @@
 	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "npm run check-types && lint-staged && npm run build"
+			"pre-commit": "npm run validate && lint-staged"
 		}
 	},
 	"devDependencies": {
