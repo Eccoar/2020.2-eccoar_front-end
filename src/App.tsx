@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ComplainButton from './components/complainButton';
 import logo from './logo.svg';
 import './App.css';
 
@@ -25,6 +26,11 @@ function App() {
 					Learn React
 				</a>
 				<p>{number}</p>
+				<ComplainButton
+					text='Criar Denúncia'
+					redPattern={true}
+					nextIcon={false}
+				/>
 				<button type='button' onClick={() => soma(1)}>
 					click here
 				</button>
