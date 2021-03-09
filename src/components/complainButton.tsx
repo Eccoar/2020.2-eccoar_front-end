@@ -4,9 +4,13 @@ import { ReactComponent as ArrowUp } from '../assets/ArrowUp.svg';
 import '../styles/complainButton.scss';
 
 type ComplainButtonProps = {
+	/** Texto apresentado no botão */
 	text: string;
+	/** Utilizar padrão vermelho para o botão */
 	redPattern?: boolean;
+	/** Utilizar icone de 'Seta a frente' com (Requer 'redPattern == true') */
 	nextIcon?: boolean;
+	/** Função ao clicar no botão */
 	onClick?: VoidFunction;
 };
 
