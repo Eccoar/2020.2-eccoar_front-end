@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ComplainButton from './components/complainButton';
 import logo from './logo.svg';
 import './App.css';
+import Navbar from './components/Navbar';
 
 function App() {
 	const [number, setNumber] = useState(0);
@@ -12,6 +13,7 @@ function App() {
 
 	return (
 		<div className='App'>
+			<Navbar />
 			<header className='App-header'>
 				<img src={logo} className='App-logo' alt='logo' />
 				<p>
