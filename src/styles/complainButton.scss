@@ -27,7 +27,7 @@
             border: $vermelho-medio-primario 3px solid;
             background-color: $transparente;
             .icon{
-                &__arrow{
+                &__next{
                     stroke: $vermelho-medio-primario;
                 }
                 &__megaphone{
@@ -49,7 +49,7 @@
             border: $verde-secundario 3px solid;
             background-color: $transparente;
             .icon{
-                &__arrow{
+                &__next{
                     stroke: $verde-secundario;
                 }
                 &__megaphone{
@@ -72,7 +72,7 @@
 .icon{
     width: 1.4rem;
     padding-left: 0.5rem;
-    &__arrow{
+    &__next{
         stroke: $preto;
     }
     &__megaphone{

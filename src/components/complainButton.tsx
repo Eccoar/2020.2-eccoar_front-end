@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { ReactComponent as MegaPhone } from '../assets/MegaPhone.svg';
-import { ReactComponent as ArrowUp } from '../assets/ArrowUp.svg';
+import { ReactComponent as Next } from '../assets/Next.svg';
 import { ReactComponent as Echo } from '../assets/Echo.svg';
 import '../styles/complainButton.scss';
 
@@ -9,7 +9,7 @@ type ComplainButtonProps = {
 	text: string;
 	/** Escolher pattern do Botão Primary para vermelho, Secondary para Azul */
 	pattern?: 'primary' | 'secondary';
-	/** Selecionar icones entre ArrowUp, MegaPhone, Echo */
+	/** Selecionar icone entre Next, MegaPhone, Echo */
 	icon?: 'next' | 'megaphone' | 'echo';
 	/** Definir botão como preechido ou botão de bordas */
 	fill?: boolean;
@@ -33,7 +33,7 @@ const ComplainButton: FC<ComplainButtonProps> = ({
 			<button type='button' onClick={onClick} className={className}>
 				{text}
 				{icon == 'next' ? (
-					<ArrowUp className='icon icon__arrow' />
+					<Next className='icon icon__next' />
 				) : icon == 'megaphone' ? (
 					<MegaPhone className='icon icon__megaphone' />
 				) : icon == 'echo' ? (
