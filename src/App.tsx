@@ -28,8 +28,9 @@ function App() {
 				<p>{number}</p>
 				<ComplainButton
 					text='Criar Denúncia'
-					redPattern={true}
-					nextIcon={false}
+					pattern='secondary'
+					icon='megaphone'
+					// fill={false}
 				/>
 				<button type='button' onClick={() => soma(1)}>
 					click here

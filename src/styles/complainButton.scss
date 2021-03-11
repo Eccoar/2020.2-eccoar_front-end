@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Spartan&display=swap');
+@import 'main.scss';
 
 * {
     margin: 0;
@@ -10,42 +10,84 @@
     justify-content: center;
     align-items: center;
     border-radius: 2rem;
-    border: 0;
     width: 90vw;
-    height: 6.2vh;
+    height: 48px;
     min-width: 220px;
     max-width: 360px;
-    min-height: 40px;
-    max-height: 65px;
-    background-color: #95F0E0;
-    color: #484848;
+    color: $preto;
     font-family: 'Spartan', 'sans-serif';
     font-weight: bold;
     font-size: 18px;
-    &__svg{
-        width: 1.5rem;
-        padding-left: 0.8rem;
+    transition: all 0.2s ease;
+    border-width: 0px;
+    &__primary{
+        background-color: $verde-secundario;
+        color: $preto;
+        &:active{
+            background-color: rgba($verde-secundario, 0.7);
+        }
+        &__border{
+            color: $verde-secundario;
+            border-width: 0.35rem;
+            border-color: $verde-secundario;
+            background-color: $transparente;
+            .icon{
+                &__arrow{
+                    stroke: $verde-secundario;
+                }
+                &__megaphone{
+                    fill: $verde-secundario;        
+                }
+                &__echo{
+                    stroke: $verde-secundario;
+                    #circle{
+                        fill: $verde-secundario;
+                    }
+                }
+            }  
+        }
     }
-    &__red{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 2rem;
-        border: 0;
-        width: 90vw;
-        height: 6.2vh;
-        min-width: 220px;
-        max-width: 360px;
-        min-height: 40px;
-        max-height: 65px;
-        background-color: #f87171;
-        color: #484848;
-        font-family: 'Spartan', 'sans-serif';
-        font-weight: bold;
-        font-size: large;
-        &__svg{
-            width: 1.5rem;
-            padding-left: 0.8rem;
+    &__secondary{
+        background-color: $vermelho-medio-primario;
+        &:active{
+            background-color: rgba($vermelho-medio-primario, 0.7);
+        }
+        &__border{
+            color: $vermelho-medio-primario;
+            border-width: 0.35rem;
+            border-color: $vermelho-medio-primario;
+            background-color: $transparente;
+            .icon{
+                &__arrow{
+                    stroke: $vermelho-medio-primario;
+                }
+                &__megaphone{
+                    fill: $vermelho-medio-primario;        
+                }
+                &__echo{
+                    stroke: $vermelho-medio-primario;
+                    #circle{
+                        fill: $vermelho-medio-primario;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.icon{
+    width: 1.4rem;
+    padding-left: 0.5rem;
+    &__arrow{
+        stroke: $preto;
+    }
+    &__megaphone{
+        fill: $preto;        
+    }
+    &__echo{
+        stroke: $preto;
+        #circle{
+            fill: $preto;
         }
     }
 }
