@@ -21,15 +21,32 @@
     transition: all 0.2s ease;
     border-width: 0px;
     &__primary{
-        background-color: $verde-secundario;
-        color: $preto;
-        &:active{
-            background-color: rgba($verde-secundario, 0.7);
+        background-color: $vermelho-medio-primario;
+        &__border{
+            color: $vermelho-medio-primario;
+            border: $vermelho-medio-primario 3px solid;
+            background-color: $transparente;
+            .icon{
+                &__arrow{
+                    stroke: $vermelho-medio-primario;
+                }
+                &__megaphone{
+                    fill: $vermelho-medio-primario;        
+                }
+                &__echo{
+                    stroke: $vermelho-medio-primario;
+                    #circle{
+                        fill: $vermelho-medio-primario;
+                    }
+                }
+            }
         }
+    }
+    &__secondary{
+        background-color: $verde-secundario;
         &__border{
             color: $verde-secundario;
-            border-width: 0.35rem;
-            border-color: $verde-secundario;
+            border: $verde-secundario 3px solid;
             background-color: $transparente;
             .icon{
                 &__arrow{
@@ -47,31 +64,8 @@
             }  
         }
     }
-    &__secondary{
-        background-color: $vermelho-medio-primario;
-        &:active{
-            background-color: rgba($vermelho-medio-primario, 0.7);
-        }
-        &__border{
-            color: $vermelho-medio-primario;
-            border-width: 0.35rem;
-            border-color: $vermelho-medio-primario;
-            background-color: $transparente;
-            .icon{
-                &__arrow{
-                    stroke: $vermelho-medio-primario;
-                }
-                &__megaphone{
-                    fill: $vermelho-medio-primario;        
-                }
-                &__echo{
-                    stroke: $vermelho-medio-primario;
-                    #circle{
-                        fill: $vermelho-medio-primario;
-                    }
-                }
-            }
-        }
+    &:active{
+        opacity: 0.7;
     }
 }
 

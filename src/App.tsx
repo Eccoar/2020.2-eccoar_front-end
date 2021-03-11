@@ -28,9 +28,9 @@ function App() {
 				<p>{number}</p>
 				<ComplainButton
 					text='Criar Denúncia'
-					pattern='secondary'
+					pattern='primary'
 					icon='megaphone'
-					// fill={false}
+					fill={false}
 				/>
 				<button type='button' onClick={() => soma(1)}>
 					click here
