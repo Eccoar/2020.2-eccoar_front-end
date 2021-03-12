@@ -33,6 +33,7 @@ function App() {
 					Learn React
 				</a>
 				<p>{number}</p>
+<<<<<<< HEAD
 				<ComplainCard
 					title='Descrição'
 					label='Categoria'
@@ -43,6 +44,10 @@ function App() {
 					description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam condimentum velit eu sapien porttitor, consequat semper felis faucibus. Pellentesque ac.'
 				/>
 				<InputBasic name='' />
+=======
+
+				<InputBasic label='TÍTULO:' inputType='input' />
+>>>>>>> Stylize input component
 				<button type='button' onClick={() => soma(1)}>
 					click here
 				</button>

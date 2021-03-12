@@ -1,22 +1,30 @@
 import { FC } from 'react';
 import '../styles/inputBasic.scss';
 
-type props = { name: string };
-const InputBasic: FC<props> = ({ name }) => {
+type InputBasicProps = {
+	/** Definir Label do input */
+	label?: string;
+	/** Definir input ou textarea */
+	inputType?: 'input' | 'textarea';
+};
+
+const InputBasic: FC<InputBasicProps> = ({ label, inputType }) => {
 	return (
-		<div>
-			{
-				<form className='ImputBasic'>
-					<label>
-						<label className='InputText'>TEXTO:</label>
-						<br />
-						<input className='InputBox' type='text' name='name' />
-						<br />
-					</label>
-					<input type='submit' value='Enviar' />
-				</form>
-			}
-		</div>
+		<>
+			<div className='input-container'>
+				<h1 className='input-label'>{label}</h1>
+				{inputType == 'textarea' ? (
+					<textarea className='input-camp input-camp__textarea' />
+				) : (
+					<input
+						type='text'
+						name={label}
+						placeholder={label}
+						className='input-camp'
+					/>
+				)}
+			</div>
+		</>
 	);
 };
 

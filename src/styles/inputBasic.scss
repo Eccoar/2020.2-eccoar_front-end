@@ -5,25 +5,34 @@
     padding: 0;
 }
 
-.ImputBasic{
-    color: $vermelho-medio-primario;
-    font-family: 'Spartan', 'sans-serif';
-    font-weight: bold;
-    
-    .InputText {
+.input-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    .input-label{
         font-size: 18px;
-        position: relative;
-        right: 10vw;
-    }
-    .InputBox{
+        font-family: 'Spartan', 'sans-serif';
         color: $vermelho-medio-primario;
-        border: 3px;
-        border-style: solid;
+        font-weight: bold;
+    }
+    .input-camp{
         background-color: $transparente;
+        border: $vermelho-medio-primario 3px solid;
+        border-radius: 6px;
         width: 90vw;
-        height: 30px;
+        height: 48px;
         min-width: 220px;
         max-width: 360px;
+        color: $vermelho-medio-primario;
+        font-size: 20px;
+        padding-left: 1rem;
+        &__textarea {
+            height: 107px;
+            max-height: 107px;
+            display: flex;
+            text-align: start;
+            padding: 1rem;
+        }
     }
 }
 
