@@ -42,6 +42,7 @@ function App() {
 					submitted={button}
 					description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam condimentum velit eu sapien porttitor, consequat semper felis faucibus. Pellentesque ac.'
 				/>
+				<InputBasic name='' />
 				<button type='button' onClick={() => soma(1)}>
 					click here
 				</button>

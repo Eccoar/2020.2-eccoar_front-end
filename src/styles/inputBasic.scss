@@ -1,0 +1,14 @@
+@import 'main.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.InputBasic {
+    color: $vermelho-medio-primario;
+    font-family: 'Spartan', 'sans-serif';
+    font-weight: bold;
+    font-size: 18px;
+}
+
