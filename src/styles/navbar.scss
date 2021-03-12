@@ -1,15 +1,10 @@
-/* body {
-    overflow-x: hidden;
-} */
-
 .navbar {
     max-width: 100%;
     max-height: 5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    padding: 1rem 1rem;
+    padding: .5rem 1rem;
 
     &__isotipo {
         margin-left: 1rem;
@@ -31,8 +26,6 @@
             border-radius: 10px;
             transform-origin: 1px;
             transition: all 0.25s ease;
-    
         }
     }
-
 }
