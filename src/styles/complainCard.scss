@@ -1,0 +1,88 @@
+@import 'main.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90vw;
+    max-width: 400px;
+    min-width: 280px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.card-container {
+    width: 72vw;
+    height: 16vh;
+    min-height: 90px;
+    min-width: 220px;
+    max-width: 320px;
+    border: $verde-secundario 2px solid;
+    border-radius: 12px;
+    .card-content {
+        font-family: 'Spartan', 'sans-serif';
+        display: flex;
+        height: 85% ;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        padding: 8px;
+        #title {
+            font-size: 80%;
+            font-weight: bold;
+            text-align: start;
+            color: $verde-secundario;
+        }
+        .label {
+            border-radius: 0.5rem;
+            background-color: $amarelo-secundario2;
+            max-width: max-content;
+            max-height: 13.5px;
+            p {
+                padding: 2px;
+                padding-left: 0.8rem;
+                padding-right: 0.8rem;
+                font-size: x-small;
+                color: $preto;
+                font-weight: bold;
+            }
+        }
+        #description {
+            text-align: justify;
+            font-size: 12px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}
+
+.upvote {
+    border: $vermelho-medio-primario 2px solid;
+    border-radius: 1.4rem;
+    background-color: $transparente;
+    height: 16vh;
+    min-height: 93px;
+    width: 2.7em;
+    min-width: 2rem;
+    transition: all 0.3s ease;
+    &:active{
+        background-color: $vermelho-medio-primario;
+        .icon{
+            stroke: $preto;
+            #circle{
+                fill: $preto;
+            }
+        }
+    }
+    .icon {
+        width: 1.2rem;
+        stroke: $vermelho-medio-primario;
+        #circle{
+            fill: $vermelho-medio-primario;
+        }
+    }
+}
