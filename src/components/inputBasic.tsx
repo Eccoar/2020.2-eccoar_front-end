@@ -8,8 +8,10 @@ const InputBasic: FC<props> = ({ name }) => {
 			{
 				<form>
 					<label className='InputBasic'>
-						TEXTO:
-						<input type='text' name='name' />
+						<label>TEXTO:</label>
+						<br />
+						<input className='InputBox' type='text' name='name' />
+						<br />
 					</label>
 					<input type='submit' value='Enviar' />
 				</form>
