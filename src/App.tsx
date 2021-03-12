@@ -5,6 +5,11 @@ import './App.css';
 
 function App() {
 	const [number, setNumber] = useState(0);
+	const [button, setButton] = useState(false);
+
+	const fun = () => {
+		setButton(!button);
+	};
 
 	function soma(value: number) {
 		setNumber(number + value);
@@ -27,10 +32,12 @@ function App() {
 				</a>
 				<p>{number}</p>
 				<ComplainCard
-					title='Descrição da Denúncia'
+					title='Descrição'
 					label='Categoria'
-					// photo='aa'
-					description='Era uma vez uma denuncia muito foda de mais pa carai foda de mais pa car'
+					// photo={'https://static.toiimg.com/photo/72975551.cms'}
+					onClick={fun}
+					submitted={button}
+					description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam condimentum velit eu sapien porttitor, consequat semper felis faucibus. Pellentesque ac.'
 				/>
 				<button type='button' onClick={() => soma(1)}>
 					click here
