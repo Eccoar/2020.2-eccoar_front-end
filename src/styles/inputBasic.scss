@@ -5,21 +5,27 @@
     padding: 0;
 }
 
-.InputBasic {
+.ImputBasic{
     color: $vermelho-medio-primario;
     font-family: 'Spartan', 'sans-serif';
     font-weight: bold;
-    font-size: 18px;
+    
+    .InputText {
+        font-size: 18px;
+        position: relative;
+        right: 10vw;
+    }
+    .InputBox{
+        color: $vermelho-medio-primario;
+        border: 3px;
+        border-style: solid;
+        background-color: $transparente;
+        width: 90vw;
+        height: 30px;
+        min-width: 220px;
+        max-width: 360px;
+    }
 }
 
-.InputBox{
-    color: $vermelho-medio-primario;
-    border: 3px;
-    border-style: solid;
-    background-color: $transparente;
-    width: 90vw;
-    height: 30px;
-    min-width: 220px;
-    max-width: 360px;
-}
+
 

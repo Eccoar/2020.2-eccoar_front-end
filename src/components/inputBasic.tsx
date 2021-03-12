@@ -6,9 +6,9 @@ const InputBasic: FC<props> = ({ name }) => {
 	return (
 		<div>
 			{
-				<form>
-					<label className='InputBasic'>
-						<label>TEXTO:</label>
+				<form className='ImputBasic'>
+					<label>
+						<label className='InputText'>TEXTO:</label>
 						<br />
 						<input className='InputBox' type='text' name='name' />
 						<br />
