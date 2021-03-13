@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ComplainCard from './components/complainCard';
 import logo from './logo.svg';
 import './App.css';
-import Navbar from './components/Navbar';
+
 
 function App() {
 	const [number, setNumber] = useState(0);
@@ -18,7 +18,6 @@ function App() {
 
 	return (
 		<div className='App'>
-			<Navbar />
 			<header className='App-header'>
 				<img src={logo} className='App-logo' alt='logo' />
 				<p>
@@ -33,7 +32,6 @@ function App() {
 					Learn React
 				</a>
 				<p>{number}</p>
-<<<<<<< HEAD
 				<ComplainCard
 					title='Descrição'
 					label='Categoria'
@@ -43,11 +41,6 @@ function App() {
 					submitted={button}
 					description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam condimentum velit eu sapien porttitor, consequat semper felis faucibus. Pellentesque ac.'
 				/>
-				<InputBasic name='' />
-=======
-
-				<InputBasic label='TÍTULO:' inputType='input' />
->>>>>>> Stylize input component
 				<button type='button' onClick={() => soma(1)}>
 					click here
 				</button>
