@@ -15,10 +15,13 @@ type ComplainCardProps = {
 	onClick?: VoidFunction;
 	/** Prop para verificação externa do botão precionado */
 	submitted?: boolean;
+	/** Função ao clicar no card */
+	cardClick?: VoidFunction;
 };
 
 const ComplainCard: FC<ComplainCardProps> = ({
 	onClick,
+	cardClick,
 	title,
 	label,
 	description,
@@ -29,7 +32,7 @@ const ComplainCard: FC<ComplainCardProps> = ({
 
 	return (
 		<div className='container'>
-			<section className='card-container'>
+			<section onClick={cardClick} className='card-container'>
 				{photo ? (
 					<div className='card-photo-content'>
 						<div>

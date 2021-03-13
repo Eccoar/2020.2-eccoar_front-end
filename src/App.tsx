@@ -36,6 +36,7 @@ function App() {
 					label='Categoria'
 					// photo={'https://static.toiimg.com/photo/72975551.cms'}
 					onClick={fun}
+					cardClick={fun}
 					submitted={button}
 					description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam condimentum velit eu sapien porttitor, consequat semper felis faucibus. Pellentesque ac.'
 				/>
