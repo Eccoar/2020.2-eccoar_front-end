@@ -4,7 +4,7 @@ import { ReactComponent as Next } from '../assets/Next.svg';
 import { ReactComponent as Echo } from '../assets/Echo.svg';
 import '../styles/complainButton.scss';
 
-type ComplainButtonProps = {
+type ButtonProps = {
 	/** Texto apresentado no botão */
 	text: string;
 	/** Escolher pattern do Botão Primary para vermelho, Secondary para Azul */
@@ -17,11 +17,11 @@ type ComplainButtonProps = {
 	onClick?: VoidFunction;
 };
 
-const ComplainButton: FC<ComplainButtonProps> = ({
+const Button: FC<ButtonProps> = ({
 	text,
-	pattern,
+	pattern = 'primary',
 	icon,
-	fill,
+	fill = true,
 	onClick,
 }) => {
 	const className = `complain-button complain-button${
@@ -33,15 +33,18 @@ const ComplainButton: FC<ComplainButtonProps> = ({
 			<button type='button' onClick={onClick} className={className}>
 				{text}
 				{icon == 'next' ? (
-					<Next className='icon icon__next' />
+					<Next data-testid='next-icon' className='icon icon__next' />
 				) : icon == 'megaphone' ? (
-					<MegaPhone className='icon icon__megaphone' />
+					<MegaPhone
+						data-testid='megaphone-icon'
+						className='icon icon__megaphone'
+					/>
 				) : icon == 'echo' ? (
-					<Echo className='icon icon__echo' />
+					<Echo data-testid='echo-icon' className='icon icon__echo' />
 				) : null}
 			</button>
 		</div>
 	);
 };
 
-export default ComplainButton;
+export default Button;
