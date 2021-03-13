@@ -160,3 +160,36 @@ Segue exemplo:
 ```
 
 ### Como mockar chamadas de API
+
+Em alguns casos, o componnte a ser testado irá fazer chamadas à uma API, porém
+não é ideal que o script de testes realize essas chamadas, pois pode trazer
+falhas inesperadas além de poder realizar operações de escrita no banco de
+dados. Por isso as chamadas à API devem todas ser mockadas.
+
+Para isso vamos mockar a chamada ao axios utilizando o seguinte trecho de
+código: `jest.mock('axios');`
+
+e dentro do teste poderemos usar o mock da seguinte forma:
+
+```
+  test('fetches stories from an API and displays them', async () => {
+    const stories = [
+      { objectID: '1', title: 'Hello' },
+      { objectID: '2', title: 'React' },
+    ];
+
+    // abaixo o get do axios está sendo mockado, nesse caso ele irá substituir a chamada da API por uma função que irá retornar uma Promise resolvida, que retorna um objeto de resposta.
+    // No caso de querer testar uma falha, a Promise deve retornar um Reject com um erro
+    axios.get.mockImplementationOnce(() =>
+      Promise.resolve({ data: { hits: stories } })
+    );
+
+    render(<App />);
+
+    await userEvent.click(screen.getByRole('button'));
+
+    const items = await screen.findAllByRole('listitem');
+
+    expect(items).toHaveLength(2);
+  });
+```
