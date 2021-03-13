@@ -10,7 +10,12 @@
         margin-left: 1rem;
         width: 4rem;
         height: 4rem;
+        @media (max-width: 480px) {
+            width: 2.75rem;
+            height: 2.75rem;
+        }
     }
+
 
     &__hamburguer {
         width: 2rem;
