@@ -12,3 +12,10 @@ $verde-secundario2: #8ACCC1;
 $amarelo-secundario2: #FFF27B;
 $branco: #F8F8F8;
 $transparente: rgba(255,255,255,0);
+
+body {
+    background: url('../assets/Background.png');
+    background-repeat: repeat;
+
+    background-size: 2048px;
+}
