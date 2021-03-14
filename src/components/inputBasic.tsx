@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import '../styles/inputBasic.scss';
 
 type InputBasicProps = {
@@ -9,7 +9,12 @@ type InputBasicProps = {
 	/** Indicar valores referentes ao dropdwon */
 	dropdownItems?: Array<string>;
 	/** Indica a função passada para capturar o valor do input */
-	onChange(): void;
+	onChange(
+		e:
+			| React.ChangeEvent<HTMLTextAreaElement>
+			| React.ChangeEvent<HTMLSelectElement>
+			| React.ChangeEvent<HTMLInputElement>,
+	): void;
 	/** Valor recebido do input */
 	value: string;
 };
