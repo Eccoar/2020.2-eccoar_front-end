@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import ComplainCard from './components/complainCard';
 import logo from './logo.svg';
 import './App.css';
 import Navbar from './components/Navbar';
+import InputBasic from './components/inputBasic';
 
 function App() {
 	const [number, setNumber] = useState(0);
-	const [button, setButton] = useState(false);
-
-	const fun = () => {
-		setButton(!button);
-	};
+	const [Value, setValue] = useState('');
+	function val(e: any) {
+		setValue(e.target.value);
+		console.log(Value);
+	}
 
 	function soma(value: number) {
 		setNumber(number + value);
@@ -33,15 +33,13 @@ function App() {
 					Learn React
 				</a>
 				<p>{number}</p>
-				<ComplainCard
-					title='Descrição'
-					label='Categoria'
-					// photo={'https://static.toiimg.com/photo/72975551.cms'}
-					onClick={fun}
-					cardClick={fun}
-					submitted={button}
-					description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam condimentum velit eu sapien porttitor, consequat semper felis faucibus. Pellentesque ac.'
+				<InputBasic
+					label='Titulo'
+					value={Value}
+					inputType='input'
+					onChange={val}
 				/>
+
 				<button type='button' onClick={() => soma(1)}>
 					click here
 				</button>
