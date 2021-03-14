@@ -27,7 +27,8 @@
 		"prettier": "prettier --ignore-path .gitignore --write \"**/*.+(js|json|ts|tsx)\"",
 		"format": "npm run prettier -- --write",
 		"check-format": "npm run prettier -- --list-different",
-		"validate": "npm-run-all --parallel check-types check-format lint"
+		"validate": "npm-run-all --parallel check-types check-format lint",
+		"coverage": "CI=true npm test -- --env=jsdom --coverage"
 	},
 	"browserslist": {
 		"production": [
