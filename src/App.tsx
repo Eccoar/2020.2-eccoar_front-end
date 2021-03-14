@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
-import ComplainCard from './components/complainCard';
 import logo from './logo.svg';
 import './App.css';
-
+import Navbar from './components/Navbar';
+import InputBasic from './components/inputBasic';
 
 function App() {
 	const [number, setNumber] = useState(0);
-	const [button, setButton] = useState(false);
+	// const [button, setButton] = useState(false);
 
-	const fun = () => {
-		setButton(!button);
-	};
+	// const fun = () => {
+	// 	setButton(!button);
+	// };
+
+	const value = ['um', 'dois', 'tres'];
 
 	function soma(value: number) {
 		setNumber(number + value);
@@ -18,6 +20,7 @@ function App() {
 
 	return (
 		<div className='App'>
+			<Navbar />
 			<header className='App-header'>
 				<img src={logo} className='App-logo' alt='logo' />
 				<p>
@@ -32,14 +35,10 @@ function App() {
 					Learn React
 				</a>
 				<p>{number}</p>
-				<ComplainCard
-					title='Descrição'
-					label='Categoria'
-					// photo={'https://static.toiimg.com/photo/72975551.cms'}
-					onClick={fun}
-					cardClick={fun}
-					submitted={button}
-					description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam condimentum velit eu sapien porttitor, consequat semper felis faucibus. Pellentesque ac.'
+				<InputBasic
+					label='TÍTULO:'
+					inputType='dropdown'
+					value={value}
 				/>
 				<button type='button' onClick={() => soma(1)}>
 					click here
