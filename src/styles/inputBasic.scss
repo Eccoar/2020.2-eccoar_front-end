@@ -33,6 +33,11 @@
             text-align: start;
             padding: 1rem;
         }
+        &__select{
+            option {
+                background-color: $preto;
+            }
+        }
     }
 }
 

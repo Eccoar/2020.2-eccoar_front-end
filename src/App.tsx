@@ -2,17 +2,9 @@ import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Navbar from './components/Navbar';
-import InputBasic from './components/inputBasic';
 
 function App() {
 	const [number, setNumber] = useState(0);
-	// const [button, setButton] = useState(false);
-
-	// const fun = () => {
-	// 	setButton(!button);
-	// };
-
-	const value = ['um', 'dois', 'tres'];
 
 	function soma(value: number) {
 		setNumber(number + value);
@@ -35,11 +27,7 @@ function App() {
 					Learn React
 				</a>
 				<p>{number}</p>
-				<InputBasic
-					label='TÍTULO:'
-					inputType='dropdown'
-					value={value}
-				/>
+
 				<button type='button' onClick={() => soma(1)}>
 					click here
 				</button>
