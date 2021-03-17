@@ -1,0 +1,23 @@
+@mixin pseudo(
+	$display: block,
+	$pos: absolute,
+	$content: '',
+	$pseudo-pos: before
+) {
+	&::#{$pseudo-pos} {
+		display: $display;
+		position: $pos;
+		content: $content;
+		@content;
+	}
+}
+
+@mixin respond-to($breakpoint) {
+	@if map-has-key($breakpoints, $breakpoint) {
+		@media #{inspect(map-get($breakpoints, $breakpoint))} {
+			@content;
+		}
+	} @else {
+		@error 'No value found for #{$breakpoint}.';
+	}
+}
