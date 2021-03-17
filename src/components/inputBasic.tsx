@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import '../styles/inputBasic.scss';
 
 type InputBasicProps = {
 	/** Definir Label do input */

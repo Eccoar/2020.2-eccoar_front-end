@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import { ReactComponent as Echo } from '../assets/Echo.svg';
-import '../styles/complainCard.scss';
 
 type ComplainCardProps = {
 	/** Define o titulo do card de denuncía */

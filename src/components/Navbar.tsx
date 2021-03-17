@@ -1,7 +1,6 @@
 import React from 'react';
 
 import isotipo from '../assets/isotipo.svg';
-import '../styles/navbar.scss';
 
 const Navbar: React.FC = () => {
 	return (

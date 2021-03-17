@@ -1,0 +1,129 @@
+@import '../abstract';
+
+.container {
+	margin: 5px;
+	width: 90vw;
+	max-width: 400px;
+	min-width: 280px;
+	height: 110px;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.card-container {
+	margin-right: 5px;
+	box-sizing: border-box;
+	width: 72vw;
+	height: 100%;
+	min-height: 80px;
+	min-width: 250px;
+	max-width: 300px;
+	border: var(--color-secondary--blue) 2px solid;
+	border-radius: 12px;
+	.card-content {
+		font-family: 'Spartan', 'sans-serif';
+		display: flex;
+		height: 85%;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: stretch;
+		padding: 8px;
+	}
+}
+
+.title {
+	font-size: 18px;
+	max-width: 180px;
+	font-weight: bold;
+	white-space: nowrap;
+	text-align: start;
+	&__photo {
+		margin-bottom: 6px;
+		font-size: 1rem;
+		white-space: normal;
+	}
+	color: var(--color-secondary--blue);
+}
+.label {
+	border-radius: 0.5rem;
+	background-color: var(--color-secondary--yellow);
+	max-width: max-content;
+	max-height: 13.5px;
+	margin: 6px 0;
+	p {
+		padding: 2px;
+		padding-left: 0.6rem;
+		padding-right: 0.6rem;
+		font-size: x-small;
+		color: var(--color-background);
+		font-weight: bold;
+	}
+}
+.description {
+	height: 13px * 3;
+	word-break: break-word;
+	display: block;
+	display: -webkit-box;
+	text-align: left;
+	font-size: 10px;
+	overflow: hidden;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	text-overflow: ellipsis;
+}
+
+.card-photo-content {
+	display: flex;
+	height: 100%;
+	box-sizing: border-box;
+	justify-content: space-between;
+	padding: 8px;
+	font-family: 'Spartan', 'sans-serif';
+	.photo-section {
+		width: 30%;
+		height: 100%;
+		.card-photo {
+			object-fit: cover;
+			width: 100%;
+			height: 70%;
+			border-radius: 6px;
+		}
+	}
+	div:first-child {
+		display: flex;
+		flex-direction: column;
+		max-width: 160px;
+		// justify-content: space-around;
+		margin-right: 10px;
+	}
+}
+
+.upvote {
+	border: var(--color-primary) 2px solid;
+	border-radius: 1.4rem;
+	// flex-grow: 1;
+	background-color: transparent;
+	height: 100%;
+	min-height: 90px;
+	width: 2.7em;
+	min-width: 2rem;
+	transition: all 0.3s ease;
+	&__submitted {
+		background-color: var(--color-primary);
+	}
+}
+.icon-red {
+	width: 1.2rem;
+	stroke: var(--color-primary);
+	#circle {
+		fill: var(--color-primary);
+	}
+}
+.icon-black {
+	width: 1.2rem;
+	stroke: var(--color-background);
+	#circle {
+		fill: var(--color-background);
+	}
+}
