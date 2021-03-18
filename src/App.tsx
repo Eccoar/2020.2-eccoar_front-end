@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import logo from './logo.svg';
 import Navbar from './components/Navbar';
 import InputBasic from './components/inputBasic';
+import './styles/styles.scss';
 
 function App() {
 	const [number, setNumber] = useState(0);

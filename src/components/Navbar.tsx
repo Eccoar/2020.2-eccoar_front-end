@@ -1,5 +1,4 @@
 import React from 'react';
-
 import isotipo from '../assets/isotipo.svg';
 
 const Navbar: React.FC = () => {
