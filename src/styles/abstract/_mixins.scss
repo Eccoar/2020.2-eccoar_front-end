@@ -21,3 +21,8 @@
 		@error 'No value found for #{$breakpoint}.';
 	}
 }
+
+@mixin font-style($style-name) {
+	font-size: map-get($map: $font-sizes, $key: $style-name);
+	letter-spacing: map-get($map: $letter-spaces, $key: $style-name);
+}

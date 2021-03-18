@@ -1,3 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Spartan:wght@400;700&display=swap');
 
-$default: 'Spartan', 'sans-serif';
+$font-default: 'Spartan', 'sans-serif';
+
+$font-sizes: (
+	'default': 17px,
+	'button': 15px,
+	'subcaption': 9px,
+	'caption': 11px,
+	'subheader': 19px,
+	'header-1': 25px,
+);
+
+$letter-spaces: (
+	'default': 0.5px,
+	'button': 1.25px,
+	'subcaption': 0.4px,
+	'caption': 0.4px,
+	'subheader': 0.15px,
+	'header-1': 0px,
+);
