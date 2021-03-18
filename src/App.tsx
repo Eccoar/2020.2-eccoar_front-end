@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import InputBasic from './components/inputBasic';
 import './styles/styles.scss';
 
+// TODO: remove in the future
 function App() {
 	const [number, setNumber] = useState(0);
 	const [Value, setValue] = useState('');
