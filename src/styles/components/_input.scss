@@ -4,31 +4,32 @@
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	.input-label {
+	min-width: 220px;
+	max-width: 360px;
+	&__label {
 		font-size: 18px;
-		font-family: 'Spartan', 'sans-serif';
+		font-family: $font-default;
 		color: var(--color-primary);
 		font-weight: bold;
 	}
-	.input-camp {
+	&__input {
+		@include font-style('default');
+		box-sizing: border-box;
 		background-color: transparent;
 		border: var(--color-primary) 3px solid;
 		border-radius: 6px;
-		width: 90vw;
+		width: 100%;
 		height: 48px;
-		min-width: 220px;
-		max-width: 360px;
 		color: var(--color-primary);
-		font-size: 20px;
 		padding-left: 1rem;
-		&__textarea {
-			height: 107px;
-			max-height: 107px;
+		&--textarea {
+			height: 106px;
 			display: flex;
 			text-align: start;
 			padding: 1rem;
+			resize: none;
 		}
-		&__select {
+		&--select {
 			option {
 				background-color: var(--color-background);
 			}

@@ -26,43 +26,44 @@ const InputBasic: FC<InputBasicProps> = ({
 	onChange,
 }) => {
 	return (
-		<>
-			<div className='input-container'>
-				<h1 className='input-label'>{label}</h1>
-				{inputType == 'textarea' ? (
-					<textarea
-						onChange={onChange}
-						value={value}
-						className='input-camp input-camp__textarea'
-					/>
-				) : inputType == 'dropdown' ? (
-					<select
-						onChange={onChange}
-						value={value}
-						className='input-camp input-camp__select'
-					>
-						<option value=''></option>
-						{dropdownItems.map((item) => {
-							return (
-								<option className='option' value={item}>
-									{item}
-								</option>
-							);
-						})}
-						;
-					</select>
-				) : (
-					<input
-						type='text'
-						name={label}
-						placeholder={label}
-						className='input-camp'
-						onChange={onChange}
-						value={value}
-					/>
-				)}
-			</div>
-		</>
+		<div className='input-container'>
+			<h1 className='input-container__label'>{label}</h1>
+			{inputType == 'textarea' ? (
+				<textarea
+					onChange={onChange}
+					value={value}
+					className='input-container__input input-container__input--textarea'
+				/>
+			) : inputType == 'dropdown' ? (
+				<select
+					onChange={onChange}
+					value={value}
+					className='input-container__input input-container__input--select'
+				>
+					<option value=''></option>
+					{dropdownItems.map((item) => {
+						return (
+							<option
+								className='input-container__option'
+								value={item}
+							>
+								{item}
+							</option>
+						);
+					})}
+					;
+				</select>
+			) : (
+				<input
+					type='text'
+					name={label}
+					placeholder={label}
+					className='input-container__input'
+					onChange={onChange}
+					value={value}
+				/>
+			)}
+		</div>
 	);
 };
 
