@@ -2,22 +2,23 @@ import React, { useState } from 'react';
 
 import isotipo from '../assets/isotipo.svg';
 import moon from '../assets/Moon.svg';
-import close from '../assets/Close.svg';
+import closeButton from '../assets/Close.svg';
 import '../styles/components/_navbar.scss';
 
 export interface Drawer {
-	show: any;
+	show: boolean;
+  close: React.MouseEventHandler<HTMLDivElement>;
 }
 
 export interface BackDrop {
-	close: any;
+	close: React.MouseEventHandler<HTMLDivElement>;
 }
 
 export const BackDrop: React.FC<BackDrop> = ({ close }: BackDrop) => {
 	return <div className='backdrop' onClick={close} />;
 };
 
-export const Drawer: React.FC<Drawer> = ({ show }: Drawer) => {
+export const Drawer: React.FC<Drawer> = ({ show, close }: Drawer) => {
 	let drawerClass = 'side-drawer';
 	if (show) drawerClass = 'side-drawer open';
 
@@ -25,9 +26,9 @@ export const Drawer: React.FC<Drawer> = ({ show }: Drawer) => {
 		<>
 			<nav className={drawerClass}>
 				<div className='side-drawer__content'>
-					<button className='side-drawer__button'>
-						<img className='side-drawer__close' src={close} />
-					</button>
+					<div className='side-drawer__button' onClick={close} >
+						<img className='side-drawer__close' src={closeButton} />
+					</div>
 					<div className='side-drawer__links'>
 						<br></br>
 						<a
@@ -45,7 +46,7 @@ export const Drawer: React.FC<Drawer> = ({ show }: Drawer) => {
 						</a>
 						<br></br>
 					</div>
-					<div className='side-drawer__mode'>
+					<div onClick={() => console.log('Mudou')} className='side-drawer__mode'>
 						<img src={moon} className='side-drawer__moon' />
 						<p className='side-drawer__bottom_text'>MODO ESCURO</p>
 					</div>
@@ -67,7 +68,7 @@ const Navbar: React.FC = () => {
 
 	return (
 		<nav className='navbar'>
-			<Drawer show={drawerOpen} />
+			<Drawer close={handleCloseDrawer} show={drawerOpen} />
 			{backDrop}
 			<div />
 			<img src={isotipo} className='navbar__isotipo' />
