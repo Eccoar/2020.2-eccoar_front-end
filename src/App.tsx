@@ -7,7 +7,7 @@ import InputBasic from './components/inputBasic';
 function App() {
 	const [number, setNumber] = useState(0);
 	const [Value, setValue] = useState('');
-	function val(e: any) {
+	function val(e: React.ChangeEvent<HTMLInputElement>) {
 		setValue(e.target.value);
 		console.log(Value);
 	}
