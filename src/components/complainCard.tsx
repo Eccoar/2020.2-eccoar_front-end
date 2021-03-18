@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import { ReactComponent as Echo } from '../assets/Echo.svg';
-import '../styles/complainCard.scss';
 
 type ComplainCardProps = {
 	/** Define o titulo do card de denuncía */
@@ -28,42 +27,56 @@ const ComplainCard: FC<ComplainCardProps> = ({
 	photo,
 	submitted,
 }) => {
-	const buttonClassName = `${submitted ? 'upvote__submitted' : ''} upvote`;
+	const buttonClassName = `${
+		submitted ? 'complaint__upvote--submitted' : ''
+	} complaint__upvote`;
+
+	const formattedDescription = description.slice(0, 95) + '...';
 
 	return (
-		<div className='container'>
-			<section onClick={cardClick} className='card-container'>
+		<div className='complaint'>
+			<section onClick={cardClick} className='complaint__card'>
 				{photo ? (
-					<div className='card-photo-content'>
+					<div className='complaint__content complaint__content--has-photo'>
 						<div>
-							<h1 className='title title__photo'>{title}</h1>
-							<span className='description description__four-lines'>
-								{description}
-							</span>
+							<h1 className='complaint__title complaint__title--has-photo'>
+								{title}
+							</h1>
+							<p className='complaint__description'>
+								{formattedDescription}
+							</p>
 						</div>
-						<div className='photo-section'>
+						<div className='complaint__photo-section'>
 							<img
-								className='card-photo'
+								className='complaint__photo'
 								src={photo}
 								alt='EchoImage'
 							/>
-							<div className='label'>
+							<div className='complaint__label'>
 								<p>{label}</p>
 							</div>
 						</div>
 					</div>
 				) : (
-					<div className='card-content'>
-						<h1 className='title'>{title}</h1>
-						<div className='label'>
+					<div className='complaint__content'>
+						<h1 className='complaint__title'>{title}</h1>
+						<div className='complaint__label'>
 							<p>{label}</p>
 						</div>
-						<span className='description'>{description}</span>
+						<p className='complaint__description'>
+							{formattedDescription}
+						</p>
 					</div>
 				)}
 			</section>
 			<button type='button' onClick={onClick} className={buttonClassName}>
-				<Echo className={submitted ? 'icon-black' : 'icon-red'} />
+				<Echo
+					className={`${
+						submitted
+							? 'complaint__icon--selected'
+							: 'complaint__icon--unselected'
+					} complaint__icon`}
+				/>
 			</button>
 		</div>
 	);

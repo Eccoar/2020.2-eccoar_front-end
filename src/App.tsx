@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import logo from './logo.svg';
-import './App.css';
 import Navbar from './components/Navbar';
 import InputBasic from './components/inputBasic';
+import './styles/styles.scss';
 
+// TODO: remove in the future
 function App() {
 	const [number, setNumber] = useState(0);
 	const [Value, setValue] = useState('');
-	function val(e: any) {
+	function val(e: React.ChangeEvent<HTMLInputElement>) {
 		setValue(e.target.value);
-		console.log(Value);
 	}
 
 	function soma(value: number) {
@@ -17,7 +17,7 @@ function App() {
 	}
 
 	return (
-		<div className='App'>
+		<div className='App dark'>
 			<Navbar />
 			<header className='App-header'>
 				<img src={logo} className='App-logo' alt='logo' />
