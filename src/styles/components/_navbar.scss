@@ -18,6 +18,11 @@
 		}
 	}
 
+  &__button {
+    background-color: transparent;
+    border: none;
+  }
+
 	&__hamburguer {
 		width: 2rem;
 		height: 2rem;
@@ -34,4 +39,135 @@
 			transition: all 0.25s ease;
 		}
 	}
+}
+
+.side-drawer {
+  height: 100%;
+  background: #ffffff;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 80%;
+  z-index: 200;
+  box-shadow: 1px 0px 7px rgba(0,0,0,0.5);
+  transform: translateX(100%);
+  transition: transform 0.3s ease-out;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+
+  &__content {
+    padding-top: 2rem;
+  }
+
+  &__button {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+  }
+
+  &__close {
+    padding-right: 18rem;
+    width: 2rem;
+    height: 2rem;
+    @media (max-height: 700px) {
+      padding-right: 19rem;
+    }
+    @media (max-width: 480px) {
+      padding-right: 16rem;
+    }
+    @media (max-width: 420px) {
+      padding-right: 14rem;
+    }
+    @media (max-width: 370px) {
+      width: 1.5rem;
+      height: 1.5rem;
+      padding-right: 13rem;
+    }
+    @media (max-width: 320px) {
+      width: 1rem;
+      height: 1rem;
+      padding-right: 11rem;
+    }
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  &__mode {
+    padding-top: 55vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    @media (max-width: 370px) {
+      padding-top: 60vh;
+    }
+    @media (max-width: 300px) {
+      padding-top: 65vh;
+    }
+  }
+
+  &__moon {
+    width: 2rem;
+    height: 2rem;
+    padding-top: 2.5rem;
+    @media (max-width: 370px) {
+      width: 1.5rem;
+      height: 1.5rem;
+      padding-top: 2.45rem;
+    }
+    @media (max-width: 300px) {
+      width: 1rem;
+      height: 1rem;
+      padding-top: 2.45rem;
+    }
+  }
+
+
+  &__text {
+    text-decoration: none;
+    color: #F87171;
+    font-size: 25px;
+    @media (max-width: 370px) {
+      font-size: 18px;
+    }
+    @media (max-width: 300px) {
+      font-size: 10px;
+    }
+  }
+
+  &__bottom_text {
+    text-decoration: none;
+    color: #F87171;
+    font-size: 25px;
+    padding: 2.5rem 1rem 2.5rem 2.5rem;
+    @media (max-width: 370px) {
+      font-size: 18px;
+    }
+    @media (max-width: 300px) {
+      font-size: 10px;
+    }
+  }
+}
+
+.backdrop {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 100;
+  top: 0;
+  right: 0;
+}
+
+.side-drawer.open {
+transform: translateX(0);
 }
