@@ -9,6 +9,8 @@
 	--color-secondary--yellow: #{$secondary-yellow};
 
 	--color-background: #{$aux--light};
+
+	--background-image: url('../../assets/BackgroundLight.png') repeat 2048px;
 }
 
 .dark {
@@ -20,4 +22,6 @@
 	--color-secondary--yellow: #{$secondary-yellow--dark};
 
 	--color-background: #{$aux--dark};
+
+	--background-image: url('../../assets/BackgroundDark.png') repeat 2048px;
 }
