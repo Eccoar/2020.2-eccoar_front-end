@@ -1,0 +1,27 @@
+@import '../abstract';
+
+:root {
+	--color-primary--dark: #{$primary--dark};
+	--color-primary: #{$primary};
+	--color-primary--light: #{$primary--light};
+
+	--color-secondary--blue: #{$secondary-blue};
+	--color-secondary--yellow: #{$secondary-yellow};
+
+	--color-background: #{$aux--light};
+
+	--background-image: url('../../assets/BackgroundLight.png') repeat 2048px;
+}
+
+.dark {
+	--color-primary--dark: #{$primary--dark};
+	--color-primary: #{$primary--dark};
+	--color-primary--light: #{$primary--light};
+
+	--color-secondary--blue: #{$secondary-blue--dark};
+	--color-secondary--yellow: #{$secondary-yellow--dark};
+
+	--color-background: #{$aux--dark};
+
+	--background-image: url('../../assets/BackgroundDark.png') repeat 2048px;
+}

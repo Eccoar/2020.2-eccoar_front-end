@@ -1,0 +1,86 @@
+@import '../abstract';
+
+.complain-button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 2rem;
+	width: 100%;
+	height: 48px;
+	min-width: 220px;
+	max-width: 360px;
+	color: var(--color-background);
+	font-family: $font-default;
+	font-weight: bold;
+	@include font-style($style-name: 'button');
+	transition: all 0.2s ease;
+
+	&--primary {
+		background-color: var(--color-primary);
+	}
+	&--secondary {
+		background-color: var(--color-secondary--blue);
+	}
+
+	&--border {
+		&-primary {
+			color: var(--color-primary);
+			border: var(--color-primary) 3px solid;
+			background-color: transparent;
+			.icon {
+				&__next {
+					stroke: var(--color-primary);
+				}
+				&__megaphone {
+					fill: var(--color-primary);
+				}
+				&__echo {
+					stroke: var(--color-primary);
+					#circle {
+						fill: var(--color-primary);
+					}
+				}
+			}
+		}
+		&-secondary {
+			color: var(--color-secondary--blue);
+			border: var(--color-secondary--blue) 3px solid;
+			background-color: transparent;
+			.icon {
+				&__next {
+					stroke: var(--color-secondary--blue);
+				}
+				&__megaphone {
+					fill: var(--color-secondary--blue);
+				}
+				&__echo {
+					stroke: var(--color-secondary--blue);
+					#circle {
+						fill: var(--color-secondary--blue);
+					}
+				}
+			}
+		}
+	}
+
+	&__icon {
+		width: 1.4rem;
+		margin-left: 1rem;
+		&--next {
+			stroke: var(--color-background);
+		}
+		&--megaphone {
+			fill: var(--color-background);
+		}
+		&--echo {
+			stroke: var(--color-background);
+			#circle {
+				fill: var(--color-background);
+			}
+		}
+	}
+
+	&:active {
+		opacity: 0.7;
+	}
+}

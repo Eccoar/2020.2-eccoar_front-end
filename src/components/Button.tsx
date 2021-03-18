@@ -2,7 +2,6 @@ import { FC } from 'react';
 import { ReactComponent as MegaPhone } from '../assets/MegaPhone.svg';
 import { ReactComponent as Next } from '../assets/Next.svg';
 import { ReactComponent as Echo } from '../assets/Echo.svg';
-import '../styles/complainButton.scss';
 
 type ButtonProps = {
 	/** Texto apresentado no botão */
@@ -24,23 +23,41 @@ const Button: FC<ButtonProps> = ({
 	fill = true,
 	onClick,
 }) => {
-	const className = `complain-button complain-button${
-		pattern == 'primary' ? '__primary' : '__secondary'
-	}${fill == false ? '__border' : ''}`;
+	const className = `
+		complain-button
+		${
+			pattern == 'primary'
+				? 'complain-button--primary'
+				: 'complain-button--secondary'
+		}
+		${
+			!fill
+				? pattern == 'primary'
+					? 'complain-button--border-primary'
+					: 'complain-button--border-secondary'
+				: ''
+		}
+	`;
 
 	return (
 		<div>
 			<button type='button' onClick={onClick} className={className}>
 				{text}
 				{icon == 'next' ? (
-					<Next data-testid='next-icon' className='icon icon__next' />
+					<Next
+						data-testid='next-icon'
+						className='complain-button__icon complain-button__icon--next'
+					/>
 				) : icon == 'megaphone' ? (
 					<MegaPhone
 						data-testid='megaphone-icon'
-						className='icon icon__megaphone'
+						className='complain-button__icon complain-button__icon--megaphone'
 					/>
 				) : icon == 'echo' ? (
-					<Echo data-testid='echo-icon' className='icon icon__echo' />
+					<Echo
+						data-testid='echo-icon'
+						className='complain-button__icon complain-button__icon--echo'
+					/>
 				) : null}
 			</button>
 		</div>

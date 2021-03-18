@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 
 import isotipo from '../assets/isotipo.svg';
-import sun from '../assets/Sun.svg';
+import moon from '../assets/Moon.svg';
 import close from '../assets/Close.svg';
-import '../styles/navbar.scss';
-import '../styles/backdrop.scss';
+import '../styles/components/_navbar.scss';
 
 export interface Drawer {
 	show: any;
@@ -46,9 +45,9 @@ export const Drawer: React.FC<Drawer> = ({ show }: Drawer) => {
 						</a>
 						<br></br>
 					</div>
-					<div className='side-drawer__light'>
-						<img src={sun} className='side-drawer__sun' />
-						<p className='side-drawer__bottom_text'>MODO CLARO</p>
+					<div className='side-drawer__mode'>
+						<img src={moon} className='side-drawer__moon' />
+						<p className='side-drawer__bottom_text'>MODO ESCURO</p>
 					</div>
 				</div>
 			</nav>
