@@ -14,7 +14,20 @@ const Home = () => {
 		handleComplaint();
 		console.log(data);
 	}, []);
-	return <div></div>;
+	return (
+		<div>
+			{' '}
+			{data.map(({ name, category, description }) => {
+				return (
+					<ComplainCard
+						title={name}
+						label={category}
+						description={description}
+					/>
+				);
+			})}
+		</div>
+	);
 };
 
 export default Home;
