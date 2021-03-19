@@ -5,20 +5,20 @@ import moon from '../assets/Moon.svg';
 import closeButton from '../assets/Close.svg';
 import '../styles/components/_navbar.scss';
 
-export interface Drawer {
+export interface DrawerProps {
 	show: boolean;
   close: React.MouseEventHandler<HTMLDivElement>;
 }
 
-export interface BackDrop {
+export interface BackDropProps {
 	close: React.MouseEventHandler<HTMLDivElement>;
 }
 
-export const BackDrop: React.FC<BackDrop> = ({ close }: BackDrop) => {
+export const BackDrop: React.FC<BackDropProps> = ({ close }: BackDropProps) => {
 	return <div className='backdrop' onClick={close} />;
 };
 
-export const Drawer: React.FC<Drawer> = ({ show, close }: Drawer) => {
+export const Drawer: React.FC<DrawerProps> = ({ show, close }: DrawerProps) => {
 	let drawerClass = 'side-drawer';
 	if (show) drawerClass = 'side-drawer open';
 
@@ -33,14 +33,14 @@ export const Drawer: React.FC<Drawer> = ({ show, close }: Drawer) => {
 						<br></br>
 						<a
 							className='side-drawer__text'
-							href='http://www.facebook.com'
+							href='https://www.facebook.com'
 						>
 							CRIAR DENÚNCIA
 						</a>
 						<br></br>
 						<a
 							className='side-drawer__text'
-							href='http://google.com'
+							href='https://google.com'
 						>
 							VER DENÚNCIAS
 						</a>
