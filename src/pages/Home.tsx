@@ -1,8 +1,5 @@
 import { Link } from 'react-router-dom';
 import Button from '../components/Button';
-
-import '../styles/homePage.scss';
-
 const Home = () => {
 	return (
 		<div className='home'>

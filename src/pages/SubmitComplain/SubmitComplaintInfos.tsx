@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import Button from '../components/Button';
-import InputBasic from '../components/inputBasic';
-import '../styles/submitComplaintInfos.scss';
+import { useHistory } from 'react-router-dom';
+import Button from '../../components/Button';
+import InputBasic from '../../components/inputBasic';
 
 const SubmitComplaintInfos = () => {
 	const [name, setName] = useState('');

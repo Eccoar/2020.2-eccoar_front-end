@@ -15,8 +15,10 @@ export const createComplaint = async (data: {
 			case 'Água':
 				category = 'Water';
 				break;
+			case 'Energia':
+				category = 'Eletricity';
+				break;
 		}
-		console.log({ ...data, latitude: 10, longitude: 10, userId: 1 });
 		const { description, name } = data;
 		const response = await api.post('/complaint', {
 			description,
@@ -25,8 +27,8 @@ export const createComplaint = async (data: {
 			longitude: 10,
 			userId: 1,
 			status: true,
+			category,
 		});
-		console.log(response);
 		return response;
 	} catch (err) {
 		console.error(err);

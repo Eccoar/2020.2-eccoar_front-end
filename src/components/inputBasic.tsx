@@ -44,6 +44,7 @@ const InputBasic: FC<InputBasicProps> = ({
 					{dropdownItems.map((item) => {
 						return (
 							<option
+								key={item}
 								className='input-container__option'
 								value={item}
 							>

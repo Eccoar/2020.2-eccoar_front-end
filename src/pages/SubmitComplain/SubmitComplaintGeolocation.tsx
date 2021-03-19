@@ -1,7 +1,6 @@
-import '../styles/locationPage.scss';
-import { Link, useHistory } from 'react-router-dom';
-import Button from '../components/Button';
-import { createComplaint } from '../services/complaint';
+import { useHistory } from 'react-router-dom';
+import Button from '../../components/Button';
+import { createComplaint } from '../../services/complaint';
 
 interface IHistory {
 	success?: boolean;
@@ -10,7 +9,7 @@ interface IHistory {
 	category?: string;
 }
 
-const ChooseLocation = () => {
+const SubmitComplaintGeolocation = () => {
 	const history = useHistory<IHistory>();
 	const onSubmit = async () => {
 		let success;
@@ -36,4 +35,4 @@ const ChooseLocation = () => {
 	);
 };
 
-export default ChooseLocation;
+export default SubmitComplaintGeolocation;

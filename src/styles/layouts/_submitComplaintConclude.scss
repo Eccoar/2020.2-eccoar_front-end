@@ -1,4 +1,4 @@
-@import 'main';
+@import '../abstract';
 
 .submitComplaint {
     display: flex;
@@ -8,13 +8,12 @@
     justify-content: space-around;
     height: calc(100vh - 7.25rem);
 
-    color: $branco;
-    font-family: Spartan;
-    font-size: 18px;
+    color: var(--text-color);
+    @include font-style($style-name: 'default');
 
     svg {
         transform: scale(9);
-        stroke: $vermelho-medio-primario;
+        stroke: var(--color-primary);
     }
 
     a {

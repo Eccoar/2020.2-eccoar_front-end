@@ -1,4 +1,4 @@
-@import 'main';
+@import '../abstract';
 
 .takeLocation {
     display: flex;
@@ -8,7 +8,7 @@
     justify-content: space-between;
     height: calc(100vh - 7.25rem);
 
-    color: $branco;
+    color: var(--text-color);
 
     a {
         text-decoration: none;

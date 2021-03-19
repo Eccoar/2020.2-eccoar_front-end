@@ -1,9 +1,7 @@
-import { Link, useHistory } from 'react-router-dom';
-import Button from '../components/Button';
+import { useHistory } from 'react-router-dom';
+import Button from '../../components/Button';
 
-import '../styles/shouldTakePicture.scss';
-
-const ShouldTakePhoto = () => {
+const SubmitComplaitOptionPhoto = () => {
 	const history = useHistory();
 	const onSubmit = (route: string) => {
 		history.push(`/submit-complaint/${route}`, history.location.state);
@@ -27,4 +25,4 @@ const ShouldTakePhoto = () => {
 	);
 };
 
-export default ShouldTakePhoto;
+export default SubmitComplaitOptionPhoto;

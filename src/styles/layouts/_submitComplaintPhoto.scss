@@ -1,5 +1,3 @@
-@import 'main';
-
 .takePhoto {
     display: flex;
     flex-direction: column;
@@ -10,7 +8,7 @@
 
     svg {
         transform: scale(9);
-        stroke: $vermelho-medio-primario;
+        stroke: var(--color-primary);
     }
     a {
         text-decoration: none;

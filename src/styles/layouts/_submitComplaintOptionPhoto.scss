@@ -1,5 +1,3 @@
-@import 'main';
-
 .shouldTakeAPicture {
     display: flex;
     flex-direction: column;
@@ -8,9 +6,8 @@
     justify-content: space-between;
     height: calc(100vh - 7.25rem);
 
-    color: $branco;
-    font-family: Spartan;
-    font-size: 18px;
+    color: var(--text-color);
+    @include font-style($style-name: 'default');
     
     a {
         text-decoration: none;

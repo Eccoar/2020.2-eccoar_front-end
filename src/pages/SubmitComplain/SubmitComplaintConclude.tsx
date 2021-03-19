@@ -1,15 +1,13 @@
 import { useEffect } from 'react';
 import { IoCheckmarkDoneOutline } from 'react-icons/io5';
 import { Link, useHistory } from 'react-router-dom';
-import Button from '../components/Button';
-
-import '../styles/submitComplaint.scss';
+import Button from '../../components/Button';
 
 interface IHistory {
 	success: boolean;
 }
 
-const ConcludeComplaintSubmition = () => {
+const SubmitComplaintConclude = () => {
 	const history = useHistory<IHistory>();
 	useEffect(() => {
 		history.location.state.success;
@@ -42,4 +40,4 @@ const ConcludeComplaintSubmition = () => {
 	);
 };
 
-export default ConcludeComplaintSubmition;
+export default SubmitComplaintConclude;

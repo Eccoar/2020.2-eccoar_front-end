@@ -2,11 +2,11 @@ import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import Navbar from './components/Navbar';
 
 import Home from './pages/Home';
-import SubmitComplaintInfos from './pages/SubmitComplaintInfos';
-import ShouldTakePhoto from './pages/ShouldTakePhoto';
-import ChoosePhoto from './pages/ChoosePhoto';
-import ChooseLocation from './pages/ChooseLocation';
-import ConcludeComplaintSubmition from './pages/ConcludeComplaintSubmition';
+import SubmitComplaintInfos from './pages/SubmitComplain/SubmitComplaintInfos';
+import SubmitComplaitOptionPhoto from './pages/SubmitComplain/SubmitComplaitOptionPhoto';
+import SubmitComplaintPhoto from './pages/SubmitComplain/SubmitComplaitPhoto';
+import SubmitComplaintGeolocation from './pages/SubmitComplain/SubmitComplaintGeolocation';
+import SubmitComplaintConclude from './pages/SubmitComplain/SubmitComplaintConclude';
 
 const Routes = () => {
 	return (
@@ -19,19 +19,19 @@ const Routes = () => {
 					path='/submit-complaint/infos'
 				/>
 				<Route
-					component={ShouldTakePhoto}
+					component={SubmitComplaitOptionPhoto}
 					path='/submit-complaint/photo'
 				/>
 				<Route
-					component={ChoosePhoto}
+					component={SubmitComplaintPhoto}
 					path='/submit-complaint/take-photo'
 				/>
 				<Route
-					component={ChooseLocation}
+					component={SubmitComplaintGeolocation}
 					path='/submit-complaint/location'
 				/>
 				<Route
-					component={ConcludeComplaintSubmition}
+					component={SubmitComplaintConclude}
 					path='/submit-complaint/done'
 				/>
 			</Switch>
