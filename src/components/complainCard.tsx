@@ -12,7 +12,7 @@ type ComplainCardProps = {
 	photo?: string;
 	/** Função ao clicar no botão */
 	onClick?: VoidFunction;
-	/** Prop para verificação externa do botão precionado */
+	/** Prop para verificação externa do botão pressionado */
 	submitted?: boolean;
 	/** Função ao clicar no card */
 	cardClick?: VoidFunction;
