@@ -13,6 +13,7 @@
     height: 110px;
     display: flex;
     align-items: center;
+    margin-left: auto;
     justify-content: space-evenly;
 }
 
@@ -115,6 +116,7 @@
     width: 2.7em;
     min-width: 2rem;
     transition: all 0.3s ease;
+    margin-right: auto;
     &__submitted{
         background-color: $vermelho-medio-primario;
     }
