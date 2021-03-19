@@ -1,0 +1,23 @@
+@import 'main';
+
+.submitComplaint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0rem 1rem;
+    justify-content: space-around;
+    height: calc(100vh - 7.25rem);
+
+    color: $branco;
+    font-family: Spartan;
+    font-size: 18px;
+
+    svg {
+        transform: scale(9);
+        stroke: $vermelho-medio-primario;
+    }
+
+    a {
+        text-decoration: none;
+    }
+}

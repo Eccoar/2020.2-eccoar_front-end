@@ -1,0 +1,25 @@
+@import 'main';
+
+.shouldTakeAPicture {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem 0rem;
+    justify-content: space-between;
+    height: calc(100vh - 7.25rem);
+
+    color: $branco;
+    font-family: Spartan;
+    font-size: 18px;
+    
+    a {
+        text-decoration: none;
+    }
+
+    &__buttonArea {
+        height: 110px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}

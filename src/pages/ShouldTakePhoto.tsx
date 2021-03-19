@@ -1,0 +1,30 @@
+import { Link, useHistory } from 'react-router-dom';
+import Button from '../components/Button';
+
+import '../styles/shouldTakePicture.scss';
+
+const ShouldTakePhoto = () => {
+	const history = useHistory();
+	const onSubmit = (route: string) => {
+		history.push(`/submit-complaint/${route}`, history.location.state);
+	};
+
+	return (
+		<div className='shouldTakeAPicture'>
+			<p>
+				Será que você pode mandar uma foto para entendermos melhor o seu
+				problema?
+			</p>
+			<div className='shouldTakeAPicture__buttonArea'>
+				<Button
+					text='Não'
+					fill={false}
+					onClick={() => onSubmit('location')}
+				/>
+				<Button text='Sim' onClick={() => onSubmit('take-photo')} />
+			</div>
+		</div>
+	);
+};
+
+export default ShouldTakePhoto;

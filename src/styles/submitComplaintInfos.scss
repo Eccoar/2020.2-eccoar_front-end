@@ -1,0 +1,26 @@
+@import 'main.scss';
+
+.submitComplaintInfos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0rem 1rem;
+    justify-content: space-around;
+    height: calc(100vh - 7.25rem);
+
+    color: $branco;
+    font-family: Spartan;
+    font-size: 18px;
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        height: 60%;
+    }
+
+    a {
+        text-decoration: none;
+    }
+}
