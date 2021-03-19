@@ -18,7 +18,7 @@ const Navbar: React.FC = () => {
 			<Drawer close={handleCloseDrawer} show={drawerOpen} />
 			{backDrop}
 			<div />
-			<img src={isotipo} className='navbar__isotipo' />
+			<img draggable={false} src={isotipo} className='navbar__isotipo' />
 			<button
 				type='button'
 				onClick={() => setDrawerOpen(!drawerOpen)}
