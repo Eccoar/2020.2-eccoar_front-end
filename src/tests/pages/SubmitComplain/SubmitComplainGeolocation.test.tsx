@@ -1,7 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter, Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
-import SubmitComplaitPhoto from '../../../pages/SubmitComplain/SubmitComplaintGeolocation';
 import SubmitComplaintGeolocation from '../../../pages/SubmitComplain/SubmitComplaintGeolocation';
 
 const mockHistoryPush = jest.fn();
