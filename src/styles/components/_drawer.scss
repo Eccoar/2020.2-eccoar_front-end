@@ -2,7 +2,7 @@
 
 .side-drawer {
   height: 100%;
-  background: #ffffff;
+  background: var(--color-background);
   position: fixed;
   top: 0;
   right: 0;
@@ -93,7 +93,7 @@
 
   &__text {
     text-decoration: none;
-    color: #F87171;
+    color: var(--color-primary);
     font-family: $font-default;
     font-size: 25px;
     @media (max-width: 370px) {
@@ -106,7 +106,7 @@
 
   &__bottom_text {
     text-decoration: none;
-    color: #F87171;
+    color: var(--color-primary);
     font-size: 20px;
     font-family: $font-default;
     padding: 3rem 1rem 2.5rem 2.5rem;

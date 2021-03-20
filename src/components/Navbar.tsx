@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-
 import isotipo from '../assets/isotipo.svg';
 import Drawer from './Drawer';
 import BackDrop from './Backdrop';
-
 
 const Navbar: React.FC = () => {
 	const [drawerOpen, setDrawerOpen] = useState(false);
