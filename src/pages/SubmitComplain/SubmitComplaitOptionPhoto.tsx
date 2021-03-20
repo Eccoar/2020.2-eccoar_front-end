@@ -8,7 +8,10 @@ const SubmitComplaitOptionPhoto = () => {
 	};
 
 	return (
-		<div className='shouldTakeAPicture'>
+		<div
+			className='shouldTakeAPicture'
+			data-testid='SubmitComplaintOptionPhoto'
+		>
 			<p>
 				Será que você pode mandar uma foto para entendermos melhor o seu
 				problema?

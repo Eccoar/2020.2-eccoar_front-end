@@ -20,7 +20,7 @@ export const createComplaint = async (data: {
 				break;
 		}
 		const { description, name } = data;
-		const response = await api.post('/complaint', {
+		return await api.post('/complaint', {
 			description,
 			name,
 			latitude: 10,
@@ -29,7 +29,6 @@ export const createComplaint = async (data: {
 			status: true,
 			category,
 		});
-		return response;
 	} catch (err) {
 		console.error(err);
 		return null;

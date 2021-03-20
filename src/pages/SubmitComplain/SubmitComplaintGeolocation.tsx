@@ -22,13 +22,12 @@ const SubmitComplaintGeolocation = () => {
 			await createComplaint({ category, description, name });
 			success = true;
 		} catch (err) {
-			console.error(err);
 			success = false;
 		}
 		history.push('/submit-complaint/done', { success });
 	};
 	return (
-		<div className='takeLocation'>
+		<div className='takeLocation' data-testid='SubmitComplaintGeolocation'>
 			<p>WIP</p>
 			<Button text='Continuar' onClick={onSubmit} />
 		</div>

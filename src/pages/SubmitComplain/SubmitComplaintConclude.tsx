@@ -1,6 +1,5 @@
-import { useEffect } from 'react';
 import { IoCheckmarkDoneOutline } from 'react-icons/io5';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Button from '../../components/Button';
 
 interface IHistory {
@@ -9,17 +8,12 @@ interface IHistory {
 
 const SubmitComplaintConclude = () => {
 	const history = useHistory<IHistory>();
-	useEffect(() => {
-		history.location.state.success;
-	}, []);
 
 	const renderSuccess = () => (
 		<>
 			<p>SUA DENÚNCIA FOI ADICIONADA O NOSSO SISTEMA!!</p>
 			<IoCheckmarkDoneOutline />
-			<Link to='/'>
-				<Button text='Finalizar' />
-			</Link>
+			<Button text='Finalizar' onClick={() => history.push('/')} />
 		</>
 	);
 
@@ -27,14 +21,12 @@ const SubmitComplaintConclude = () => {
 		<>
 			<p>ERRO AO ADICIONAR A SUA DENÚNCIA AO SISTEMA!!</p>
 			<IoCheckmarkDoneOutline />
-			<Link to='/'>
-				<Button text='Finalizar' />
-			</Link>
+			<Button text='Finalizar' onClick={() => history.push('/')} />
 		</>
 	);
 
 	return (
-		<div className='submitComplaint'>
+		<div className='submitComplaint' data-testid='SubmitComplaintConclude'>
 			{history.location.state.success ? renderSuccess() : renderFail()}
 		</div>
 	);

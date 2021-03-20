@@ -17,7 +17,10 @@ const SubmitComplaintInfos = () => {
 		});
 	};
 	return (
-		<div className='submitComplaintInfos'>
+		<div
+			className='submitComplaintInfos'
+			data-testid='SubmitComplaintInfos'
+		>
 			<p>
 				Precisamos saber algumas informações sobre a sua denúncia antes
 				de adiciona-las ao sistema
