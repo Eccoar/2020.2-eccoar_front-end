@@ -28,7 +28,7 @@
     border: $verde-secundario 2px solid;
     border-radius: 12px;
     .card-content {
-        font-family: 'Spartan', 'sans-serif';
+        font-family: 'Spartan', sans-serif;
         display: flex;
         height: 85% ;
         flex-direction: column;
@@ -86,7 +86,7 @@
     box-sizing: border-box;
     justify-content: space-between;
     padding: 8px;
-    font-family: 'Spartan', 'sans-serif';
+    font-family: 'Spartan', sans-serif;
     .photo-section{
         width: 30%;
         height: 100%;
