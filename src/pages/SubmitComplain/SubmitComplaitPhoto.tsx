@@ -9,7 +9,7 @@ const SubmitComplaitPhoto = () => {
 	};
 
 	return (
-		<div className='takePhoto'>
+		<div className='takePhoto' data-testid='SubmitComplaintPhoto'>
 			<div />
 			<FiCamera />
 			<Button text='Continuar' onClick={onSubmit} />
