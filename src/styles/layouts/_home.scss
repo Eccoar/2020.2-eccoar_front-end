@@ -1,0 +1,13 @@
+.home {
+	width: 100%;
+	height: 100vh;
+	&__scrollHome {
+		margin: auto;
+		max-width: 420px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: 15vh;
+		height: 60vh;
+	}
+}

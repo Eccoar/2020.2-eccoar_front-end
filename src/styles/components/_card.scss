@@ -1,12 +1,14 @@
 @import '../abstract';
 
 .complaint {
-	max-width: 360px;
+	width: 100%;
 	min-width: 280px;
 	height: 110px;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	margin-top: 1rem;
+	justify-content: flex-start;
+	box-sizing: border-box;
 
 	&__content {
 		font-family: $font-default;
@@ -14,13 +16,21 @@
 		height: 100%;
 		align-items: stretch;
 		box-sizing: border-box;
-		justify-content: space-between;
+		justify-content: flex-start;
 		flex-direction: column;
 		overflow: hidden;
 		padding: 8px;
 
 		&--has-photo {
 			flex-direction: row;
+			justify-content: space-between;
+
+			.complaint {
+				&__label {
+					width: 100%;
+					max-width: none;
+				}
+			}
 		}
 	}
 
@@ -29,9 +39,9 @@
 		height: 100%;
 		box-sizing: border-box;
 		justify-content: space-between;
-		padding: 8px;
 		font-family: $font-default;
 		width: 30%;
+		min-width: 72px;
 		flex-direction: column;
 
 		div:first-child {
@@ -51,11 +61,11 @@
 	}
 
 	&__card {
+		width: 100%;
 		box-sizing: border-box;
 		height: 100%;
 		min-height: 80px;
 		min-width: 240px;
-		max-width: 300px;
 		border: var(--color-secondary--blue) 2px solid;
 		border-radius: 12px;
 		margin-right: 12px;
@@ -104,6 +114,7 @@
 		max-height: 13.5px;
 		margin: 6px 0;
 		p {
+			text-align: center;
 			padding: 2px;
 			padding-left: 0.6rem;
 			padding-right: 0.6rem;

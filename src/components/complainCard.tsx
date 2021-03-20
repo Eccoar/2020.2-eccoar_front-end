@@ -31,7 +31,10 @@ const ComplainCard: FC<ComplainCardProps> = ({
 		submitted ? 'complaint__upvote--submitted' : ''
 	} complaint__upvote`;
 
-	const formattedDescription = description.slice(0, 95) + '...';
+	const formattedDescription =
+		description.length > 95
+			? description.slice(0, 95) + '...'
+			: description;
 
 	return (
 		<div className='complaint'>
