@@ -1,16 +1,15 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import ThemeContextProvider from './context/theme';
-import './App.css';
 import Home from './pages/Home';
 import './styles/styles.scss';
 
 function App() {
 	return (
-    <ThemeContextProvider>
+		<ThemeContextProvider>
 			<Navbar />
 			<Home />
-    </ThemeContextProvider>
+		</ThemeContextProvider>
 	);
 }
 
