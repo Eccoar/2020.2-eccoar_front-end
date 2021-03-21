@@ -10,11 +10,15 @@ const SubmitComplaintInfos = () => {
 
 	const history = useHistory();
 	const onSubmit = () => {
-		history.push('/submit-complaint/photo', {
-			name,
-			description,
-			category,
-		});
+		if (name.length > 0 && description.length > 0 && category.length > 0) {
+			history.push('/submit-complaint/photo', {
+				name,
+				description,
+				category,
+			});
+		} else {
+			window.alert('Preencha todos os campos requisitados !!!');
+		}
 	};
 	return (
 		<div
