@@ -20,13 +20,12 @@ export const createComplaint = async (data: {
 				break;
 		}
 		const { description, name } = data;
-		return await api.post('/complaint', {
+		return await api.post('/complaint/create', {
 			description,
 			name,
 			latitude: 10,
 			longitude: 10,
 			userId: 1,
-			status: true,
 			category,
 		});
 	} catch (err) {
