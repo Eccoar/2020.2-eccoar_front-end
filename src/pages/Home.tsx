@@ -6,14 +6,12 @@ import '../styles/Home.scss';
 const Home = () => {
 	const [data, setData] = useState([]);
 
+	const handleComplaint = async () => {
+		const result = await listComplaints();
+		setData(result);
+	};
 	useEffect(() => {
-		const handleComplaint = async () => {
-			const result = await listComplaints();
-			setData(result);
-			console.log(result);
-		};
 		handleComplaint();
-		console.log(data);
 	}, []);
 	return (
 		<div className='home'>
