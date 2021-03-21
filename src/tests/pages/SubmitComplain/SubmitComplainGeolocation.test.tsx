@@ -27,7 +27,7 @@ describe('Test SubmitComplaintGeolocation screen', () => {
 		expect(mockHistoryPush).toHaveBeenCalledTimes(1);
 	});
 	test('test screen rendering', () => {
-		render(<SubmitComplaitPhoto />);
+		render(<SubmitComplaintGeolocation />);
 
 		expect(
 			screen.getByTestId('SubmitComplaintGeolocation'),

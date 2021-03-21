@@ -4,14 +4,11 @@ import { createMemoryHistory } from 'history';
 import SubmitComplaitOptionPhoto from '../../../pages/SubmitComplain/SubmitComplaitOptionPhoto';
 
 const mockHistoryPush = jest.fn();
-
 jest.mock('react-router-dom', () => ({
 	...(jest.requireActual('react-router-dom') as any),
 	useHistory: () => ({
 		push: mockHistoryPush,
-		location: () => ({
-			state: '',
-		}),
+		location: () => ({ state: '' }),
 	}),
 }));
 
