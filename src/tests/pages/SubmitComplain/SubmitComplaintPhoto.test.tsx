@@ -13,6 +13,10 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('Test SubmitComplaintPhoto screen', () => {
+	test('test screen rendering', () => {
+		render(<SubmitComplaitPhoto />);
+		expect(screen.getByTestId('SubmitComplaintPhoto')).toBeInTheDocument();
+	});
 	test('test screen history', () => {
 		jest.mock('history');
 		render(
@@ -22,13 +26,7 @@ describe('Test SubmitComplaintPhoto screen', () => {
 				</Router>
 			</MemoryRouter>,
 		);
-
 		fireEvent.click(screen.getByText('Continuar'));
 		expect(mockHistoryPush).toHaveBeenCalledTimes(1);
-	});
-	test('test screen rendering', () => {
-		render(<SubmitComplaitPhoto />);
-
-		expect(screen.getByTestId('SubmitComplaintPhoto')).toBeInTheDocument();
 	});
 });

@@ -22,11 +22,9 @@ describe('Test SubmitComplaintOptionPhoto screen', () => {
 				</Router>
 			</MemoryRouter>,
 		);
-
 		fireEvent.click(screen.getByText('Sim'));
 		expect(mockHistoryPush).toHaveBeenCalledTimes(1);
 	});
-
 	test('test screen history "no" action', () => {
 		jest.mock('history');
 		render(
@@ -36,11 +34,9 @@ describe('Test SubmitComplaintOptionPhoto screen', () => {
 				</Router>
 			</MemoryRouter>,
 		);
-
 		fireEvent.click(screen.getByText('Não'));
 		expect(mockHistoryPush).toHaveBeenCalledTimes(1);
 	});
-
 	test('test screen rendering', () => {
 		render(<SubmitComplaitOptionPhoto />);
 
