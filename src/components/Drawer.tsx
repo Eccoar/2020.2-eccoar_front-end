@@ -47,27 +47,17 @@ const Drawer: React.FC<DrawerProps> = ({ show, close }: DrawerProps) => {
 							<br></br>
 						</div>
 					</div>
-					{colorChanger?.color === 'light' ? (
-						<div
-							onClick={() => colorChanger?.changeTheme('dark')}
-							className='side-drawer__mode'
-						>
-							<img src={moon} className='side-drawer__moon' />
-							<p className='side-drawer__bottom_text'>
-								MODO ESCURO
-							</p>
-						</div>
-					) : (
-						<div
-							onClick={() => colorChanger?.changeTheme('light')}
-							className='side-drawer__mode'
-						>
-							<img src={sun} className='side-drawer__moon' />
-							<p className='side-drawer__bottom_text'>
-								MODO CLARO
-							</p>
-						</div>
-					)}
+          {colorChanger?.color === 'light' ? (
+            <div onClick={() => colorChanger?.changeTheme("dark")} className='side-drawer__mode'>
+              <img src={moon} className='side-drawer__toggle' />
+              <p className='side-drawer__bottom_text'>MODO ESCURO</p>
+            </div>
+          ) : (
+            <div onClick={() => colorChanger?.changeTheme("light")} className='side-drawer__mode'>
+              <img src={sun} className='side-drawer__toggle' />
+              <p className='side-drawer__bottom_text'>MODO CLARO</p>
+            </div>
+          )}
 				</div>
 			</nav>
 		</>
