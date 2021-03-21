@@ -18,6 +18,11 @@
 		}
 	}
 
+  &__button {
+    background-color: transparent;
+    border: none;
+  }
+
 	&__hamburguer {
 		width: 2rem;
 		height: 2rem;
@@ -35,3 +40,4 @@
 		}
 	}
 }
+
