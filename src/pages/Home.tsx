@@ -16,17 +16,16 @@ const Home = () => {
 	}, []);
 	return (
 		<div className='home'>
-      <div className='home__create'>
-        <Link to='/submit-complaint/infos'>
-          <Button text='Criar denúncia' />
-        </Link>
-      </div>
+			<div className='home__create'>
+				<Link to='/submit-complaint/infos'>
+					<Button text='Criar denúncia' />
+				</Link>
+			</div>
 			<div className='home__scrollHome'>
 				{' '}
-				{data.map(({ name, category, description, index }) => {
+				{data.map(({ name, category, description }) => {
 					return (
 						<ComplainCard
-              key={index}
 							title={name}
 							label={category}
 							description={description}
