@@ -1,0 +1,23 @@
+.submitComplaintInfos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0rem 1rem;
+    justify-content: space-around;
+    height: calc(100vh - 7.25rem);
+
+    color: var(--text-color);
+    @include font-style($style-name: 'default');
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        height: 60%;
+    }
+
+    a {
+        text-decoration: none;
+    }
+}
