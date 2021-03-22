@@ -23,6 +23,7 @@
 }
 
 @mixin font-style($style-name) {
+    font-family: Spartan, sans-serif;
 	font-size: map-get($map: $font-sizes, $key: $style-name);
 	letter-spacing: map-get($map: $letter-spaces, $key: $style-name);
 }

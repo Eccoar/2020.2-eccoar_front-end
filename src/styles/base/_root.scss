@@ -11,6 +11,8 @@
 	--color-background: #{$aux--light};
 
 	--background-image: url('../../assets/BackgroundLight.png') repeat 2048px;
+
+	--text-color: #{$aux--dark};
 }
 
 .dark {
@@ -24,4 +26,6 @@
 	--color-background: #{$aux--dark};
 
 	--background-image: url('../../assets/BackgroundDark.png') repeat 2048px;
+
+	--text-color: #{$aux--light};
 }

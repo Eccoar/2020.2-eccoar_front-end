@@ -1,14 +1,12 @@
 import React from 'react';
-import Navbar from './components/Navbar';
 import ThemeContextProvider from './context/theme';
-import Home from './pages/Home';
 import './styles/styles.scss';
+import Routes from './routes';
 
 function App() {
 	return (
 		<ThemeContextProvider>
-			<Navbar />
-			<Home />
+			<Routes />
 		</ThemeContextProvider>
 	);
 }
