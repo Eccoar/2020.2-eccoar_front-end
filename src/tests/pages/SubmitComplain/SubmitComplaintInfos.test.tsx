@@ -8,7 +8,11 @@ const mockHistoryPush = jest.fn();
 jest.mock('react-router-dom', () => ({
 	...(jest.requireActual('react-router-dom') as any),
 	useHistory: () => ({
-		push: mockHistoryPush,
+		push: mockHistoryPush('/submit-complaint/photo', {
+			name: '',
+			description: '',
+			category: '',
+		}),
 	}),
 }));
 
@@ -24,8 +28,23 @@ describe('Test SubmitComplaintInfos screen', () => {
 		);
 
 		fireEvent.click(screen.getByText('Continuar'));
-		expect(mockHistoryPush).toHaveBeenCalledTimes(1);
+		expect(mockHistoryPush).toBeCalledTimes(1);
 	});
+
+	test('test  screen history fails', () => {
+		jest.spyOn(window, 'alert').mockImplementation(() => ({}));
+		render(
+			<MemoryRouter>
+				<Router history={createMemoryHistory()}>
+					<SubmitComplaintInfos />
+				</Router>
+			</MemoryRouter>,
+		);
+
+		fireEvent.click(screen.getByText('Continuar'));
+		expect(window.alert).toBeCalledTimes(1);
+	});
+
 	test('test screen rendering', () => {
 		render(<SubmitComplaintInfos />);
 
