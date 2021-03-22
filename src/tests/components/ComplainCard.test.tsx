@@ -31,6 +31,8 @@ describe('Tests ComplainCard Component', () => {
 		userEvent.click(screen.getByTestId('echo-icon'));
 
 		expect(onClick).toHaveBeenCalledTimes(1);
-		expect(screen.getByTestId('echo-icon')).toHaveClass('icon-red');
+		expect(screen.getByTestId('echo-icon')).toHaveClass(
+			'complaint__icon--unselected',
+		);
 	});
 });

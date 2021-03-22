@@ -74,6 +74,7 @@ const ComplainCard: FC<ComplainCardProps> = ({
 			</section>
 			<button type='button' onClick={onClick} className={buttonClassName}>
 				<Echo
+					data-testid='echo-icon'
 					className={`${
 						submitted
 							? 'complaint__icon--selected'

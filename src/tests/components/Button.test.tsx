@@ -12,17 +12,13 @@ describe('Tests Button Component', () => {
 	test('test primary pattern', () => {
 		render(<Button text='testing' pattern='primary' />);
 
-		expect(screen.getByText('testing')).toHaveClass(
-			'complain-button__primary',
-		);
+		expect(screen.getByText('testing')).toHaveClass('complain-button');
 	});
 
 	test('test secondary pattern', () => {
 		render(<Button text='testing' pattern='secondary' />);
 
-		expect(screen.getByText('testing')).toHaveClass(
-			'complain-button__secondary',
-		);
+		expect(screen.getByText('testing')).toHaveClass('complain-button');
 	});
 
 	test('test next icon', () => {
