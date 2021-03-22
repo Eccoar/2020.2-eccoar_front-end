@@ -8,24 +8,30 @@ const mockHistoryPush = jest.fn();
 jest.mock('react-router-dom', () => ({
 	...(jest.requireActual('react-router-dom') as any),
 	useHistory: () => ({
-		push: mockHistoryPush('/submit-complaint/photo', {
-			name: '',
-			description: '',
-			category: '',
-		}),
+		push: mockHistoryPush,
 	}),
 }));
 
 describe('Test SubmitComplaintInfos screen', () => {
 	test('test screen history', () => {
 		jest.mock('history');
-		render(
+		const { container } = render(
 			<MemoryRouter>
 				<Router history={createMemoryHistory()}>
 					<SubmitComplaintInfos />
 				</Router>
 			</MemoryRouter>,
 		);
+
+		fireEvent.change(container.querySelector('input') as Element, {
+			target: { value: 'Buraco na rua' },
+		});
+		fireEvent.change(container.querySelector('textarea') as Element, {
+			target: { value: 'descrição do buracao' },
+		});
+		fireEvent.change(container.querySelector('select') as Element, {
+			target: { value: 'Buraco' },
+		});
 
 		fireEvent.click(screen.getByText('Continuar'));
 		expect(mockHistoryPush).toBeCalledTimes(1);
