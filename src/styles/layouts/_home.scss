@@ -1,20 +1,23 @@
 .home {
-	width: 100%;
+	width: 100vw;
 	height: 100vh;
+  padding-top: 1rem;
+
+  a {
+    text-decoration: none;
+  }
+
+  &__create {
     display: flex;
     justify-content: center;
-    padding-top: 1rem;
+  }
 
-    a {
-        text-decoration: none;
-    }
 	&__scrollHome {
-		margin: auto;
-		max-width: 420px;
-		display: flex;
-		flex-direction: column;
+    max-width: 420px;
+    display: flex;
 		align-items: center;
-		margin-top: 15vh;
-		height: 60vh;
+    flex-direction: column;
+		height: 100vh;
+    overflow: scroll;
 	}
 }

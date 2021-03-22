@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ComplainCard from '../components/complainCard';
 import { listComplaints } from '../services/complaint';
-import '../styles/Home.scss';
 import { Link } from 'react-router-dom';
 import Button from '../components/Button';
 
@@ -17,14 +16,17 @@ const Home = () => {
 	}, []);
 	return (
 		<div className='home'>
-			<Link to='/submit-complaint/infos'>
-				<Button text='Criar denúncia' />
-			</Link>
-			<div className='scrollHome'>
+      <div className='home__create'>
+        <Link to='/submit-complaint/infos'>
+          <Button text='Criar denúncia' />
+        </Link>
+      </div>
+			<div className='home__scrollHome'>
 				{' '}
-				{data.map(({ name, category, description }) => {
+				{data.map(({ name, category, description, index }) => {
 					return (
 						<ComplainCard
+              key={index}
 							title={name}
 							label={category}
 							description={description}
