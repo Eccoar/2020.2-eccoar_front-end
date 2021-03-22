@@ -23,9 +23,10 @@ const Home = () => {
 			</div>
 			<div className='home__scrollHome'>
 				{' '}
-				{data.map(({ name, category, description }) => {
+				{data.map(({ name, category, description }, index) => {
 					return (
 						<ComplainCard
+							key={index}
 							title={name}
 							label={category}
 							description={description}
