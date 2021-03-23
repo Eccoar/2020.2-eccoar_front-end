@@ -64,7 +64,7 @@
 		cursor: pointer;
 	}
 
-	&__moon {
+	&__toggle {
 		width: 2rem;
 		height: 2rem;
 		padding-bottom: 8px;
@@ -84,11 +84,14 @@
 		color: var(--color-primary);
 		font-family: $font-default;
 		font-size: 23px;
+    padding-top: 2.5em;
 		@media (max-width: 370px) {
 			font-size: 18px;
+      padding-top: 2rem;
 		}
 		@media (max-width: 300px) {
 			font-size: 10px;
+      padding-top: 1.5rem;
 		}
 	}
 
@@ -105,6 +108,7 @@
 		}
 	}
 }
+
 
 .side-drawer.open {
 	transform: translateX(0);

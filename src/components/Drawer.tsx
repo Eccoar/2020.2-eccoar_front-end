@@ -1,3 +1,4 @@
+
 import React, { useContext } from 'react';
 import moon from '../assets/Moon.svg';
 import sun from '../assets/Sun.svg';
@@ -28,7 +29,6 @@ const Drawer: React.FC<DrawerProps> = ({ show, close }: DrawerProps) => {
 							onClick={close}
 						/>
 						<div className='side-drawer__links'>
-							<br></br>
 							<Link
 								className='side-drawer__text'
 								to='/submit-complaint/infos'
@@ -36,7 +36,6 @@ const Drawer: React.FC<DrawerProps> = ({ show, close }: DrawerProps) => {
 							>
 								CRIAR DENÚNCIA
 							</Link>
-							<br></br>
 							<Link
 								className='side-drawer__text'
 								to='/'
@@ -44,7 +43,6 @@ const Drawer: React.FC<DrawerProps> = ({ show, close }: DrawerProps) => {
 							>
 								VER DENÚNCIAS
 							</Link>
-							<br></br>
 						</div>
 					</div>
 					{colorChanger?.color === 'light' ? (
@@ -52,7 +50,7 @@ const Drawer: React.FC<DrawerProps> = ({ show, close }: DrawerProps) => {
 							onClick={() => colorChanger?.changeTheme('dark')}
 							className='side-drawer__mode'
 						>
-							<img src={moon} className='side-drawer__moon' />
+							<img src={moon} className='side-drawer__toggle' />
 							<p className='side-drawer__bottom_text'>
 								MODO ESCURO
 							</p>
@@ -62,7 +60,7 @@ const Drawer: React.FC<DrawerProps> = ({ show, close }: DrawerProps) => {
 							onClick={() => colorChanger?.changeTheme('light')}
 							className='side-drawer__mode'
 						>
-							<img src={sun} className='side-drawer__moon' />
+							<img src={sun} className='side-drawer__toggle' />
 							<p className='side-drawer__bottom_text'>
 								MODO CLARO
 							</p>
