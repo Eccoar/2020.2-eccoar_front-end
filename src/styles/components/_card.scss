@@ -1,4 +1,4 @@
-@import '../abstract';
+@import "../abstract";
 
 .complaint {
 	width: 100%;
@@ -89,7 +89,7 @@
 	}
 
 	&__title {
-		@include font-style('subheader');
+		@include font-style("subheader");
 		max-width: 180px;
 		font-weight: bold;
 		white-space: nowrap;
@@ -97,7 +97,7 @@
 		color: var(--color-secondary--blue);
 
 		&__photo {
-			@include font-style('caption');
+			@include font-style("caption");
 			margin-bottom: 6px;
 			white-space: normal;
 		}
@@ -118,7 +118,7 @@
 			padding: 2px;
 			padding-left: 0.6rem;
 			padding-right: 0.6rem;
-			@include font-style('subcaption');
+			@include font-style("subcaption");
 			color: var(--color-background);
 			font-weight: bold;
 		}
@@ -139,8 +139,9 @@
 	}
 
 	&__description {
-		@include font-style('caption');
+		@include font-style("caption");
 		text-align: left;
+		color: var(--text-color);
 	}
 
 	&__icon {
