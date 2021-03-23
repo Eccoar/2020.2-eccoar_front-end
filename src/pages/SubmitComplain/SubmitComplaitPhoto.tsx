@@ -5,11 +5,11 @@ import Button from '../../components/Button';
 const SubmitComplaitPhoto = () => {
 	const history = useHistory();
 	const onSubmit = () => {
-		history.push('/submit-complaint/photo', history.location.state);
+		history.push('/submit-complaint/location', history.location.state);
 	};
 
 	return (
-		<div className='takePhoto' data-testid='SubmitComplaintPhoto'>
+		<div className='submitComplaint' data-testid='SubmitComplaintPhoto'>
 			<div />
 			<FiCamera />
 			<Button text='Continuar' onClick={onSubmit} />

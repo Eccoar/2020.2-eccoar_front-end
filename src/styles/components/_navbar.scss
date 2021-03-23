@@ -1,11 +1,12 @@
 @import '../abstract';
 
 .navbar {
-	max-width: 100%;
+	width: 100%;
 	max-height: 5rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	box-sizing: border-box;
 	padding: 0.5rem 1rem;
 
 	&__isotipo {
@@ -18,10 +19,10 @@
 		}
 	}
 
-  &__button {
-    background-color: transparent;
-    border: none;
-  }
+	&__button {
+		background-color: transparent;
+		border: none;
+	}
 
 	&__hamburguer {
 		width: 2rem;
@@ -40,4 +41,3 @@
 		}
 	}
 }
-

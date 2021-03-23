@@ -40,27 +40,25 @@ const Button: FC<ButtonProps> = ({
 	`;
 
 	return (
-		<div>
-			<button type='button' onClick={onClick} className={className}>
-				{text}
-				{icon == 'next' ? (
-					<Next
-						data-testid='next-icon'
-						className='complain-button__icon complain-button__icon--next'
-					/>
-				) : icon == 'megaphone' ? (
-					<MegaPhone
-						data-testid='megaphone-icon'
-						className='complain-button__icon complain-button__icon--megaphone'
-					/>
-				) : icon == 'echo' ? (
-					<Echo
-						data-testid='echo-icon'
-						className='complain-button__icon complain-button__icon--echo'
-					/>
-				) : null}
-			</button>
-		</div>
+		<button type='button' onClick={onClick} className={className}>
+			{text}
+			{icon == 'next' ? (
+				<Next
+					data-testid='next-icon'
+					className='complain-button__icon complain-button__icon--next'
+				/>
+			) : icon == 'megaphone' ? (
+				<MegaPhone
+					data-testid='megaphone-icon'
+					className='complain-button__icon complain-button__icon--megaphone'
+				/>
+			) : icon == 'echo' ? (
+				<Echo
+					data-testid='echo-icon'
+					className='complain-button__icon complain-button__icon--echo'
+				/>
+			) : null}
+		</button>
 	);
 };
 

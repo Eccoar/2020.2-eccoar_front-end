@@ -1,5 +1,10 @@
-import { AxiosResponse } from 'axios';
 import api from './api';
+import { AxiosResponse } from 'axios';
+
+export const listComplaints = async () => {
+	const response = await api.get('/complaints');
+	return response.data.complaints;
+};
 
 export const createComplaint = async (data: {
 	name: string;

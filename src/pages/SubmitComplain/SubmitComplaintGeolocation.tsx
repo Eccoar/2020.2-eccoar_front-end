@@ -27,7 +27,10 @@ const SubmitComplaintGeolocation = () => {
 		history.push('/submit-complaint/done', { success });
 	};
 	return (
-		<div className='takeLocation' data-testid='SubmitComplaintGeolocation'>
+		<div
+			className='submitComplaint'
+			data-testid='SubmitComplaintGeolocation'
+		>
 			<p>WIP</p>
 			<Button text='Continuar' onClick={onSubmit} />
 		</div>

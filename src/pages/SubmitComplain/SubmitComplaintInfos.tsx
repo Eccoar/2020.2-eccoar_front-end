@@ -21,15 +21,12 @@ const SubmitComplaintInfos = () => {
 		}
 	};
 	return (
-		<div
-			className='submitComplaintInfos'
-			data-testid='SubmitComplaintInfos'
-		>
+		<div className='submitComplaint' data-testid='SubmitComplaintInfos'>
 			<p>
 				Precisamos saber algumas informações sobre a sua denúncia antes
 				de adiciona-las ao sistema
 			</p>
-			<div className='submitComplaintInfos__content'>
+			<div className='submitComplaint__content'>
 				<InputBasic
 					label='Título'
 					value={name}

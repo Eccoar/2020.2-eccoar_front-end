@@ -1,0 +1,39 @@
+.submitComplaint {
+	padding: 0rem 1rem;
+	max-width: 420px;
+	margin: auto;
+	padding-bottom: 1rem;
+	min-height: calc(100vh - 5rem);
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+
+	color: var(--text-color);
+	@include font-style($style-name: 'default');
+
+	svg {
+		transform: scale(9);
+		stroke: var(--color-primary);
+	}
+
+	&__content {
+		margin-top: 2rem;
+
+		width: 100%;
+
+		& div {
+			margin-bottom: 2rem;
+		}
+
+		& button {
+			margin-top: 2rem;
+		}
+	}
+
+	& p {
+		text-align: center;
+		margin-top: 2rem;
+	}
+}

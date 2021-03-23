@@ -12,7 +12,7 @@ type ComplainCardProps = {
 	photo?: string;
 	/** Função ao clicar no botão */
 	onClick?: VoidFunction;
-	/** Prop para verificação externa do botão precionado */
+	/** Prop para verificação externa do botão pressionado */
 	submitted?: boolean;
 	/** Função ao clicar no card */
 	cardClick?: VoidFunction;
@@ -31,7 +31,10 @@ const ComplainCard: FC<ComplainCardProps> = ({
 		submitted ? 'complaint__upvote--submitted' : ''
 	} complaint__upvote`;
 
-	const formattedDescription = description.slice(0, 95) + '...';
+	const formattedDescription =
+		description.length > 95
+			? description.slice(0, 95) + '...'
+			: description;
 
 	return (
 		<div className='complaint'>
@@ -71,6 +74,7 @@ const ComplainCard: FC<ComplainCardProps> = ({
 			</section>
 			<button type='button' onClick={onClick} className={buttonClassName}>
 				<Echo
+					data-testid='echo-icon'
 					className={`${
 						submitted
 							? 'complaint__icon--selected'

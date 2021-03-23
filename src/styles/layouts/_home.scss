@@ -1,9 +1,10 @@
 .home {
-    display: flex;
-    justify-content: center;
-    padding-top: 1rem;
+	padding: 1rem;
+	margin: auto;
+	max-width: 420px;
 
-    a {
-        text-decoration: none;
-    }
+	&__create {
+		display: flex;
+		justify-content: center;
+	}
 }
