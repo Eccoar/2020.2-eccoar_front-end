@@ -32,6 +32,7 @@ const Drawer: React.FC<DrawerProps> = ({ show, close }: DrawerProps) => {
 							CRIAR DENÚNCIA
 						</Link>
 						<br></br>
+						<br></br>
 						<Link className='side-drawer__text' to='/'>
 							VER DENÚNCIAS
 						</Link>
