@@ -6,6 +6,7 @@ import Button from '../components/Button';
 
 const Home = () => {
 	const [data, setData] = useState([]);
+	const [changeBoolean, setChangeBoolean] = useState(false);
 	const history = useHistory();
 
 	const handleComplaint = async () => {
@@ -26,7 +27,7 @@ const Home = () => {
 			<div className='home__create'>
 				<Button onClick={changePage} text='Criar denúncia' />
 			</div>
-			{data.map(({ name, category, description }, index) => {
+			{data.map(({ name, category, description, submitted }, index) => {
 				return (
 					<ComplainCard
 						key={index}
