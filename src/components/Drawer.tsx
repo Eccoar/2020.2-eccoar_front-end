@@ -1,3 +1,4 @@
+
 import React, { useContext } from 'react';
 import moon from '../assets/Moon.svg';
 import sun from '../assets/Sun.svg';
@@ -20,23 +21,29 @@ const Drawer: React.FC<DrawerProps> = ({ show, close }: DrawerProps) => {
 		<>
 			<nav className={drawerClass}>
 				<div className='side-drawer__content'>
-					<div className='side-drawer__button' onClick={close}>
-						<img className='side-drawer__close' src={closeButton} />
-					</div>
-					<div className='side-drawer__links'>
-						<br></br>
-						<Link
-							className='side-drawer__text'
-							to='/submit-complaint/infos'
-						>
-							CRIAR DENÚNCIA
-						</Link>
-						<br></br>
-						<br></br>
-						<Link className='side-drawer__text' to='/'>
-							VER DENÚNCIAS
-						</Link>
-						<br></br>
+					<div>
+						<img
+							role='button'
+							className='side-drawer__close'
+							src={closeButton}
+							onClick={close}
+						/>
+						<div className='side-drawer__links'>
+							<Link
+								className='side-drawer__text'
+								to='/submit-complaint/infos'
+								onClick={close}
+							>
+								CRIAR DENÚNCIA
+							</Link>
+							<Link
+								className='side-drawer__text'
+								to='/'
+								onClick={close}
+							>
+								VER DENÚNCIAS
+							</Link>
+						</div>
 					</div>
 					{colorChanger?.color === 'light' ? (
 						<div

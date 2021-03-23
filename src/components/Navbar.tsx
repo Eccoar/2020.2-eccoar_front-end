@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import isotipo from '../assets/isotipo.svg';
 import Drawer from './Drawer';
 import BackDrop from './Backdrop';
+import { Link } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
 	const [drawerOpen, setDrawerOpen] = useState(false);
@@ -18,7 +19,9 @@ const Navbar: React.FC = () => {
 			<Drawer close={handleCloseDrawer} show={drawerOpen} />
 			{backDrop}
 			<div />
-			<img src={isotipo} className='navbar__isotipo' />
+      <Link to="/">
+			  <img src={isotipo} className='navbar__isotipo' />
+      </Link>
 			<button
 				type='button'
 				onClick={() => setDrawerOpen(!drawerOpen)}
