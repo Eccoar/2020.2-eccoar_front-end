@@ -9,14 +9,14 @@ const SubmitComplaitOptionPhoto = () => {
 
 	return (
 		<div
-			className='shouldTakeAPicture'
+			className='submitComplaint'
 			data-testid='SubmitComplaintOptionPhoto'
 		>
 			<p>
 				Será que você pode mandar uma foto para entendermos melhor o seu
 				problema?
 			</p>
-			<div className='shouldTakeAPicture__buttonArea'>
+			<div className='submitComplaint__content'>
 				<Button
 					text='Não'
 					fill={false}

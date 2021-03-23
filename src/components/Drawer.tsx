@@ -3,10 +3,11 @@ import moon from '../assets/Moon.svg';
 import sun from '../assets/Sun.svg';
 import closeButton from '../assets/Close.svg';
 import { ThemeContext } from '../context/theme';
+import { Link } from 'react-router-dom';
 
 export interface DrawerProps {
 	show: boolean;
-	close: React.MouseEventHandler<HTMLDivElement>;
+	close(): void;
 }
 
 const Drawer: React.FC<DrawerProps> = ({ show, close }: DrawerProps) => {
@@ -19,25 +20,32 @@ const Drawer: React.FC<DrawerProps> = ({ show, close }: DrawerProps) => {
 		<>
 			<nav className={drawerClass}>
 				<div className='side-drawer__content'>
-					<div className='side-drawer__button' onClick={close}>
-						<img className='side-drawer__close' src={closeButton} />
-					</div>
-					<div className='side-drawer__links'>
-						<br></br>
-						<a
-							className='side-drawer__text'
-							href='https://www.facebook.com'
-						>
-							CRIAR DENÚNCIA
-						</a>
-						<br></br>
-						<a
-							className='side-drawer__text'
-							href='https://google.com'
-						>
-							VER DENÚNCIAS
-						</a>
-						<br></br>
+					<div>
+						<img
+							role='button'
+							className='side-drawer__close'
+							src={closeButton}
+							onClick={close}
+						/>
+						<div className='side-drawer__links'>
+							<br></br>
+							<Link
+								className='side-drawer__text'
+								to='/submit-complaint/infos'
+								onClick={close}
+							>
+								CRIAR DENÚNCIA
+							</Link>
+							<br></br>
+							<Link
+								className='side-drawer__text'
+								to='/'
+								onClick={close}
+							>
+								VER DENÚNCIAS
+							</Link>
+							<br></br>
+						</div>
 					</div>
 					{colorChanger?.color === 'light' ? (
 						<div
