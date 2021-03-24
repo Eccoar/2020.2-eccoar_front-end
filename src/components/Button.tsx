@@ -40,7 +40,12 @@ const Button: FC<ButtonProps> = ({
 	`;
 
 	return (
-		<button type='button' onClick={onClick} className={className}>
+		<button
+			type='button'
+			onClick={onClick}
+			className={className}
+			data-testid='button'
+		>
 			{text}
 			{icon == 'next' ? (
 				<Next

@@ -14,7 +14,6 @@ jest.mock('react-router-dom', () => ({
 
 describe('Test SubmitComplaintGeolocation screen', () => {
 	test('test screen history', () => {
-		jest.mock('history');
 		render(
 			<MemoryRouter>
 				<Router history={createMemoryHistory()}>

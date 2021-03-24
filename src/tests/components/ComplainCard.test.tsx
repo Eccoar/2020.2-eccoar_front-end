@@ -3,16 +3,17 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ComplainCard from '../../components/complainCard';
 
+jest.spyOn(window, 'alert').mockImplementation();
+
 describe('Tests ComplainCard Component', () => {
 	test('renders ComplainCard', () => {
+		const onClick = jest.fn();
 		render(
 			<ComplainCard
 				title={'Buraco na rua!'}
 				label={'Buraco'}
 				description={'Que buracao meu'}
-				id={1}
-				onClick={jest.fn()}
-				status={'open'}
+				onClick={onClick}
 			/>,
 		);
 
@@ -28,17 +29,30 @@ describe('Tests ComplainCard Component', () => {
 				title={'Buraco na rua!'}
 				label={'Buraco'}
 				description={'Que buracao meu'}
-				id={1}
 				onClick={onClick}
-				status={'open'}
 			/>,
 		);
 		userEvent.click(screen.getByTestId('echo-icon'));
-
+		userEvent.click(screen.getByTestId('button-id'));
 		expect(onClick).toHaveBeenCalledTimes(1);
 		expect(screen.getByTestId('echo-icon')).toHaveClass(
-			'complaint__icon--unselected',
+			'complaint__icon--selected complaint__icon',
 		);
+	});
+
+	test('test setConfirmed state', () => {
+		const onClick = jest.fn();
+		render(
+			<ComplainCard
+				title={'Buraco na rua!'}
+				label={'Buraco'}
+				description={'Que buracao meu'}
+				onClick={onClick}
+				vote_id={1}
+			/>,
+		);
+		userEvent.click(screen.getByTestId('button-id'));
+		expect(window.alert).toBeCalledTimes(1);
 	});
 
 	test('test submitted click event', () => {
@@ -48,9 +62,7 @@ describe('Tests ComplainCard Component', () => {
 				title={'Buraco na rua!'}
 				label={'Buraco'}
 				description={'Que buracao meu'}
-				id={1}
 				onClick={onClick}
-				status={'wait'}
 			/>,
 		);
 		userEvent.click(screen.getByTestId('check-icon'));
@@ -66,9 +78,7 @@ describe('Tests ComplainCard Component', () => {
 				title={'Buraco na rua!'}
 				label={'Buraco'}
 				description={'Que buracao meu'}
-				id={1}
 				onClick={onClick}
-				status={'wait'}
 			/>,
 		);
 		userEvent.click(screen.getByTestId('confirmed-type'));
