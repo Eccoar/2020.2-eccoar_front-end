@@ -109,6 +109,7 @@ const ComplainCard: FC<ComplainCardProps> = ({
 				type='button'
 				onClick={() => onClick(id, 'complaintConfirmed')}
 				className={`complaint__upvote ${complaintStatus}`}
+				data-testid='confirmed-type'
 			>
 				{iconStatus()}
 			</button>
