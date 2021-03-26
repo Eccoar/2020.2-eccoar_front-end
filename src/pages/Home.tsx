@@ -34,7 +34,7 @@ const Home = () => {
 			<div className='home__create'>
 				<Button onClick={changePage} text='Criar denúncia' />
 			</div>
-			{data.map(({ name, category, description, id }, index) => {
+			{data.map(({ name, category, description, id, status }, index) => {
 				return (
 					<ComplainCard
 						key={index}
@@ -43,6 +43,7 @@ const Home = () => {
 						description={description}
 						onClick={onVote}
 						id={id}
+						status={status}
 					/>
 				);
 			})}

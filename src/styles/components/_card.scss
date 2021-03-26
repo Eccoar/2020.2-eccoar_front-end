@@ -136,6 +136,9 @@
 		&--submitted {
 			background-color: var(--color-primary);
 		}
+		&--confirmed {
+			border: var(--color-secondary--blue) 2px solid;
+		}
 	}
 
 	&__description {

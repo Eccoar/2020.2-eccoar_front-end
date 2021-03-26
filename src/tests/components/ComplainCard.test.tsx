@@ -12,6 +12,7 @@ describe('Tests ComplainCard Component', () => {
 				description={'Que buracao meu'}
 				id={1}
 				onClick={jest.fn()}
+				status={'open'}
 			/>,
 		);
 
@@ -29,6 +30,7 @@ describe('Tests ComplainCard Component', () => {
 				description={'Que buracao meu'}
 				id={1}
 				onClick={onClick}
+				status={'open'}
 			/>,
 		);
 		userEvent.click(screen.getByTestId('echo-icon'));
