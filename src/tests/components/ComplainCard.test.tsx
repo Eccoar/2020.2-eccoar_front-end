@@ -10,6 +10,9 @@ describe('Tests ComplainCard Component', () => {
 				title={'Buraco na rua!'}
 				label={'Buraco'}
 				description={'Que buracao meu'}
+				id={1}
+				onClick={jest.fn()}
+				status={'open'}
 			/>,
 		);
 
@@ -25,7 +28,9 @@ describe('Tests ComplainCard Component', () => {
 				title={'Buraco na rua!'}
 				label={'Buraco'}
 				description={'Que buracao meu'}
+				id={1}
 				onClick={onClick}
+				status={'open'}
 			/>,
 		);
 		userEvent.click(screen.getByTestId('echo-icon'));
@@ -33,6 +38,44 @@ describe('Tests ComplainCard Component', () => {
 		expect(onClick).toHaveBeenCalledTimes(1);
 		expect(screen.getByTestId('echo-icon')).toHaveClass(
 			'complaint__icon--unselected',
+		);
+	});
+
+	test('test submitted click event', () => {
+		const onClick = jest.fn();
+		render(
+			<ComplainCard
+				title={'Buraco na rua!'}
+				label={'Buraco'}
+				description={'Que buracao meu'}
+				id={1}
+				onClick={onClick}
+				status={'wait'}
+			/>,
+		);
+		userEvent.click(screen.getByTestId('check-icon'));
+
+		expect(onClick).toHaveBeenCalledTimes(1);
+		expect(screen.getByTestId('check-icon')).toHaveClass('complaint__icon');
+	});
+
+	test('test submitted click event and class changing', () => {
+		const onClick = jest.fn();
+		render(
+			<ComplainCard
+				title={'Buraco na rua!'}
+				label={'Buraco'}
+				description={'Que buracao meu'}
+				id={1}
+				onClick={onClick}
+				status={'wait'}
+			/>,
+		);
+		userEvent.click(screen.getByTestId('confirmed-type'));
+
+		expect(onClick).toHaveBeenCalledTimes(1);
+		expect(screen.getByTestId('confirmed-type')).toHaveClass(
+			'complaint__upvote complaint__upvote--confirmed',
 		);
 	});
 });

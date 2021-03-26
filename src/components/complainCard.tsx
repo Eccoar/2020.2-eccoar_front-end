@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { ReactComponent as Echo } from '../assets/Echo.svg';
+import { ReactComponent as Check } from '../assets/Check.svg';
 
 type ComplainCardProps = {
 	/** Define o titulo do card de denuncía */
@@ -11,11 +12,15 @@ type ComplainCardProps = {
 	/** Define url ou path da foto da denuncía */
 	photo?: string;
 	/** Função ao clicar no botão */
-	onClick?: VoidFunction;
+	onClick(id: number, typeVote: string): Promise<void>;
 	/** Prop para verificação externa do botão pressionado */
 	submitted?: boolean;
 	/** Função ao clicar no card */
 	cardClick?: VoidFunction;
+	/** Id do denúncia */
+	id: number;
+	/** Status da denúncia */
+	status: string;
 };
 
 const ComplainCard: FC<ComplainCardProps> = ({
@@ -26,16 +31,44 @@ const ComplainCard: FC<ComplainCardProps> = ({
 	description,
 	photo,
 	submitted,
+	id,
+	status,
 }) => {
 	const buttonClassName = `${
 		submitted ? 'complaint__upvote--submitted' : ''
-	} complaint__upvote`;
+	}`;
+
+	const iconStatus = () => {
+		switch (status) {
+			case 'wait':
+				return (
+					<Check
+						data-testid='check-icon'
+						className='complaint__icon'
+					/>
+				);
+			default:
+				return (
+					<Echo
+						data-testid='echo-icon'
+						className={`${
+							submitted
+								? 'complaint__icon--selected'
+								: 'complaint__icon--unselected'
+						} complaint__icon`}
+					/>
+				);
+		}
+	};
 
 	const formattedDescription =
 		description.length > 95
 			? description.slice(0, 95) + '...'
 			: description;
 
+	const complaintStatus = `${
+		status == 'wait' ? 'complaint__upvote--confirmed' : buttonClassName
+	}`;
 	return (
 		<div className='complaint'>
 			<section onClick={cardClick} className='complaint__card'>
@@ -72,15 +105,13 @@ const ComplainCard: FC<ComplainCardProps> = ({
 					</div>
 				)}
 			</section>
-			<button type='button' onClick={onClick} className={buttonClassName}>
-				<Echo
-					data-testid='echo-icon'
-					className={`${
-						submitted
-							? 'complaint__icon--selected'
-							: 'complaint__icon--unselected'
-					} complaint__icon`}
-				/>
+			<button
+				type='button'
+				onClick={() => onClick(id, 'complaintConfirmed')}
+				className={`complaint__upvote ${complaintStatus}`}
+				data-testid='confirmed-type'
+			>
+				{iconStatus()}
 			</button>
 		</div>
 	);
