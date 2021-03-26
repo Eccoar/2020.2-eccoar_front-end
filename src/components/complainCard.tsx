@@ -11,11 +11,13 @@ type ComplainCardProps = {
 	/** Define url ou path da foto da denuncía */
 	photo?: string;
 	/** Função ao clicar no botão */
-	onClick?: VoidFunction;
+	onClick(id: number, typeVote: string): Promise<void>;
 	/** Prop para verificação externa do botão pressionado */
 	submitted?: boolean;
 	/** Função ao clicar no card */
 	cardClick?: VoidFunction;
+	/** Id do denúncia */
+	id: number;
 };
 
 const ComplainCard: FC<ComplainCardProps> = ({
@@ -26,6 +28,7 @@ const ComplainCard: FC<ComplainCardProps> = ({
 	description,
 	photo,
 	submitted,
+	id,
 }) => {
 	const buttonClassName = `${
 		submitted ? 'complaint__upvote--submitted' : ''
@@ -72,7 +75,11 @@ const ComplainCard: FC<ComplainCardProps> = ({
 					</div>
 				)}
 			</section>
-			<button type='button' onClick={onClick} className={buttonClassName}>
+			<button
+				type='button'
+				onClick={() => onClick(id, 'complaintConfirmed')}
+				className={buttonClassName}
+			>
 				<Echo
 					data-testid='echo-icon'
 					className={`${

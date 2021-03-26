@@ -38,3 +38,20 @@ export const createComplaint = async (data: {
 		return null;
 	}
 };
+
+export const addVote = async (data: {
+	complaintId: number;
+	typeVote: string;
+}): Promise<AxiosResponse | null> => {
+	try {
+		const { complaintId, typeVote } = data;
+		return await api.post('/vote/add', {
+			userId: 2,
+			complaintId,
+			typeVote,
+		});
+	} catch (err) {
+		console.error(err);
+		return null;
+	}
+};

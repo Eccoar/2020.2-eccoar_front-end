@@ -10,6 +10,8 @@ describe('Tests ComplainCard Component', () => {
 				title={'Buraco na rua!'}
 				label={'Buraco'}
 				description={'Que buracao meu'}
+				id={1}
+				onClick={jest.fn()}
 			/>,
 		);
 
@@ -25,6 +27,7 @@ describe('Tests ComplainCard Component', () => {
 				title={'Buraco na rua!'}
 				label={'Buraco'}
 				description={'Que buracao meu'}
+				id={1}
 				onClick={onClick}
 			/>,
 		);
