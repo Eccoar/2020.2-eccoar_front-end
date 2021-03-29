@@ -40,7 +40,7 @@ const ComplainCard: FC<ComplainCardProps> = ({
 
 	const iconStatus = () => {
 		switch (status) {
-			case 'finished':
+			case 'wait':
 				return (
 					<Check
 						data-testid='check-icon'
@@ -67,7 +67,7 @@ const ComplainCard: FC<ComplainCardProps> = ({
 			: description;
 
 	const complaintStatus = `${
-		status == 'finished' ? 'complaint__upvote--confirmed' : buttonClassName
+		status == 'wait' ? 'complaint__upvote--confirmed' : buttonClassName
 	}`;
 	return (
 		<div className='complaint'>

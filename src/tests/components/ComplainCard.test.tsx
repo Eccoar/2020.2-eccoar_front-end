@@ -50,7 +50,7 @@ describe('Tests ComplainCard Component', () => {
 				description={'Que buracao meu'}
 				id={1}
 				onClick={onClick}
-				status={'finished'}
+				status={'wait'}
 			/>,
 		);
 		userEvent.click(screen.getByTestId('check-icon'));
@@ -68,7 +68,7 @@ describe('Tests ComplainCard Component', () => {
 				description={'Que buracao meu'}
 				id={1}
 				onClick={onClick}
-				status={'finished'}
+				status={'wait'}
 			/>,
 		);
 		userEvent.click(screen.getByTestId('confirmed-type'));
