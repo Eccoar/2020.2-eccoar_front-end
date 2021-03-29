@@ -27,17 +27,16 @@ const Home = () => {
 		};
 	}, []);
 
+	const complaintVote = (status: string) => {
+		if (status == 'wait') {
+			return 'complaintConfirmed';
+		}
+		return 'complaintUpvote';
+	};
+
 	function changePage() {
 		history.push('/submit-complaint/infos');
 	}
-
-	const onVote = async (complaintId: number, typeVote: string) => {
-		try {
-			await addVote({ complaintId, typeVote });
-		} catch (error) {
-			console.error(error);
-		}
-	};
 
 	return (
 		<div className='home'>
@@ -52,6 +51,7 @@ const Home = () => {
 						complaint_description,
 						complaint_id,
 						complaint_userId,
+						complaint_status,
 						vote_id,
 					},
 					index,
@@ -62,11 +62,12 @@ const Home = () => {
 							title={complaint_name}
 							label={complaint_category}
 							description={complaint_description}
+							status={complaint_status}
 							onClick={() =>
 								confirmComplaint(
 									complaint_id,
 									complaint_userId,
-									'complaintConfirmed',
+									complaintVote(complaint_status),
 								)
 							}
 							vote_id={vote_id}

@@ -30,6 +30,7 @@ describe('Tests ComplainCard Component', () => {
 				label={'Buraco'}
 				description={'Que buracao meu'}
 				onClick={onClick}
+				status={'open'}
 			/>,
 		);
 		userEvent.click(screen.getByTestId('echo-icon'));
@@ -55,7 +56,7 @@ describe('Tests ComplainCard Component', () => {
 		expect(window.alert).toBeCalledTimes(1);
 	});
 
-	test('test submitted click event', () => {
+	test('test confirmed click event', () => {
 		const onClick = jest.fn();
 		render(
 			<ComplainCard
@@ -63,15 +64,18 @@ describe('Tests ComplainCard Component', () => {
 				label={'Buraco'}
 				description={'Que buracao meu'}
 				onClick={onClick}
+				status={'wait'}
 			/>,
 		);
 		userEvent.click(screen.getByTestId('check-icon'));
 
 		expect(onClick).toHaveBeenCalledTimes(1);
-		expect(screen.getByTestId('check-icon')).toHaveClass('complaint__icon');
+		expect(screen.getByTestId('check-icon')).toHaveClass(
+			'complaint__check',
+		);
 	});
 
-	test('test submitted click event and class changing', () => {
+	test('test upvote click event', () => {
 		const onClick = jest.fn();
 		render(
 			<ComplainCard
@@ -79,13 +83,50 @@ describe('Tests ComplainCard Component', () => {
 				label={'Buraco'}
 				description={'Que buracao meu'}
 				onClick={onClick}
+				status={'open'}
 			/>,
 		);
-		userEvent.click(screen.getByTestId('confirmed-type'));
+		userEvent.click(screen.getByTestId('echo-icon'));
 
 		expect(onClick).toHaveBeenCalledTimes(1);
-		expect(screen.getByTestId('confirmed-type')).toHaveClass(
-			'complaint__upvote complaint__upvote--confirmed',
+		expect(screen.getByTestId('echo-icon')).toHaveClass('complaint__icon');
+	});
+
+	test('test submitted click event and class changing, status wait', () => {
+		const onClick = jest.fn();
+		render(
+			<ComplainCard
+				title={'Buraco na rua!'}
+				label={'Buraco'}
+				description={'Que buracao meu'}
+				onClick={onClick}
+				status={'wait'}
+			/>,
+		);
+		userEvent.click(screen.getByTestId('button-id'));
+
+		expect(onClick).toHaveBeenCalledTimes(1);
+		expect(screen.getByTestId('button-id')).toHaveClass(
+			'complaint__upvote--confirmed complaint__upvote',
+		);
+	});
+
+	test('test submitted click event and class changing, status open', () => {
+		const onClick = jest.fn();
+		render(
+			<ComplainCard
+				title={'Buraco na rua!'}
+				label={'Buraco'}
+				description={'Que buracao meu'}
+				onClick={onClick}
+				status={'open'}
+			/>,
+		);
+		userEvent.click(screen.getByTestId('button-id'));
+
+		expect(onClick).toHaveBeenCalledTimes(1);
+		expect(screen.getByTestId('button-id')).toHaveClass(
+			'complaint__upvote--submitted complaint__upvote',
 		);
 	});
 });

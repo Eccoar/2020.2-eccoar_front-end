@@ -12,12 +12,10 @@ type ComplainCardProps = {
 	/** Define url ou path da foto da denuncía */
 	photo?: string;
 	/** Função ao clicar no botão */
-	onClick?: VoidFunction;
-	/** Prop para verificação externa do botão pressionado */
-	submitted?: boolean;
+	onClick: VoidFunction;
 	/** Função ao clicar no card */
 	cardClick?: VoidFunction;
-	
+	status?: string;
 	vote_id?: number;
 };
 
@@ -28,7 +26,7 @@ const ComplainCard: FC<ComplainCardProps> = ({
 	label,
 	description,
 	photo,
-	submitted,
+	status,
 	vote_id,
 }) => {
 	const [isConfirmed, setConfirmed] = useState(false);
@@ -43,7 +41,13 @@ const ComplainCard: FC<ComplainCardProps> = ({
 
 	const buttonClassName = `${
 		isConfirmed ? 'complaint__upvote--submitted' : ''
-	} complaint__upvote`;
+	}`;
+
+	const buttonConfirmed = `${
+		isConfirmed
+			? 'complaint__upvote--confirmed'
+			: 'complaint__upvote--selected'
+	}`;
 
 	const formattedDescription =
 		description.length > 95
@@ -51,8 +55,34 @@ const ComplainCard: FC<ComplainCardProps> = ({
 			: description;
 
 	const complaintStatus = `${
-		status == 'wait' ? 'complaint__upvote--confirmed' : buttonClassName
-	}`;
+		status == 'wait' ? buttonConfirmed : buttonClassName
+	} complaint__upvote`;
+
+	const renderIcon = () => {
+		if (status == 'wait') {
+			return (
+				<Check
+					data-testid='check-icon'
+					className={`${
+						isConfirmed
+							? 'complaint__check--selected'
+							: 'complaint__check--unselected'
+					} complaint__check`}
+				/>
+			);
+		}
+		return (
+			<Echo
+				data-testid='echo-icon'
+				className={`${
+					isConfirmed
+						? 'complaint__icon--selected'
+						: 'complaint__icon--unselected'
+				} complaint__icon`}
+			/>
+		);
+	};
+
 	return (
 		<div className='complaint'>
 			<section onClick={cardClick} className='complaint__card'>
@@ -97,16 +127,9 @@ const ComplainCard: FC<ComplainCardProps> = ({
 						: alert('Denuncia já votada');
 				}}
 				data-testid='button-id'
-				className={buttonClassName}
+				className={complaintStatus}
 			>
-				<Echo
-					data-testid='echo-icon'
-					className={`${
-						isConfirmed
-							? 'complaint__icon--selected'
-							: 'complaint__icon--unselected'
-					} complaint__icon`}
-				/>
+				{renderIcon()}
 			</button>
 		</div>
 	);
