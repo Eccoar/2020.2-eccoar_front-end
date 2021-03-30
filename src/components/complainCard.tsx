@@ -1,5 +1,6 @@
-import { FC } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { ReactComponent as Echo } from '../assets/Echo.svg';
+import { ReactComponent as Check } from '../assets/Check.svg';
 
 type ComplainCardProps = {
 	/** Define o titulo do card de denuncía */
@@ -11,11 +12,11 @@ type ComplainCardProps = {
 	/** Define url ou path da foto da denuncía */
 	photo?: string;
 	/** Função ao clicar no botão */
-	onClick?: VoidFunction;
-	/** Prop para verificação externa do botão pressionado */
-	submitted?: boolean;
+	onClick: VoidFunction;
 	/** Função ao clicar no card */
 	cardClick?: VoidFunction;
+	status?: string;
+	vote_id?: number;
 };
 
 const ComplainCard: FC<ComplainCardProps> = ({
@@ -25,16 +26,62 @@ const ComplainCard: FC<ComplainCardProps> = ({
 	label,
 	description,
 	photo,
-	submitted,
+	status,
+	vote_id,
 }) => {
+	const [isConfirmed, setConfirmed] = useState(false);
+
+	useEffect(() => {
+		if (vote_id == null) {
+			setConfirmed(false);
+		} else {
+			setConfirmed(true);
+		}
+	}, []);
+
 	const buttonClassName = `${
-		submitted ? 'complaint__upvote--submitted' : ''
-	} complaint__upvote`;
+		isConfirmed ? 'complaint__upvote--submitted' : ''
+	}`;
+
+	const buttonConfirmed = `${
+		isConfirmed
+			? 'complaint__upvote--confirmed'
+			: 'complaint__upvote--selected'
+	}`;
 
 	const formattedDescription =
 		description.length > 95
 			? description.slice(0, 95) + '...'
 			: description;
+
+	const complaintStatus = `${
+		status == 'wait' ? buttonConfirmed : buttonClassName
+	} complaint__upvote`;
+
+	const renderIcon = () => {
+		if (status == 'wait') {
+			return (
+				<Check
+					data-testid='check-icon'
+					className={`${
+						isConfirmed
+							? 'complaint__check--selected'
+							: 'complaint__check--unselected'
+					} complaint__check`}
+				/>
+			);
+		}
+		return (
+			<Echo
+				data-testid='echo-icon'
+				className={`${
+					isConfirmed
+						? 'complaint__icon--selected'
+						: 'complaint__icon--unselected'
+				} complaint__icon`}
+			/>
+		);
+	};
 
 	return (
 		<div className='complaint'>
@@ -72,15 +119,17 @@ const ComplainCard: FC<ComplainCardProps> = ({
 					</div>
 				)}
 			</section>
-			<button type='button' onClick={onClick} className={buttonClassName}>
-				<Echo
-					data-testid='echo-icon'
-					className={`${
-						submitted
-							? 'complaint__icon--selected'
-							: 'complaint__icon--unselected'
-					} complaint__icon`}
-				/>
+			<button
+				type='button'
+				onClick={() => {
+					!isConfirmed
+						? (onClick(), setConfirmed(true))
+						: alert('Denuncia já votada');
+				}}
+				data-testid='button-id'
+				className={complaintStatus}
+			>
+				{renderIcon()}
 			</button>
 		</div>
 	);

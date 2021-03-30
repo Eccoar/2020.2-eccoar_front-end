@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import ComplainCard from '../components/complainCard';
-import { listComplaints } from '../services/complaint';
+import { getVotes, createVote } from '../services/complaint';
 import { useHistory } from 'react-router-dom';
 import Button from '../components/Button';
 
@@ -8,14 +8,31 @@ const Home = () => {
 	const [data, setData] = useState([]);
 	const history = useHistory();
 
-	const handleComplaint = async () => {
-		const result = await listComplaints();
-		setData(result);
+	const confirmComplaint = async (
+		complaintId: number,
+		userId: number,
+		typeVote: string,
+	) => {
+		await createVote({ userId, complaintId, typeVote });
 	};
 
 	useEffect(() => {
-		handleComplaint();
+		let mounted = true;
+		getVotes(1).then((result) => {
+			if (mounted) setData(result);
+		});
+
+		return () => {
+			mounted = false;
+		};
 	}, []);
+
+	const complaintVote = (status: string) => {
+		if (status == 'wait') {
+			return 'complaintConfirmed';
+		}
+		return 'complaintUpvote';
+	};
 
 	function changePage() {
 		history.push('/submit-complaint/infos');
@@ -26,16 +43,38 @@ const Home = () => {
 			<div className='home__create'>
 				<Button onClick={changePage} text='Criar denúncia' />
 			</div>
-			{data.map(({ name, category, description }, index) => {
-				return (
-					<ComplainCard
-						key={index}
-						title={name}
-						label={category}
-						description={description}
-					/>
-				);
-			})}
+			{data.map(
+				(
+					{
+						complaint_name,
+						complaint_category,
+						complaint_description,
+						complaint_id,
+						complaint_userId,
+						complaint_status,
+						vote_id,
+					},
+					index,
+				) => {
+					return (
+						<ComplainCard
+							key={index}
+							title={complaint_name}
+							label={complaint_category}
+							description={complaint_description}
+							status={complaint_status}
+							onClick={() =>
+								confirmComplaint(
+									complaint_id,
+									complaint_userId,
+									complaintVote(complaint_status),
+								)
+							}
+							vote_id={vote_id}
+						/>
+					);
+				},
+			)}
 		</div>
 	);
 };

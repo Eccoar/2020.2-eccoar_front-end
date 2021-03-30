@@ -1,4 +1,3 @@
-
 import React, { useContext } from 'react';
 import moon from '../assets/Moon.svg';
 import sun from '../assets/Sun.svg';
