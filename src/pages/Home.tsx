@@ -3,7 +3,7 @@ import ComplainCard from '../components/complainCard';
 import { getVotes, createVote } from '../services/complaint';
 import { useHistory } from 'react-router-dom';
 import Button from '../components/Button';
-
+import SubmitComplaintDetailing from '../pages/SubmitComplain/SubitComplaintDetailing';
 const Home = () => {
 	const [data, setData] = useState([]);
 	const history = useHistory();
