@@ -35,12 +35,20 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('Home page test', () => {
-	test('Render test', () => {
+	beforeEach(() => {
+		jest.spyOn(api, 'get').mockImplementationOnce(() =>
+			Promise.resolve({ data }),
+		);
+		jest.spyOn(api, 'post').mockImplementationOnce(() => Promise.resolve());
+	});
+
+	test('Render test', async () => {
 		render(<Home />);
+		await waitFor(() => screen.getByText('Geno'));
 		expect(screen.getByText('Criar denúncia')).toBeInTheDocument();
 	});
 
-	test('Change page test', () => {
+	test('Change page test', async () => {
 		render(
 			<MemoryRouter>
 				<Router history={createMemoryHistory()}>
@@ -48,7 +56,8 @@ describe('Home page test', () => {
 				</Router>
 			</MemoryRouter>,
 		);
-		userEvent.click(screen.getByTestId('button'));
+		userEvent.click(screen.getByText('Criar denúncia'));
+		await waitFor(() => screen.getByText('Geno'));
 		expect(mockHistoryPush).toHaveBeenCalledTimes(1);
 	});
 
