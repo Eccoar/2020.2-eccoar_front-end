@@ -82,8 +82,6 @@ const Home = () => {
 									complaint_id,
 									complaint_picture,
 								};
-								console.log(complaints);
-								console.log(data);
 								history.push({
 									pathname: `/complaint/${complaint_id}/details`,
 									state: complaints,

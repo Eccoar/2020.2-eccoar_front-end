@@ -2,6 +2,8 @@ import { FC } from 'react';
 import { ReactComponent as MegaPhone } from '../assets/MegaPhone.svg';
 import { ReactComponent as Next } from '../assets/Next.svg';
 import { ReactComponent as Echo } from '../assets/Echo.svg';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 type ButtonProps = {
 	/** Texto apresentado no botão */

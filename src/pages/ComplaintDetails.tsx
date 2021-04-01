@@ -1,10 +1,17 @@
 import { useState } from 'react';
 import Button from '../components/Button';
-import { Location } from 'history';
+import { createVote } from '../services/complaint';
 
 export interface ComplaintProps {
 	location: any; //Resolver o tipo correto
 }
+
+const complaintVote = (status: string) => {
+	if (status == 'wait') {
+		return 'complaintConfirmed';
+	}
+	return 'complaintUpvote';
+};
 
 const ComplaintDetails = ({ location }: ComplaintProps) => {
 	const [complaint] = useState(location.state);
@@ -21,7 +28,17 @@ const ComplaintDetails = ({ location }: ComplaintProps) => {
 				<p className='containerDescription'>
 					{complaint.complaint_description}
 				</p>
-				<Button text='CONFIRMAR DENÚNCIA' />
+				<Button
+					text='CONFIRMAR DENÚNCIA'
+					icon='echo'
+					onClick={() => {
+						createVote({
+							userId: complaint.complaint_userId,
+							complaintId: complaint.complaint_id,
+							typeVote: complaintVote(complaint.complaint_status),
+						});
+					}}
+				/>
 			</section>
 		</div>
 	);

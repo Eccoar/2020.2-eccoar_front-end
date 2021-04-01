@@ -1,3 +1,5 @@
+@import '../abstract/_colors.scss';
+
 .containerDetails{
     padding: 1rem;
 	margin: auto;
@@ -5,17 +7,27 @@
 }
 
 .containerTitle{
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 2.3rem;
+    max-width: 150px;
+    font-weight: bold;
+    white-space: nowrap;
+    text-align: start;
+    font-family: 'Spartan', sans-serif;
+    color:$secondary-blue; //por a variável de cor depois
 }
 
 .containerImage{
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     margin-top: 0.5rem;
     width: 95%;
     height: auto;
+    border-radius: 6px;
 }
 
 .containerDescription{
     margin-bottom: 0.5rem;
     margin-top: 0.5rem;
+    font-family: 'Spartan', sans-serif;
+    color: var(--text-color);
 }
