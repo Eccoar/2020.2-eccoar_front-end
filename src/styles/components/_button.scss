@@ -14,6 +14,12 @@
 	@include font-style($style-name: 'button');
 	transition: all 0.2s ease;
 
+	&--bigger {
+		height: 64px;
+		border-radius: 12px;
+		@include font-style($style-name: 'subheader');
+	}
+
 	&--primary {
 		background-color: var(--color-primary);
 	}

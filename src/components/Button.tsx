@@ -16,6 +16,8 @@ type ButtonProps = {
 	fill?: boolean;
 	/** Função ao clicar no botão */
 	onClick?: VoidFunction;
+	/** Varíavel que define se o botão aumenta */
+	bigger?: boolean;
 };
 
 const Button: FC<ButtonProps> = ({
@@ -24,6 +26,7 @@ const Button: FC<ButtonProps> = ({
 	icon,
 	fill = true,
 	onClick,
+	bigger = false,
 }) => {
 	const className = `
 		complain-button
@@ -39,6 +42,7 @@ const Button: FC<ButtonProps> = ({
 					: 'complain-button--border-secondary'
 				: ''
 		}
+		${bigger ? 'complain-button--bigger' : ''}
 	`;
 
 	return (
