@@ -1,33 +1,33 @@
-@import '../abstract/_colors.scss';
+@import "../abstract/_colors.scss";
 
-.containerDetails{
+.containerDetails {
     padding: 1rem;
-	margin: auto;
-	max-width: 420px;
-}
+    margin: auto;
+    max-width: 420px;
+    height: 85vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.3fr 2.4fr;
 
-.containerTitle{
-    margin-bottom: 1rem;
-    font-size: 2.3rem;
-    max-width: 150px;
-    font-weight: bold;
-    white-space: nowrap;
-    text-align: start;
-    font-family: 'Spartan', sans-serif;
-    color:$secondary-blue; //por a variável de cor depois
-}
+    &__title {
+        font-size: 2.3rem;
+        max-width: 150px;
+        font-weight: bold;
+        white-space: nowrap;
+        text-align: start;
+        font-family: "Spartan", sans-serif;
+        color: $secondary-blue;
+    }
 
-.containerImage{
-    margin-bottom: 1rem;
-    margin-top: 0.5rem;
-    width: 95%;
-    height: auto;
-    border-radius: 6px;
-}
+    &__image {
+        width: 95%;
+        height: auto;
+        border-radius: 6px;
+    }
 
-.containerDescription{
-    margin-bottom: 0.5rem;
-    margin-top: 0.5rem;
-    font-family: 'Spartan', sans-serif;
-    color: var(--text-color);
+    &__description {
+        margin-top: 25px;
+        font-family: "Spartan", sans-serif;
+        color: var(--text-color);
+    }
 }

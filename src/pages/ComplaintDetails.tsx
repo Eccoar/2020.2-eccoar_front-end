@@ -18,28 +18,32 @@ const ComplaintDetails = ({ location }: ComplaintProps) => {
 
 	return (
 		<div className='containerDetails'>
-			<section>
-				<h1 className='containerTitle'> {complaint.complaint_name} </h1>
+			<h1 className='containerDetails__title'>
+				{' '}
+				{complaint.complaint_name}{' '}
+			</h1>
+			<div>
 				<img
-					className='containerImage'
+					className='containerDetails__image'
 					src={complaint.complaint_picture}
 					alt={`Foto de ${complaint.complaint_name}`}
 				/>
-				<p className='containerDescription'>
+				<p className='containerDetails__description'>
 					{complaint.complaint_description}
 				</p>
-				<Button
-					text='CONFIRMAR DENÚNCIA'
-					icon='echo'
-					onClick={() => {
-						createVote({
-							userId: complaint.complaint_userId,
-							complaintId: complaint.complaint_id,
-							typeVote: complaintVote(complaint.complaint_status),
-						});
-					}}
-				/>
-			</section>
+			</div>
+
+			<Button
+				text='CONFIRMAR DENÚNCIA'
+				icon='echo'
+				onClick={() => {
+					createVote({
+						userId: complaint.complaint_userId,
+						complaintId: complaint.complaint_id,
+						typeVote: complaintVote(complaint.complaint_status),
+					});
+				}}
+			/>
 		</div>
 	);
 };
