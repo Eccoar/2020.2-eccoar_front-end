@@ -1,9 +1,14 @@
-import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import ConfimComplaintButton from '../components/confimComplaintButton';
 import { createVote } from '../services/complaint';
 
-export interface ComplaintProps {
-	location: any; //Resolver o tipo correto
+interface IHistory {
+	name: string;
+	description: string;
+	picture: string;
+	userId: number;
+	complaintId: number;
+	status: string;
 }
 
 const complaintVote = (status: string) => {
@@ -13,26 +18,31 @@ const complaintVote = (status: string) => {
 	return 'complaintUpvote';
 };
 
-const ComplaintDetails = ({ location }: ComplaintProps) => {
-	const [complaint] = useState(location.state);
+const ComplaintDetails = () => {
+	const history = useHistory<IHistory>();
+
+	const { name, description, picture, userId, complaintId, status } = history
+		.location.state as {
+		name: string;
+		description: string;
+		picture: string;
+		userId: number;
+		complaintId: number;
+		status: string;
+	};
 
 	return (
 		<div className='containerDetails'>
-			<h1 className='containerDetails__title'>
-				{' '}
-				{complaint.complaint_name}{' '}
-			</h1>
+			<h1 className='containerDetails__title'> {name} </h1>
 			<div>
 				<span className='containerDetails__imageBox'>
 					<img
 						className='containerDetails__imageBox-image'
-						src={complaint.complaint_picture}
-						alt={`Foto de ${complaint.complaint_name}`}
+						src={picture}
+						alt={`Foto de ${name}`}
 					/>
 				</span>
-				<p className='containerDetails__description'>
-					{complaint.complaint_description}
-				</p>
+				<p className='containerDetails__description'>{description}</p>
 			</div>
 
 			<ConfimComplaintButton
@@ -40,9 +50,9 @@ const ComplaintDetails = ({ location }: ComplaintProps) => {
 				icon='echo'
 				onClick={() => {
 					createVote({
-						userId: complaint.complaint_userId,
-						complaintId: complaint.complaint_id,
-						typeVote: complaintVote(complaint.complaint_status),
+						userId: userId,
+						complaintId: complaintId,
+						typeVote: complaintVote(status),
 					});
 				}}
 			/>

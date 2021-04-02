@@ -73,7 +73,7 @@ const Home = () => {
 								)
 							}
 							cardClick={() => {
-								const complaints = {
+								const complaint = {
 									complaint_name,
 									complaint_category,
 									complaint_description,
@@ -82,10 +82,17 @@ const Home = () => {
 									complaint_id,
 									complaint_picture,
 								};
-								history.push({
-									pathname: `/complaint/${complaint_id}/details`,
-									state: complaints,
-								});
+								history.push(
+									`/complaint/${complaint_id}/details`,
+									{
+										name: complaint_name,
+										description: complaint_description,
+										picture: complaint_picture,
+										userId: complaint_userId,
+										complaintId: complaint_id,
+										status: complaint_status,
+									},
+								);
 							}}
 							vote_id={vote_id}
 						/>
