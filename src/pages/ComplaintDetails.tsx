@@ -1,14 +1,28 @@
-import { useHistory } from 'react-router-dom';
-import ConfimComplaintButton from '../components/confimComplaintButton';
-import { createVote } from '../services/complaint';
+import { useParams } from 'react-router-dom';
+import Button from '../components/Button';
+import { createVote, getComplaintWithVote } from '../services/complaint';
+import { useState, useEffect } from 'react';
 
-interface IHistory {
-	name: string;
-	description: string;
-	picture: string;
-	userId: number;
-	complaintId: number;
-	status: string;
+interface urlParams {
+	id: string | undefined;
+}
+
+interface complaintWithVote {
+	complaint_id: number;
+	complaint_name: string;
+	complaint_description: string;
+	complaint_latitude: string;
+	complaint_longitude: string;
+	complaint_userId: number;
+	complaint_category: string;
+	complaint_creationDate: string;
+	complaint_closeDate: string;
+	complaint_picture: string;
+	complaint_status: string;
+	vote_id: number;
+	vote_userId: number;
+	vote_complaintId: number;
+	vote_typeVote: string;
 }
 
 const complaintVote = (status: string) => {
@@ -19,43 +33,76 @@ const complaintVote = (status: string) => {
 };
 
 const ComplaintDetails = () => {
-	const history = useHistory<IHistory>();
+	const [complaint, setComplaint] = useState<complaintWithVote | null>(null);
 
-	const { name, description, picture, userId, complaintId, status } = history
-		.location.state as {
-		name: string;
-		description: string;
-		picture: string;
-		userId: number;
-		complaintId: number;
-		status: string;
+	const [isVoted, setIsVoted] = useState<boolean | null>(null);
+
+	const params = useParams<urlParams>();
+	useEffect(() => {
+		async function setUpPage() {
+			const response = await getComplaintWithVote(1, Number(params.id));
+			setComplaint(response);
+			setIsVoted(response.vote_id);
+		}
+		setUpPage();
+	}, []);
+
+	const createComplaint = (
+		userId: number,
+		complaintId: number,
+		status: string,
+	) => {
+		try {
+			createVote({
+				userId: userId,
+				complaintId: complaintId,
+				typeVote: complaintVote(status),
+			});
+			setIsVoted(!isVoted);
+		} catch (err) {
+			alert('Houve um erro e a denúncia não foi confirmada!');
+		}
 	};
 
 	return (
-		<div className='containerDetails'>
-			<h1 className='containerDetails__title'> {name} </h1>
-			<div>
-				<span className='containerDetails__imageBox'>
-					<img
-						className='containerDetails__imageBox-image'
-						src={picture}
-						alt={`Foto de ${name}`}
-					/>
-				</span>
-				<p className='containerDetails__description'>{description}</p>
-			</div>
+		<div className='containerDetails' data-testid='card-details'>
+			{complaint && (
+				<>
+					<h1 className='containerDetails__title'>
+						{' '}
+						{complaint.complaint_name}{' '}
+					</h1>
+					<div>
+						<span className='containerDetails__imageBox'>
+							<img
+								className='containerDetails__imageBox-image'
+								src={complaint.complaint_picture}
+								alt={`Foto de ${complaint.complaint_name}`}
+							/>
+						</span>
+						<p className='containerDetails__description'>
+							{complaint.complaint_description}
+						</p>
+					</div>
 
-			<ConfimComplaintButton
-				text='CONFIRMAR DENÚNCIA'
-				icon='echo'
-				onClick={() => {
-					createVote({
-						userId: userId,
-						complaintId: complaintId,
-						typeVote: complaintVote(status),
-					});
-				}}
-			/>
+					<Button
+						text='CONFIRMAR DENÚNCIA'
+						icon='echo'
+						fill={isVoted as boolean}
+						bigger
+						pattern='primary'
+						onClick={() => {
+							!isVoted
+								? createComplaint(
+										1,
+										complaint.complaint_id,
+										status,
+								  )
+								: alert('Denuncia já votada');
+						}}
+					/>
+				</>
+			)}
 		</div>
 	);
 };

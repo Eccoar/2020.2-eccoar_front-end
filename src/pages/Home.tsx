@@ -3,7 +3,6 @@ import ComplainCard from '../components/complainCard';
 import { getVotes, createVote } from '../services/complaint';
 import { useHistory } from 'react-router-dom';
 import Button from '../components/Button';
-import ComplaintDetails from './ComplaintDetails';
 
 const Home = () => {
 	const [data, setData] = useState([]);
@@ -73,25 +72,8 @@ const Home = () => {
 								)
 							}
 							cardClick={() => {
-								const complaint = {
-									complaint_name,
-									complaint_category,
-									complaint_description,
-									complaint_status,
-									complaint_userId,
-									complaint_id,
-									complaint_picture,
-								};
 								history.push(
-									`/complaint/${complaint_id}/details`,
-									{
-										name: complaint_name,
-										description: complaint_description,
-										picture: complaint_picture,
-										userId: complaint_userId,
-										complaintId: complaint_id,
-										status: complaint_status,
-									},
+									`/complaint/details/${complaint_id}`,
 								);
 							}}
 							vote_id={vote_id}

@@ -37,7 +37,7 @@ const Routes = () => {
 				/>
 				<Route
 					component={ComplaintDetails}
-					path='/complaint/:id/details'
+					path='/complaint/details/:id'
 				/>
 			</Switch>
 		</Router>

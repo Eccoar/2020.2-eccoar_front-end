@@ -6,6 +6,19 @@ export const listComplaints = async () => {
 	return response.data.complaints;
 };
 
+export const getComplaintWithVote = async (
+	userId: number,
+	complaintId: number,
+) => {
+	const response = await api.get('/complaint/withVote', {
+		params: {
+			userId,
+			complaintId,
+		},
+	});
+	return response.data;
+};
+
 export const createComplaint = async (data: {
 	name: string;
 	description: string;
