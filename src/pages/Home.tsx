@@ -41,7 +41,12 @@ const Home = () => {
 	return (
 		<div className='home'>
 			<div className='home__create'>
-				<Button onClick={changePage} text='Criar denúncia' />
+				<Button
+					onClick={changePage}
+					text='CRIAR DENÚNCIA'
+					icon='megaphone'
+					pattern='secondary'
+				/>
 			</div>
 			{data.map(
 				(

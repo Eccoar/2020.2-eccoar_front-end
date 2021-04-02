@@ -1,4 +1,4 @@
-@import '../abstract';
+@import "../abstract";
 
 .complain-button {
 	display: flex;
@@ -11,13 +11,13 @@
 	color: var(--color-background);
 	font-family: $font-default;
 	font-weight: bold;
-	@include font-style($style-name: 'button');
+	@include font-style($style-name: "button");
 	transition: all 0.2s ease;
 
 	&--bigger {
 		height: 64px;
 		border-radius: 12px;
-		@include font-style($style-name: 'subheader');
+		@include font-style($style-name: "subheader");
 	}
 
 	&--primary {
@@ -45,6 +45,9 @@
 						fill: var(--color-primary);
 					}
 				}
+				&--check {
+					display: none;
+				}
 			}
 		}
 		&-secondary {
@@ -64,6 +67,9 @@
 						fill: var(--color-secondary--blue);
 					}
 				}
+				&--check {
+					display: none;
+				}
 			}
 		}
 	}
@@ -82,6 +88,9 @@
 			#circle {
 				fill: var(--color-background);
 			}
+		}
+		&--check {
+			fill: var(--color-background);
 		}
 	}
 

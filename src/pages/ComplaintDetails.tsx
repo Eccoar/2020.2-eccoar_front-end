@@ -47,6 +47,20 @@ const ComplaintDetails = () => {
 		setUpPage();
 	}, []);
 
+	const choseButtonText = () => {
+		if (complaint?.complaint_status == 'wait') {
+			if (isVoted) {
+				return 'PROBLEMA RESOLVIDO';
+			}
+			return 'CONFIRMAR RESOLUÇÃO';
+		} else {
+			if (isVoted) {
+				return 'DENÚNCIA REPORTADA';
+			}
+			return 'REPORTAR DENÚNCIA';
+		}
+	};
+
 	const createComplaint = (
 		userId: number,
 		complaintId: number,
@@ -86,17 +100,25 @@ const ComplaintDetails = () => {
 					</div>
 
 					<Button
-						text='CONFIRMAR DENÚNCIA'
-						icon='echo'
+						text={choseButtonText()}
+						icon={
+							complaint.complaint_status == 'wait'
+								? 'check'
+								: 'echo'
+						}
 						fill={isVoted as boolean}
 						bigger
-						pattern='primary'
+						pattern={
+							complaint.complaint_status == 'wait'
+								? 'secondary'
+								: 'primary'
+						}
 						onClick={() => {
 							!isVoted
 								? createComplaint(
 										1,
 										complaint.complaint_id,
-										status,
+										complaint.complaint_status,
 								  )
 								: alert('Denuncia já votada');
 						}}

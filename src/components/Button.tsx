@@ -2,16 +2,15 @@ import { FC } from 'react';
 import { ReactComponent as MegaPhone } from '../assets/MegaPhone.svg';
 import { ReactComponent as Next } from '../assets/Next.svg';
 import { ReactComponent as Echo } from '../assets/Echo.svg';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { ReactComponent as Check } from '../assets/Check.svg';
 
 type ButtonProps = {
 	/** Texto apresentado no botão */
 	text: string;
 	/** Escolher pattern do Botão Primary para vermelho, Secondary para Azul */
 	pattern?: 'primary' | 'secondary';
-	/** Selecionar icone entre Next, MegaPhone, Echo */
-	icon?: 'next' | 'megaphone' | 'echo';
+	/** Selecionar icone entre Next, MegaPhone, Echo, Check */
+	icon?: 'next' | 'megaphone' | 'echo' | 'check';
 	/** Definir botão como preechido ou botão de bordas */
 	fill?: boolean;
 	/** Função ao clicar no botão */
@@ -67,6 +66,11 @@ const Button: FC<ButtonProps> = ({
 				<Echo
 					data-testid='echo-icon'
 					className='complain-button__icon complain-button__icon--echo'
+				/>
+			) : icon == 'check' ? (
+				<Check
+					data-testid='check-icon'
+					className='complain-button__icon complain-button__icon--check'
 				/>
 			) : null}
 		</button>
