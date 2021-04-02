@@ -32,14 +32,14 @@
 			color: var(--color-primary);
 			border: var(--color-primary) 3px solid;
 			background-color: transparent;
-			.icon {
-				&__next {
+			.complain-button__icon {
+				&--next {
 					stroke: var(--color-primary);
 				}
-				&__megaphone {
+				&--megaphone {
 					fill: var(--color-primary);
 				}
-				&__echo {
+				&--echo {
 					stroke: var(--color-primary);
 					#circle {
 						fill: var(--color-primary);
@@ -51,14 +51,14 @@
 			color: var(--color-secondary--blue);
 			border: var(--color-secondary--blue) 3px solid;
 			background-color: transparent;
-			.icon {
-				&__next {
+			.complain-button__icon {
+				&--next {
 					stroke: var(--color-secondary--blue);
 				}
-				&__megaphone {
+				&--megaphone {
 					fill: var(--color-secondary--blue);
 				}
-				&__echo {
+				&--echo {
 					stroke: var(--color-secondary--blue);
 					#circle {
 						fill: var(--color-secondary--blue);
