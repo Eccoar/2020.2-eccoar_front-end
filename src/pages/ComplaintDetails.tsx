@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Button from '../components/Button';
+import ConfimComplaintButton from '../components/confimComplaintButton';
 import { createVote } from '../services/complaint';
 
 export interface ComplaintProps {
@@ -23,17 +23,19 @@ const ComplaintDetails = ({ location }: ComplaintProps) => {
 				{complaint.complaint_name}{' '}
 			</h1>
 			<div>
-				<img
-					className='containerDetails__image'
-					src={complaint.complaint_picture}
-					alt={`Foto de ${complaint.complaint_name}`}
-				/>
+				<span className='containerDetails__imageBox'>
+					<img
+						className='containerDetails__imageBox-image'
+						src={complaint.complaint_picture}
+						alt={`Foto de ${complaint.complaint_name}`}
+					/>
+				</span>
 				<p className='containerDetails__description'>
 					{complaint.complaint_description}
 				</p>
 			</div>
 
-			<Button
+			<ConfimComplaintButton
 				text='CONFIRMAR DENÚNCIA'
 				icon='echo'
 				onClick={() => {

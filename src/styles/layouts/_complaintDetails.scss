@@ -19,10 +19,15 @@
         color: $secondary-blue;
     }
 
-    &__image {
-        width: 95%;
-        height: auto;
-        border-radius: 6px;
+    &__imageBox {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &-image {
+            width: 95%;
+            height: auto;
+            border-radius: 6px;
+        }
     }
 
     &__description {
