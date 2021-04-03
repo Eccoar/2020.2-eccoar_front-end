@@ -79,7 +79,7 @@ const ComplaintDetails = () => {
 	};
 
 	return (
-		<div className='containerDetails' data-testid='card-details'>
+		<div className='containerDetails' data-testid='ComplainDetails'>
 			{complaint && (
 				<>
 					<h1 className='containerDetails__title'>
