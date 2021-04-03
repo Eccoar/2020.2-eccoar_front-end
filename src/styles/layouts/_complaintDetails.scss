@@ -24,9 +24,10 @@
         align-items: center;
         justify-content: center;
         &-image {
-            width: 95%;
-            height: auto;
+            width: 400px;
+            height: 124px;
             border-radius: 6px;
+            object-fit: cover;
         }
     }
 
