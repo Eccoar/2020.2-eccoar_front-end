@@ -4,6 +4,8 @@ import sun from '../assets/Sun.svg';
 import closeButton from '../assets/Close.svg';
 import { ThemeContext } from '../context/theme';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { getFlag } from '../services/flagr';
 
 export interface DrawerProps {
 	show: boolean;
@@ -15,6 +17,18 @@ const Drawer: React.FC<DrawerProps> = ({ show, close }: DrawerProps) => {
 
 	let drawerClass = 'side-drawer';
 	if (show) drawerClass = 'side-drawer open';
+
+	useEffect(() => {
+		getFlag('2').then((response) => {
+			const browser = response.data.segments[0].constraints[0].value.replace(
+				/['"]+/g,
+				'',
+			);
+			if (navigator.userAgent.includes(browser)) {
+				colorChanger?.changeTheme(response.data.variants[0].key);
+			}
+		});
+	}, []);
 
 	return (
 		<>
