@@ -1,6 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
-import { MemoryRouter, Router } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
+import { render, screen } from '@testing-library/react';
 import ComplaintDetails from '../../pages/ComplaintDetails';
 
 const mockHistoryPush = jest.fn();
