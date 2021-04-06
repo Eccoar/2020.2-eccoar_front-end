@@ -10,7 +10,7 @@ export const getComplaintWithVote = async (
 	userId: number,
 	complaintId: number,
 ) => {
-	const response = await api.get('/complaint/withVote', {
+	const response = await api.get('/complaint/votes', {
 		params: {
 			userId,
 			complaintId,

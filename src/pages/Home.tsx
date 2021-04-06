@@ -69,6 +69,7 @@ const Home = () => {
 							label={complaint_category}
 							description={complaint_description}
 							status={complaint_status}
+							photo={complaint_picture}
 							onClick={() =>
 								confirmComplaint(
 									complaint_id,
