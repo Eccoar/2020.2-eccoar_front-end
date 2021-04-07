@@ -1,6 +1,6 @@
 {
 	"short_name": "Eccoar",
-	"name": "Eccoar App",
+	"name": "Eccoar",
 	"icons": [
 		{
 			"src": "favicon.ico",
@@ -8,7 +8,7 @@
 			"type": "image/x-icon"
 		},
 		{
-			"src": "isotipo.svg",
+			"src": "maskable_icon.png",
 			"type": "image/png",
 			"sizes": "192x192"
 		},
