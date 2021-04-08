@@ -55,6 +55,7 @@ sonar_scanner:
   stage: quality scan
   before_script:
     - export REACT_APP_SONAR_TOKEN=$SONAR_TOKEN
+    - npm install
   script:
     - npm run sonar
   extends:
