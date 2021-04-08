@@ -87,13 +87,17 @@ const ComplaintDetails = () => {
 						{complaint.complaint_name}{' '}
 					</h1>
 					<div>
-						<span className='containerDetails__imageBox'>
-							<img
-								className='containerDetails__imageBox-image'
-								src={complaint.complaint_picture}
-								alt={`Foto de ${complaint.complaint_name}`}
-							/>
-						</span>
+						{complaint.complaint_picture == null ? (
+							''
+						) : (
+							<span className='containerDetails__imageBox'>
+								<img
+									className='containerDetails__imageBox-image'
+									src={complaint.complaint_picture}
+									alt={`Foto de ${complaint.complaint_name}`}
+								/>
+							</span>
+						)}
 						<p className='containerDetails__description'>
 							{complaint.complaint_description}
 						</p>
