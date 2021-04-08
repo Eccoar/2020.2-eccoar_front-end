@@ -7,5 +7,7 @@ services:
       dockerfile: ./dev.Dockerfile
     ports:
       - 3000:3000
+    environment: 
+      REACT_APP_GATEWAY: localhost:5000
     volumes:
       - ./src:/app/src

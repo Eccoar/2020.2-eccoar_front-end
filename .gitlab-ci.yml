@@ -23,7 +23,7 @@ eslint:
   before_script:
     - npm install
   script:
-    - npm run lint-report
+    - npm run lint
   artifacts:
     public: true
     paths:
