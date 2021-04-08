@@ -1,5 +1,9 @@
 FROM node:14-alpine as build
 
+ARG gateway_host=eccoar-app-gateway
+
+ENV REACT_APP_GATEWAY $gateway_host
+
 WORKDIR /app
 
 ADD package-lock.json .
