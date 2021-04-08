@@ -2,7 +2,9 @@ version: "3.5"
 
 services:
   front:
-    build: .
+    build:
+      context: .
+      dockerfile: ./dev.Dockerfile
     ports:
       - 3000:3000
     volumes:

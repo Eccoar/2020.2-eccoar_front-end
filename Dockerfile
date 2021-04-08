@@ -1,4 +1,4 @@
-FROM node:14-alpine
+FROM node:14-alpine as build
 
 WORKDIR /app
 
@@ -10,5 +10,16 @@ RUN npm install
 
 ADD . .
 
-CMD ["npm", "start"]
+RUN npm run build
 
+FROM node:14-alpine
+
+RUN npm install -g http-serve
+
+WORKDIR /app
+
+COPY --from=build /app/build /app/build
+
+CMD ["http-serve", "build", "-a", "0.0.0.0", "-p", "3000"]
+
+EXPOSE 3000
