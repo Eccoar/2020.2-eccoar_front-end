@@ -8,18 +8,18 @@
 			"type": "image/x-icon"
 		},
 		{
-			"src": "maskable_icon.png",
+			"src": "isotipo_192.png",
 			"type": "image/png",
 			"sizes": "192x192"
 		},
 		{
-			"src": "logo.svg",
+			"src": "isotipo_512.png",
 			"type": "image/png",
 			"sizes": "512x512"
 		}
 	],
 	"start_url": ".",
 	"display": "standalone",
-	"theme_color": "#000000",
-	"background_color": "#484848"
+	"theme_color": "#f8f8f8",
+	"background_color": "#f8f8f8"
 }

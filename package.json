@@ -37,7 +37,7 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"start-sw": "http-server ./build",
+		"start-sw": "http-server ./build -c-1",
 		"lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
 		"check-types": "tsc",
 		"prettier": "prettier --ignore-path .gitignore --write \"**/*.+(js|json|ts|tsx)\"",
