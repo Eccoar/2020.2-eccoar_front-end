@@ -1,46 +1,37 @@
-# Getting Started with Create React App
+# 2020.2 Eccoar Front End
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este serviço é referente ao Front End do Projeto Eccoar. Para poder utilizá-lo, certifique de que você possui o Docker e o Docker Compose em sua máquina. Caso contrário será necessário baixá-los. Para isso basta seguir os links:
 
-## Available Scripts
 
-In the project directory, you can run:
+* [Docker](https://docs.docker.com/get-docker/)
+* [Docker Compose](https://docs.docker.com/compose/install/)
 
-### `npm start`
+Para rodar o projeto, basta executar o seguinte comando na raíz:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+docker-compose up --build
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Para executar os testes basta rodar:
+```
+docker run 20202-eccoar_gateway_backend_reports npm run test
+```
 
-### `npm test`
+Para executar o lint rode:
+```
+docker run 20202-eccoar_gateway_backend_reports npm run lint
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Caso você queira gerar um PWA do nosso projeto e rodar em desenvolvimento, será necessário realizar um build do projeto. Rode o seguinte comando:
 
-### `npm run build`
+```
+npm run build
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Para servir esse build, utilize o comando:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+npm run start-sw
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Por fim, o service worker só irá funcionar em seu celular se você rodar o projeto utilizando protocolo https. Para isso, baixe o [ngrok](https://ngrok.com/) e utilize-o para cria uma porta TCP na sua máquina. Pegue o link gerado pelo ngrok e rode no seu celular.
