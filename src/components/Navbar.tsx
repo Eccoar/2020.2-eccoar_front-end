@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import isotipo from '../assets/isotipo.svg';
+import arrow from '../assets/arrow.svg';
 import Drawer from './Drawer';
 import BackDrop from './Backdrop';
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
 	const [drawerOpen, setDrawerOpen] = useState(false);
+	const history = useHistory();
+
+	const { pathname } = useLocation();
 
 	const handleCloseDrawer = () => {
 		setDrawerOpen(false);
@@ -16,9 +20,17 @@ const Navbar: React.FC = () => {
 
 	return (
 		<nav className='navbar'>
+			{pathname == '/' ? (
+				<img src={arrow} className='navbar__noArrow' />
+			) : (
+				<img
+					onClick={() => history.goBack()}
+					src={arrow}
+					className='navbar__Arrow'
+				/>
+			)}
 			<Drawer close={handleCloseDrawer} show={drawerOpen} />
 			{backDrop}
-			<div />
 			<Link to='/'>
 				<img src={isotipo} className='navbar__isotipo' />
 			</Link>
