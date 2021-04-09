@@ -27,6 +27,12 @@ describe('Tests Button Component', () => {
 		expect(screen.getByTestId('next-icon')).toBeInTheDocument();
 	});
 
+	test('test check icon', () => {
+		render(<Button text='testing' icon='check' />);
+
+		expect(screen.getByTestId('check-icon')).toBeInTheDocument();
+	});
+
 	test('test megaphone icon', () => {
 		render(<Button text='testing' icon='megaphone' />);
 

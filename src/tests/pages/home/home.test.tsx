@@ -45,7 +45,7 @@ describe('Home page test', () => {
 	test('Render test', async () => {
 		render(<Home />);
 		await waitFor(() => screen.getByText('Geno'));
-		expect(screen.getByText('Criar denúncia')).toBeInTheDocument();
+		expect(screen.getByText('CRIAR DENÚNCIA')).toBeInTheDocument();
 	});
 
 	test('Change page test', async () => {
@@ -56,7 +56,7 @@ describe('Home page test', () => {
 				</Router>
 			</MemoryRouter>,
 		);
-		userEvent.click(screen.getByText('Criar denúncia'));
+		userEvent.click(screen.getByText('CRIAR DENÚNCIA'));
 		await waitFor(() => screen.getByText('Geno'));
 		expect(mockHistoryPush).toHaveBeenCalledTimes(1);
 	});

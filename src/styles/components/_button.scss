@@ -1,4 +1,4 @@
-@import '../abstract';
+@import "../abstract";
 
 .complain-button {
 	display: flex;
@@ -11,8 +11,14 @@
 	color: var(--color-background);
 	font-family: $font-default;
 	font-weight: bold;
-	@include font-style($style-name: 'button');
+	@include font-style($style-name: "button");
 	transition: all 0.2s ease;
+
+	&--bigger {
+		height: 64px;
+		border-radius: 12px;
+		@include font-style($style-name: "subheader");
+	}
 
 	&--primary {
 		background-color: var(--color-primary);
@@ -26,18 +32,21 @@
 			color: var(--color-primary);
 			border: var(--color-primary) 3px solid;
 			background-color: transparent;
-			.icon {
-				&__next {
+			.complain-button__icon {
+				&--next {
 					stroke: var(--color-primary);
 				}
-				&__megaphone {
+				&--megaphone {
 					fill: var(--color-primary);
 				}
-				&__echo {
+				&--echo {
 					stroke: var(--color-primary);
 					#circle {
 						fill: var(--color-primary);
 					}
+				}
+				&--check {
+					display: none;
 				}
 			}
 		}
@@ -45,18 +54,21 @@
 			color: var(--color-secondary--blue);
 			border: var(--color-secondary--blue) 3px solid;
 			background-color: transparent;
-			.icon {
-				&__next {
+			.complain-button__icon {
+				&--next {
 					stroke: var(--color-secondary--blue);
 				}
-				&__megaphone {
+				&--megaphone {
 					fill: var(--color-secondary--blue);
 				}
-				&__echo {
+				&--echo {
 					stroke: var(--color-secondary--blue);
 					#circle {
 						fill: var(--color-secondary--blue);
 					}
+				}
+				&--check {
+					display: none;
 				}
 			}
 		}
@@ -76,6 +88,9 @@
 			#circle {
 				fill: var(--color-background);
 			}
+		}
+		&--check {
+			fill: var(--color-background);
 		}
 	}
 

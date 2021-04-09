@@ -7,6 +7,7 @@ import SubmitComplaitOptionPhoto from './pages/SubmitComplain/SubmitComplaitOpti
 import SubmitComplaintPhoto from './pages/SubmitComplain/SubmitComplaitPhoto';
 import SubmitComplaintGeolocation from './pages/SubmitComplain/SubmitComplaintGeolocation';
 import SubmitComplaintConclude from './pages/SubmitComplain/SubmitComplaintConclude';
+import ComplaintDetails from './pages/ComplaintDetails';
 
 const Routes = () => {
 	return (
@@ -33,6 +34,10 @@ const Routes = () => {
 				<Route
 					component={SubmitComplaintConclude}
 					path='/submit-complaint/done'
+				/>
+				<Route
+					component={ComplaintDetails}
+					path='/complaint/details/:id'
 				/>
 			</Switch>
 		</Router>

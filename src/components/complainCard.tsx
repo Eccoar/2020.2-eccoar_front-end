@@ -15,7 +15,9 @@ type ComplainCardProps = {
 	onClick: VoidFunction;
 	/** Função ao clicar no card */
 	cardClick?: VoidFunction;
+	/** Define o status da denúncia, que pode ser 'open', 'wait' ou 'finished' */
 	status?: string;
+	/** Define a id do voto */
 	vote_id?: number;
 };
 
