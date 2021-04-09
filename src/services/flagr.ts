@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 
-const flagr = axios.create({ baseURL: `http://localhost:18000/api/v1` });
+const flagr = axios.create({ baseURL: `https://flagr.eccoar.online/api/v1` });
 
 export const getFlag = async (flagID: string): Promise<AxiosResponse> => {
 	const response = await flagr.get(`/flags/${flagID}`);
