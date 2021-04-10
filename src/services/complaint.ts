@@ -10,7 +10,7 @@ export const getComplaintWithVote = async (
 	userId: number,
 	complaintId: number,
 ) => {
-	const response = await api.get('/complaint/votes', {
+	const response = await api.get('/complaints/votes', {
 		params: {
 			userId,
 			complaintId,
@@ -38,7 +38,7 @@ export const createComplaint = async (data: {
 				break;
 		}
 		const { description, name } = data;
-		return await api.post('/complaint/create', {
+		return await api.post('/complaints', {
 			description,
 			name,
 			latitude: 10,
@@ -59,7 +59,7 @@ export const createVote = async (data: {
 }): Promise<AxiosResponse | null> => {
 	try {
 		const { complaintId, typeVote } = data;
-		return await api.post('/vote/add', {
+		return await api.post('/votes', {
 			userId: 1,
 			complaintId,
 			typeVote,
@@ -74,7 +74,7 @@ export const getVotes = async (userId: number) => {
 	const params = {
 		userId: userId,
 	};
-	const userVote = await api.get('/vote/list', { params });
+	const userVote = await api.get('/votes', { params });
 
 	return userVote.data;
 };
