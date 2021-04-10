@@ -1,4 +1,4 @@
-@import '../abstract';
+@import "../abstract";
 
 .side-drawer {
 	height: 100%;
@@ -84,14 +84,14 @@
 		color: var(--color-primary);
 		font-family: $font-default;
 		font-size: 23px;
-    padding-top: 2.5em;
+		padding-top: 2.5em;
 		@media (max-width: 370px) {
 			font-size: 18px;
-      padding-top: 2rem;
+			padding-top: 2rem;
 		}
 		@media (max-width: 300px) {
 			font-size: 10px;
-      padding-top: 1.5rem;
+			padding-top: 1.5rem;
 		}
 	}
 
@@ -108,7 +108,6 @@
 		}
 	}
 }
-
 
 .side-drawer.open {
 	transform: translateX(0);

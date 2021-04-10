@@ -10,6 +10,9 @@ const Navbar: React.FC = () => {
 	const history = useHistory();
 
 	const { pathname } = useLocation();
+	const goBack = () => {
+		history.goBack();
+	};
 
 	const handleCloseDrawer = () => {
 		setDrawerOpen(false);
@@ -21,23 +24,25 @@ const Navbar: React.FC = () => {
 	return (
 		<nav className='navbar'>
 			{pathname == '/' ? (
-				<img src={arrow} className='navbar__noArrow' />
+				<img src={arrow} className='navbar__noArrow' alt='arrowImg' />
 			) : (
 				<img
-					onClick={() => history.goBack()}
+					onClick={() => goBack()}
 					src={arrow}
 					className='navbar__Arrow'
+					alt='arrowImg'
 				/>
 			)}
 			<Drawer close={handleCloseDrawer} show={drawerOpen} />
 			{backDrop}
-			<Link to='/'>
-				<img src={isotipo} className='navbar__isotipo' />
+			<Link to='/' data-testid='navbar__isotipo'>
+				<img src={isotipo} className='navbar__isotipo' alt='isotipo' />
 			</Link>
 			<button
 				type='button'
 				onClick={() => setDrawerOpen(!drawerOpen)}
 				className='navbar__button'
+				data-testid='navbar__button'
 			>
 				<div className='navbar__hamburguer'>
 					<div />

@@ -13,6 +13,7 @@
 	font-weight: bold;
 	@include font-style($style-name: "button");
 	transition: all 0.2s ease;
+	cursor: pointer;
 
 	&--bigger {
 		height: 64px;
