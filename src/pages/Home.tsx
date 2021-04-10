@@ -41,7 +41,12 @@ const Home = () => {
 	return (
 		<div className='home'>
 			<div className='home__create'>
-				<Button onClick={changePage} text='Criar denúncia' />
+				<Button
+					onClick={changePage}
+					text='CRIAR DENÚNCIA'
+					icon='megaphone'
+					pattern='secondary'
+				/>
 			</div>
 			{data.map(
 				(
@@ -52,6 +57,7 @@ const Home = () => {
 						complaint_id,
 						complaint_userId,
 						complaint_status,
+						complaint_picture,
 						vote_id,
 					},
 					index,
@@ -63,6 +69,7 @@ const Home = () => {
 							label={complaint_category}
 							description={complaint_description}
 							status={complaint_status}
+							photo={complaint_picture}
 							onClick={() =>
 								confirmComplaint(
 									complaint_id,
@@ -70,6 +77,11 @@ const Home = () => {
 									complaintVote(complaint_status),
 								)
 							}
+							cardClick={() => {
+								history.push(
+									`/complaint/details/${complaint_id}`,
+								);
+							}}
 							vote_id={vote_id}
 						/>
 					);
