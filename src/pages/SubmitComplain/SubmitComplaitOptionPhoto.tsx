@@ -4,6 +4,7 @@ import Button from '../../components/Button';
 const SubmitComplaitOptionPhoto = () => {
 	const history = useHistory();
 	const onSubmit = (route: string) => {
+		console.log(history.location.state);
 		history.push(`/submit-complaint/${route}`, history.location.state);
 	};
 

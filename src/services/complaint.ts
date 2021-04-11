@@ -1,6 +1,14 @@
 import api from './api';
 import { AxiosResponse } from 'axios';
 
+const toBase64 = (file: File) =>
+	new Promise((resolve, reject) => {
+		const reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onload = () => resolve(reader.result);
+		reader.onerror = (error) => reject(error);
+	});
+
 export const listComplaints = async () => {
 	const response = await api.get('/complaints');
 	return response.data.complaints;
@@ -29,18 +37,35 @@ export const createComplaint = async (data: {
 	name: string;
 	description: string;
 	category: string;
-	latitude: number;
-	longitude: number;
+	picture: File;
 }): Promise<AxiosResponse | null> => {
 	try {
-		const { description, name, latitude, longitude, category } = data;
+		let category;
+		let picture;
+		switch (data.category) {
+			case 'Buraco':
+				category = 'Hole';
+				break;
+			case 'Água':
+				category = 'Water';
+				break;
+			case 'Energia':
+				category = 'Eletricity';
+				break;
+		}
+		if (data.picture) {
+			picture = await toBase64(data.picture);
+			console.log(picture);
+		}
+		const { description, name } = data;
 		return await api.post('/complaints', {
 			description,
 			name,
 			latitude,
 			longitude,
 			userId: 1,
-			category: Category[category as keyof typeof Category],
+			category,
+			picture,
 		});
 	} catch (err) {
 		console.error(err);

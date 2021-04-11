@@ -1,4 +1,4 @@
-import { ChangeEvent, useState, useMemo } from 'react';
+import { ChangeEvent, useState, useEffect } from 'react';
 import { FiCamera } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import Button from '../../components/Button';
@@ -6,7 +6,18 @@ import Button from '../../components/Button';
 const SubmitComplaitPhoto = () => {
 	const history = useHistory();
 	const [photo, setPhoto] = useState<File | undefined>();
+
 	const onSubmit = () => {
+		const addPhotoLocationHistory = history.location.state;
+		history.location.state = {
+			...(addPhotoLocationHistory as {
+				name: string;
+				description: string;
+				category: string;
+			}),
+			picture: photo,
+		};
+
 		history.push('/submit-complaint/location', history.location.state);
 	};
 

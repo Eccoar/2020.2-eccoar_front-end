@@ -26,21 +26,14 @@ const SubmitComplaintGeolocation = () => {
 	const onSubmit = async () => {
 		let success;
 		try {
-			const { category, description, name } = history.location.state as {
+			const { category, description, name, picture } = history.location
+				.state as {
 				name: string;
 				description: string;
 				category: string;
+				picture: File;
 			};
-			if (position === null) {
-				throw new Error('Position not found');
-			}
-			await createComplaint({
-				category,
-				description,
-				name,
-				latitude: position.lat,
-				longitude: position.lng,
-			});
+			await createComplaint({ category, description, name, picture });
 			success = true;
 		} catch (err) {
 			success = false;
