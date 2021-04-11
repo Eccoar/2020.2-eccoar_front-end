@@ -55,7 +55,6 @@ export const createComplaint = async (data: {
 		}
 		if (data.picture) {
 			picture = await toBase64(data.picture);
-			console.log(picture);
 		}
 		const { description, name } = data;
 		return await api.post('/complaints', {

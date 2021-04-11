@@ -1,4 +1,4 @@
-import { ChangeEvent, useState, useEffect } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { FiCamera } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import Button from '../../components/Button';
@@ -25,6 +25,7 @@ const SubmitComplaitPhoto = () => {
 		const target = event.target as HTMLInputElement;
 		const file: File = (target.files as FileList)[0];
 		setPhoto(file);
+		console.log(file);
 	};
 
 	return (
