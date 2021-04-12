@@ -6,6 +6,7 @@ import Button from '../../components/Button';
 const SubmitComplaitPhoto = () => {
 	const history = useHistory();
 	const [photo, setPhoto] = useState<File | undefined>();
+	const [showImage, setShowImage] = useState('');
 
 	const onSubmit = () => {
 		const addPhotoLocationHistory = history.location.state;
@@ -24,8 +25,15 @@ const SubmitComplaitPhoto = () => {
 	const onChangePhoto = (event: ChangeEvent) => {
 		const target = event.target as HTMLInputElement;
 		const file: File = (target.files as FileList)[0];
-		setPhoto(file);
-		console.log(file);
+		const size = file.size / 1000000;
+
+		if (size <= 5) {
+			setPhoto(file);
+			setShowImage(URL.createObjectURL(file));
+			console.log(file);
+		} else {
+			alert('Arquivo muito grande, selecione outra imagem!');
+		}
 	};
 
 	return (
@@ -39,17 +47,13 @@ const SubmitComplaitPhoto = () => {
 							type='file'
 							onChange={(event) => onChangePhoto(event)}
 							className='submitComplaint__sendImage'
-							accept='image/*'
+							accept='image/png, image/jpeg'
 						/>
 					</label>
 				</div>
 			) : (
-				<div>{photo.name}</div>
+				<img src={showImage} alt={photo.name} width='60%' />
 			)}
-			{/* <label className='submitComplaint__sendImageContainer'>
-				<FiCamera />
-				<input type="file" onChange={(event) => onChangePhoto(event)} className='submitComplaint__sendImage' />
-			</label> */}
 			<Button text='Continuar' onClick={onSubmit} />
 		</div>
 	);
