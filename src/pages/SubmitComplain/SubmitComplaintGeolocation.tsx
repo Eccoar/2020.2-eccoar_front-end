@@ -30,7 +30,13 @@ const SubmitComplaintGeolocation = () => {
 				description: string;
 				category: string;
 			};
-			await createComplaint({ category, description, name });
+			await createComplaint({
+				category,
+				description,
+				name,
+				latitude: position?.lat || 0,
+				longitude: position?.lng || 0,
+			});
 			success = true;
 		} catch (err) {
 			success = false;
