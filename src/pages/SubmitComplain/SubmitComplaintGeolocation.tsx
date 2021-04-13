@@ -1,10 +1,10 @@
 import { useHistory } from 'react-router-dom';
 import Button from '../../components/Button';
 import { createComplaint } from '../../services/complaint';
-import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet';
-import { useEffect, useState } from 'react';
+import { MapContainer, TileLayer } from 'react-leaflet';
+import LocationMarker from '../../components/LocationMarker';
+import { useState } from 'react';
 import { LatLng } from 'leaflet';
-
 interface IHistory {
 	success?: boolean;
 	name?: string;
@@ -17,31 +17,10 @@ interface IMapOptions {
 	scrollWhenZoom: boolean;
 }
 
-const LocationMarker = () => {
-	const [position, setPosition] = useState<LatLng | null>(null);
-
-	const map = useMap();
-
-	useEffect(() => {
-		navigator.geolocation.getCurrentPosition((result) => {
-			const latlng = new LatLng(
-				result.coords.latitude,
-				result.coords.longitude,
-			);
-			setPosition(latlng);
-			map.setView(latlng, 13);
-		});
-	}, []);
-
-	return position === null ? null : (
-		<Marker position={position}>
-			<Popup>Você está aqui</Popup>
-		</Marker>
-	);
-};
-
 const SubmitComplaintGeolocation = () => {
 	const history = useHistory<IHistory>();
+
+	const [position, setPosition] = useState<LatLng | null>(null);
 
 	const onSubmit = async () => {
 		let success;
@@ -71,7 +50,11 @@ const SubmitComplaintGeolocation = () => {
 		>
 			<MapContainer className='mapContainer' {...mapOptions}>
 				<TileLayer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
-				<LocationMarker />
+				<LocationMarker
+					maxRadius={2000}
+					position={position}
+					setPosition={setPosition}
+				/>
 			</MapContainer>
 			<Button text='Continuar' onClick={onSubmit} />
 		</div>
