@@ -203,6 +203,7 @@ deploy prod:
     CERT_ISSUER: letsencrypt-prod
     CERT_SECRET: eccoar-prod-cert
     APP_VERSION: $CI_COMMIT_TAG
+    CHART_NAME: eccoar-front
     CHART_VERSION: $CI_COMMIT_TAG
   only:
     - tags
