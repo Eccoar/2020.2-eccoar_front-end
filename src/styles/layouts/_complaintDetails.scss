@@ -44,5 +44,7 @@
         margin-top: 25px;
         font-family: "Spartan", sans-serif;
         color: var(--text-color);
+        word-wrap: break-word;
+        max-width: 340px;
     }
 }

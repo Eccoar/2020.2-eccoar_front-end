@@ -87,6 +87,22 @@ export const createVote = async (data: {
 	}
 };
 
+export const removeVote = async (data: {
+	userId: number;
+	id: number;
+	typeVote: string;
+}): Promise<AxiosResponse | null> => {
+	try {
+		const { userId, id, typeVote } = data;
+		return await api.delete(
+			`/vote?complaintId=${id}&userId=${userId}&typeVote=${typeVote}`,
+		);
+	} catch (err) {
+		console.error(err.message);
+		return null;
+	}
+};
+
 export const getVotes = async (userId: number) => {
 	const params = {
 		userId: userId,

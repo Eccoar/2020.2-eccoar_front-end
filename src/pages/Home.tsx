@@ -1,20 +1,13 @@
 import { useState, useEffect } from 'react';
 import ComplainCard from '../components/complainCard';
-import { getVotes, createVote } from '../services/complaint';
+import { getVotes, createVote, removeVote } from '../services/complaint';
 import { useHistory } from 'react-router-dom';
 import Button from '../components/Button';
 
 const Home = () => {
 	const [data, setData] = useState([]);
 	const history = useHistory();
-
-	const confirmComplaint = async (
-		complaintId: number,
-		userId: number,
-		typeVote: string,
-	) => {
-		await createVote({ userId, complaintId, typeVote });
-	};
+	const mockedUserId = 1;
 
 	useEffect(() => {
 		let mounted = true;
@@ -70,13 +63,20 @@ const Home = () => {
 							description={complaint_description}
 							status={complaint_status}
 							photo={complaint_picture}
-							onClick={() =>
-								confirmComplaint(
-									complaint_id,
-									complaint_userId,
-									complaintVote(complaint_status),
-								)
-							}
+							onClick={() => {
+								createVote({
+									complaintId: complaint_id,
+									userId: complaint_userId,
+									typeVote: complaintVote(complaint_status),
+								});
+							}}
+							removeClick={() => {
+								removeVote({
+									userId: mockedUserId,
+									id: complaint_id,
+									typeVote: complaintVote(complaint_status),
+								});
+							}}
 							cardClick={() => {
 								history.push(
 									`/complaint/details/${complaint_id}`,
