@@ -1,0 +1,35 @@
+.containerRegister {
+    min-height: calc(100vh - 5rem);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    &__componentsContainer {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        width: 100%;
+        height: 20.6vh;
+    }
+    &__formsContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+        width: 30%;
+        min-width: 20rem;
+        max-width: 30rem;
+        height: calc(79.4vh - 5rem);
+    }
+
+    &__formsContainer-input {
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    &__buttonsContainer-buttonSize {
+        width: 100%;
+        margin-bottom: 1.6rem;
+    }
+}

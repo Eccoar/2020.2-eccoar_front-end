@@ -21,7 +21,9 @@ const Navbar: React.FC = () => {
 	let backDrop;
 	if (drawerOpen) backDrop = <BackDrop close={handleCloseDrawer} />;
 
-	return (
+	return pathname == '/' ? (
+		<></>
+	) : (
 		<nav className='navbar'>
 			{pathname == '/home' ? (
 				<></>
