@@ -3,7 +3,7 @@ import Button from '../../components/Button';
 import { createComplaint } from '../../services/complaint';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import LocationMarker from '../../components/LocationMarker';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { LatLng } from 'leaflet';
 interface IHistory {
 	success?: boolean;
@@ -30,12 +30,15 @@ const SubmitComplaintGeolocation = () => {
 				description: string;
 				category: string;
 			};
+			if (position === null) {
+				throw new Error('Position not found');
+			}
 			await createComplaint({
 				category,
 				description,
 				name,
-				latitude: position?.lat || 0,
-				longitude: position?.lng || 0,
+				latitude: position.lat,
+				longitude: position.lng,
 			});
 			success = true;
 		} catch (err) {
@@ -43,6 +46,14 @@ const SubmitComplaintGeolocation = () => {
 		}
 		history.push('/submit-complaint/done', { success });
 	};
+
+	useEffect(() => {
+		navigator.geolocation.getCurrentPosition((result) => {
+			setPosition(
+				new LatLng(result.coords.latitude, result.coords.longitude),
+			);
+		});
+	}, []);
 
 	const mapOptions = {
 		scrollWhenZoom: true,
@@ -56,11 +67,13 @@ const SubmitComplaintGeolocation = () => {
 		>
 			<MapContainer className='mapContainer' {...mapOptions}>
 				<TileLayer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
-				<LocationMarker
-					maxRadius={2000}
-					position={position}
-					setPosition={setPosition}
-				/>
+				{position !== null && (
+					<LocationMarker
+						maxRadius={2000}
+						position={position}
+						setPosition={setPosition}
+					/>
+				)}
 			</MapContainer>
 			<Button text='Continuar' onClick={onSubmit} />
 		</div>

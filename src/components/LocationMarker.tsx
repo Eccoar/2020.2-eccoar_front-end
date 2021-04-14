@@ -4,7 +4,7 @@ import { LatLng, Marker as LeafLetMarker } from 'leaflet';
 
 interface ILocationMarker {
 	maxRadius: number;
-	position: LatLng | null;
+	position: LatLng;
 	setPosition: React.Dispatch<React.SetStateAction<LatLng | null>>;
 }
 
@@ -13,7 +13,7 @@ const LocationMarker: React.FC<ILocationMarker> = ({
 	position,
 	setPosition,
 }) => {
-	const [center, setCenter] = useState<LatLng | null>(position);
+	const [center, setCenter] = useState<LatLng>(position);
 
 	const map = useMap();
 	const markerRef = useRef<LeafLetMarker | null>(null);
@@ -24,38 +24,44 @@ const LocationMarker: React.FC<ILocationMarker> = ({
 				result.coords.latitude,
 				result.coords.longitude,
 			);
-			setCenter(latlng);
 			setPosition(latlng);
-			map.setView(latlng, 15);
+			setCenter(() => {
+				map.setView(latlng, 15);
+				console.log(latlng);
+				return latlng;
+			});
 		});
 	}, []);
+
+	const pickLocation = () => {
+		let marker = markerRef.current;
+		console.log(
+			Math.abs(
+				center?.distanceTo(marker?.getLatLng() || new LatLng(0, 0)) ||
+					0,
+			),
+		);
+		if (center !== null && position !== null) {
+			if (
+				marker !== null &&
+				Math.abs(center.distanceTo(marker.getLatLng())) <= maxRadius
+			) {
+				setPosition(marker.getLatLng());
+			} else {
+				marker = markerRef.current;
+				console.log('aaaaaaaaaa');
+				marker?.setLatLng(center);
+			}
+		}
+	};
 
 	const markerEvents = useMemo(
 		() => ({
 			dragend() {
-				if (center !== null) {
-					const marker = markerRef.current;
-					if (center !== null && position !== null) {
-						if (
-							marker !== null &&
-							Math.abs(center.distanceTo(marker.getLatLng())) <=
-								maxRadius
-						) {
-							setPosition(marker.getLatLng());
-						} else {
-							marker?.setLatLng(center);
-						}
-					}
-				} else {
-					navigator.geolocation.getCurrentPosition((result) => {
-						setCenter(
-							new LatLng(
-								result.coords.latitude,
-								result.coords.longitude,
-							),
-						);
-					});
-				}
+				pickLocation();
+			},
+			predrag() {
+				pickLocation();
 			},
 		}),
 		[],
