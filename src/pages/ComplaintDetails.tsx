@@ -1,9 +1,10 @@
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import Button from '../components/Button';
 import {
 	createVote,
-	getComplaintWithVote,
 	removeVote,
+	deleteComplaint,
+	getComplaintWithVote,
 } from '../services/complaint';
 import { useState, useEffect } from 'react';
 import DisplayMap from '../components/DisplayMap';
@@ -47,6 +48,11 @@ const ComplaintDetails = () => {
 
 	const params = useParams<urlParams>();
 
+	const history = useHistory();
+
+	function goToHomescreen() {
+		history.push('/');
+	}
 	useEffect(() => {
 		let ismounted = false;
 		async function setUpPage() {
@@ -123,6 +129,21 @@ const ComplaintDetails = () => {
 						/>
 					)}
 
+					{complaint.complaint_status == 'open' &&
+					mockedUserId == complaint.complaint_userId ? (
+						<p
+							className='containerDetails__deleteText'
+							onClick={async () => {
+								await deleteComplaint({
+									userId: mockedUserId,
+									id: complaint.complaint_id,
+								});
+								goToHomescreen();
+							}}
+						>
+							Deletar Denúncia
+						</p>
+					) : null}
 					<Button
 						data-testid='confirmbutton'
 						text={choseButtonText()}
