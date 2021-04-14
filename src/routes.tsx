@@ -14,6 +14,8 @@ import SubmitComplaintConclude from './pages/SubmitComplain/SubmitComplaintConcl
 import ComplaintDetails from './pages/ComplaintDetails';
 import FirstPage from './pages/FirstPage';
 import RegisterName from './pages/Register/RegisterName';
+import RegisterAdress from './pages/Register/RegisterAdress';
+import RegisterEmail from './pages/Register/RegisterEmail';
 
 const Routes = () => {
 	return (
@@ -22,6 +24,8 @@ const Routes = () => {
 			<Switch>
 				<Route component={FirstPage} path='/' exact />
 				<Route component={RegisterName} path='/register/name' />
+				<Route component={RegisterAdress} path='/register/adress' />
+				<Route component={RegisterEmail} path='/register/email' />
 				<Route component={Home} path='/home' />
 				<Route
 					component={SubmitComplaintInfos}

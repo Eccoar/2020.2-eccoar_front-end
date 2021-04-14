@@ -1,5 +1,5 @@
 .containerRegister {
-    min-height: calc(100vh - 5rem);
+    min-height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -8,9 +8,9 @@
     &__componentsContainer {
         display: flex;
         justify-content: center;
-        align-items: flex-end;
+        align-items: center;
         width: 100%;
-        height: 20.6vh;
+        height: 50vh;
     }
     &__formsContainer {
         display: flex;
@@ -20,7 +20,7 @@
         width: 30%;
         min-width: 20rem;
         max-width: 30rem;
-        height: calc(79.4vh - 5rem);
+        height: 50;
     }
 
     &__formsContainer-input {

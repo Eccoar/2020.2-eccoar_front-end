@@ -4,20 +4,26 @@ import logo from '../../assets/Eccoar.png';
 import InputBasic from '../../components/inputBasic';
 import Button from '../../components/Button';
 
-const RegisterName = () => {
-	const [name, setName] = useState('');
-	const [lastName, setLastName] = useState('');
-
+const RegisterAdress = () => {
+	const [cpf, setCpf] = useState('');
+	const [cep, setCep] = useState('');
+	const [adress, setAdress] = useState('');
 	const history = useHistory();
+	const { name, lastName } = history.location.state as {
+		name: string;
+		lastName: string;
+	};
 
 	const push = () => {
-		history.push('/register/adress', {
+		history.push('/register/email', {
+			cpf,
+			cep,
+			adress,
 			name,
 			lastName,
 		});
 		console.log(name, lastName);
 	};
-
 	return (
 		<section className='containerRegister'>
 			<section className='containerRegister__componentsContainer'>
@@ -26,16 +32,23 @@ const RegisterName = () => {
 			<section className='containerRegister__formsContainer'>
 				<section className='containerRegister__formsContainer-input'>
 					<InputBasic
-						label='SEU NOME:'
-						value={name}
-						onChange={(e) => setName(e.target.value)}
+						label='CPF:'
+						value={cpf}
+						onChange={(e) => setCpf(e.target.value)}
 					/>
 				</section>
 				<section className='containerRegister__formsContainer-input'>
 					<InputBasic
-						label='E SOBRENOME:'
-						value={lastName}
-						onChange={(e) => setLastName(e.target.value)}
+						label='CEP:'
+						value={cep}
+						onChange={(e) => setCep(e.target.value)}
+					/>
+				</section>
+				<section className='containerRegister__formsContainer-input'>
+					<InputBasic
+						label='ENDEREÇO:'
+						value={adress}
+						onChange={(e) => setAdress(e.target.value)}
 					/>
 				</section>
 				<section className='containerRegister__buttonsContainer-buttonSize'>
@@ -51,4 +64,4 @@ const RegisterName = () => {
 	);
 };
 
-export default RegisterName;
+export default RegisterAdress;
