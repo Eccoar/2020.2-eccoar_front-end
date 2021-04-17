@@ -1,0 +1,211 @@
+stages:
+  - code
+  - tests
+  - quality scan
+  - quality metrics
+  - build
+  - build chart
+  - deploy
+
+.only_branches: &only_branches
+  only:
+    - /^(\d{2,})(\_[a-zA-Z0-9]+)+$/
+    - /^((hotfix)\_\d{2,})(\_[a-zA-Z0-9]+)+$/
+    - main
+    - devel
+    - tags
+
+########### Code ###########
+
+eslint:
+  image: node:14-slim
+  stage: code
+  before_script:
+    - npm install
+  script:
+    - npm run lint
+  artifacts:
+    public: true
+    paths:
+      - lint-report.html
+  extends:
+    - .only_branches
+
+########### Tests ###########
+
+unit_test:
+  image: node:14-slim
+  stage: tests
+  before_script:
+    - npm install
+  script:
+    - npm run test
+  artifacts:
+    public: true
+    paths:
+      - coverage/*.info
+      - reports/*.xml
+  extends:
+    - .only_branches
+
+########### Quality Scan ###########
+
+sonar_scanner:
+  image: node:14-slim
+  stage: quality scan
+  before_script:
+    - export REACT_APP_SONAR_TOKEN=$SONAR_TOKEN
+    - npm install
+  script:
+    - npm run sonar
+  extends:
+    - .only_branches
+  dependencies:
+    - unit_test
+
+sonar metrics:
+  image: debian
+  stage: quality metrics
+  variables:
+    METRICS_URL: https://sonarcloud.io/api/measures/search_history?component=Eccoar_2020.2-eccoar_front-end&metrics=new_technical_debt,blocker_violations,bugs,classes,code_smells,cognitive_complexity,comment_lines,comment_lines_density,complexity_in_classes,complexity_in_functions,branch_coverage,new_branch_coverage,new_conditions_to_cover,confirmed_issues,coverage,new_coverage,complexity,development_cost,new_development_cost,duplicated_blocks,new_duplicated_blocks,duplicated_files,duplicated_lines,duplicated_lines_density,new_duplicated_lines_density,new_duplicated_lines,duplications_data,effort_to_reach_maintainability_rating_a,false_positive_issues,file_complexity_distribution,files,function_complexity_distribution,functions,generated_lines,generated_ncloc,info_violations,violations,line_coverage,new_line_coverage,ncloc,ncloc_language_distribution,lines_to_cover,new_lines_to_cover,sqale_rating,new_maintainability_rating,major_violations,minor_violations,new_blocker_violations,new_bugs,new_code_smells,new_critical_violations,new_info_violations,new_violations,new_lines,new_major_violations,new_minor_violations,new_security_hotspots,new_vulnerabilities,open_issues,quality_profiles,projects,public_api,public_documented_api_density,quality_gate_details,alert_status,reliability_rating,new_reliability_rating,reliability_remediation_effort,new_reliability_remediation_effort,reopened_issues,security_hotspots,security_hotspots_reviewed,new_security_hotspots_reviewed,security_rating,new_security_rating,security_remediation_effort,new_security_remediation_effort,security_review_rating,new_security_review_rating,security_hotspots_reviewed_status,new_security_hotspots_reviewed_status,security_hotspots_to_review_status,new_security_hotspots_to_review_status,skipped_tests,statements,sqale_index,sqale_debt_ratio,new_sqale_debt_ratio
+  before_script:
+    - apt update
+    - apt install wget git -y
+    - mkdir tmp && cd tmp
+  script:
+    - wget $METRICS_URL -O eccoar-front-$CI_COMMIT_BRANCH-metrics.json
+  only:
+    - main
+    - 97_configuracao_pipeline
+  artifacts:
+    public: true
+    paths:
+      - tmp/*.json
+
+########### Build ###########
+
+.build_:
+  image: docker:19.03.12
+  services:
+    - docker:19.03.12-dind
+  stage: build
+  before_script:
+    - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - export DOCKER_IMAGE=$(echo "$DOCKER_IMAGE:$DOCKER_TAG" | tr '[:upper:]' '[:lower:]')
+  script:
+    - echo $DOCKER_IMAGE
+    - docker build . -t $DOCKER_IMAGE --build-arg gateway_host=$GATEWAY_HOST
+    - docker push $DOCKER_IMAGE
+
+build general:
+  variables:
+    DOCKER_TAG: $CI_COMMIT_SHA
+    DOCKER_IMAGE: $DOCKER_USER/$CI_PROJECT_NAME
+    GATEWAY_HOST: "localhost:5000"
+  extends:
+    - .only_branches
+    - .build_
+
+build homolog:
+  variables:
+    DOCKER_TAG: homolog
+    DOCKER_IMAGE: $DOCKER_USER/$CI_PROJECT_NAME
+    GATEWAY_HOST: hm.eccoar.online
+  only:
+    - main
+    - 97_configuracao_pipeline
+  extends:
+    - .build_
+
+build prod:
+  variables:
+    DOCKER_TAG: $CI_COMMIT_TAG
+    DOCKER_IMAGE: $DOCKER_USER/$CI_PROJECT_NAME
+    GATEWAY_HOST: eccoar.online
+  only:
+    - tags
+  extends:
+    - .build_
+
+########## Chart ##########
+
+.helm_build:
+  stage: build chart
+  image: dtzar/helm-kubectl:3.5.0
+  script:
+    - cd chart
+    - kubectl get services -n $AMBIENTE
+    - helm lint ./$CHART_NAME
+    - echo $CHART_VERSION
+    - helm package ./$CHART_NAME --app-version $APP_VERSION --version $CHART_VERSION
+  artifacts:
+    public: true
+    paths:
+      - chart/$CHART_NAME-$CHART_VERSION.tgz
+
+helm hm:
+  variables:
+    CHART_NAME: eccoar-front
+    AMBIENTE: homolog
+    APP_VERSION: $CI_COMMIT_SHORT_SHA
+    CHART_VERSION: 1.0.0-hm.$CI_COMMIT_REF_SLUG.$CI_COMMIT_SHORT_SHA
+  only:
+    - main
+    - 97_configuracao_pipeline
+  extends:
+    - .helm_build
+
+helm prod:
+  variables:
+    CHART_NAME: eccoar-front
+    AMBIENTE: prod
+    APP_VERSION: $CI_COMMIT_TAG
+    CHART_VERSION: $CI_COMMIT_TAG
+  only:
+    - tags
+  extends:
+    - .helm_build
+
+########## Deploy ##########
+
+.deploy_:
+  image: dtzar/helm-kubectl:3.5.0
+  stage: deploy
+  before_script:
+    - export CHART_PATH=chart/$CHART_NAME-$CHART_VERSION.tgz
+  script:
+    - echo $AMBIENTE
+    - kubectl get services -n $AMBIENTE
+    - helm upgrade $WORKLOAD_NAME $CHART_PATH --install --namespace $AMBIENTE --set image.tag=$DOCKER_TAG --set hosts[0].host=$INGRESS_HOST --set cert-manager.io/cluster-issuer=$CERT_ISSUER --set tls[0].secretName=$CERT_SECRET --set tls[0].hosts[0]=$INGRESS_HOST
+
+deploy hm:
+  variables:
+    DOCKER_TAG: homolog
+    WORKLOAD_NAME: eccoar-front
+    AMBIENTE: homolog
+    INGRESS_HOST: hm.eccoar.online
+    CERT_ISSUER: letsencrypt-hm
+    CERT_SECRET: eccoar-hm-cert
+    CHART_NAME: eccoar-front
+    CHART_VERSION: 1.0.0-hm.$CI_COMMIT_REF_SLUG.$CI_COMMIT_SHORT_SHA
+  only:
+    - main
+    - 97_configuracao_pipeline
+  extends:
+    - .deploy_
+
+deploy prod:
+  variables:
+    DOCKER_TAG: $CI_COMMIT_TAG
+    WORKLOAD_NAME: eccoar-front
+    AMBIENTE: prod
+    INGRESS_HOST: eccoar.online
+    CERT_ISSUER: letsencrypt-prod
+    CERT_SECRET: eccoar-prod-cert
+    APP_VERSION: $CI_COMMIT_TAG
+    CHART_NAME: eccoar-front
+    CHART_VERSION: $CI_COMMIT_TAG
+  only:
+    - tags
+  extends:
+    - .deploy_

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "eccoar-front.fullname" . }}-test-connection"
+  labels:
+    {{- include "eccoar-front.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "eccoar-front.fullname" . }}:{{ .Values.service.port }}/api/ping']
+  restartPolicy: Never

@@ -1,3 +1,6 @@
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Eccoar_2020.2-eccoar_front-end&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=Eccoar_2020.2-eccoar_front-end)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Eccoar_2020.2-eccoar_front-end&metric=coverage)](https://sonarcloud.io/dashboard?id=Eccoar_2020.2-eccoar_front-end)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Eccoar_2020.2-eccoar_front-end&metric=alert_status)](https://sonarcloud.io/dashboard?id=Eccoar_2020.2-eccoar_front-end)
 # 2020.2 Eccoar Front End
 
 Este serviço é referente ao Front End do Projeto Eccoar. Para poder utilizá-lo, certifique de que você possui o Docker e o Docker Compose em sua máquina. Caso contrário será necessário baixá-los. Para isso basta seguir os links:

@@ -60,6 +60,15 @@ const ComplainCard: FC<ComplainCardProps> = ({
 		status == 'wait' ? buttonConfirmed : buttonClassName
 	} complaint__upvote`;
 
+	const checkIsVoted = () => {
+		if (!isConfirmed) {
+			onClick();
+			setConfirmed(true);
+		} else {
+			alert('Denuncia já votada');
+		}
+	};
+
 	const renderIcon = () => {
 		if (status == 'wait') {
 			return (
@@ -123,11 +132,7 @@ const ComplainCard: FC<ComplainCardProps> = ({
 			</section>
 			<button
 				type='button'
-				onClick={() => {
-					!isConfirmed
-						? (onClick(), setConfirmed(true))
-						: alert('Denuncia já votada');
-				}}
+				onClick={checkIsVoted}
 				data-testid='button-id'
 				className={complaintStatus}
 			>
