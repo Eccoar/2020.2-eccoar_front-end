@@ -5,6 +5,8 @@ type InputBasicProps = {
 	label?: string;
 	/** Definir input ou textarea */
 	inputType?: 'input' | 'textarea' | 'dropdown';
+	// Indica o type do input
+	inputContentType?: string;
 	/** Indicar valores referentes ao dropdwon */
 	dropdownItems?: Array<string>;
 	/** Indica a função passada para capturar o valor do input */
@@ -24,6 +26,7 @@ const InputBasic: FC<InputBasicProps> = ({
 	dropdownItems = [],
 	value,
 	onChange,
+	inputContentType,
 }) => {
 	return (
 		<div className='input-container'>
@@ -54,9 +57,17 @@ const InputBasic: FC<InputBasicProps> = ({
 					})}
 					;
 				</select>
-			) : (
+			) : inputContentType === null ? (
 				<input
 					type='text'
+					name={label}
+					className='input-container__input'
+					onChange={onChange}
+					value={value}
+				/>
+			) : (
+				<input
+					type={inputContentType}
 					name={label}
 					className='input-container__input'
 					onChange={onChange}
