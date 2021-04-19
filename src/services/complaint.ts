@@ -19,6 +19,12 @@ export const getComplaintWithVote = async (
 	return response.data;
 };
 
+enum Category {
+	'Buraco' = 'Hole',
+	'Água' = 'Water',
+	'Energia' = 'Electricity',
+}
+
 export const createComplaint = async (data: {
 	name: string;
 	description: string;
@@ -27,26 +33,14 @@ export const createComplaint = async (data: {
 	longitude: number;
 }): Promise<AxiosResponse | null> => {
 	try {
-		let category;
-		switch (data.category) {
-			case 'Buraco':
-				category = 'Hole';
-				break;
-			case 'Água':
-				category = 'Water';
-				break;
-			case 'Energia':
-				category = 'Eletricity';
-				break;
-		}
-		const { description, name, latitude, longitude } = data;
+		const { description, name, latitude, longitude, category } = data;
 		return await api.post('/complaint/create', {
 			description,
 			name,
 			latitude,
 			longitude,
 			userId: 1,
-			category,
+			category: Category[category as keyof typeof Category],
 		});
 	} catch (err) {
 		console.error(err);

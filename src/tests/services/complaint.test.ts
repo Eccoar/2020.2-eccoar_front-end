@@ -15,4 +15,18 @@ describe('Complaint service', () => {
 		});
 		expect(response?.status).toEqual(200);
 	});
+
+	test('Should fail to create complaint', async () => {
+		jest.spyOn(api, 'post').mockImplementationOnce(() =>
+			Promise.reject({ status: 400 }),
+		);
+		const response = await createComplaint({
+			category: 'Buraco',
+			description: 'mockDescription',
+			latitude: 0,
+			longitude: 0,
+			name: 'mockName',
+		});
+		expect(response).toEqual(null);
+	});
 });

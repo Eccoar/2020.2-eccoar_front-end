@@ -5,6 +5,7 @@ import { MapContainer, TileLayer } from 'react-leaflet';
 import LocationMarker from '../../components/LocationMarker';
 import { useEffect, useState } from 'react';
 import { LatLng } from 'leaflet';
+import GeolocationParser from '../../utils/geolocation';
 interface IHistory {
 	success?: boolean;
 	name?: string;
@@ -48,11 +49,12 @@ const SubmitComplaintGeolocation = () => {
 	};
 
 	useEffect(() => {
-		navigator.geolocation.getCurrentPosition((result) => {
-			setPosition(
-				new LatLng(result.coords.latitude, result.coords.longitude),
-			);
-		});
+		const getGeolocation = async () => {
+			const pos = await GeolocationParser.getPosition();
+			const pos_latlng = new LatLng(pos.latitude, pos.longitude);
+			setPosition(pos_latlng);
+		};
+		getGeolocation();
 	}, []);
 
 	const mapOptions = {

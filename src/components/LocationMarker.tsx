@@ -1,7 +1,7 @@
-import { Circle, Marker, Popup, useMap } from 'react-leaflet';
+import { Circle, Marker, useMap } from 'react-leaflet';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { LatLng, Marker as LeafLetMarker } from 'leaflet';
-
+import GeolocationParser from '../utils/geolocation';
 interface ILocationMarker {
 	maxRadius: number;
 	position: LatLng;
@@ -19,18 +19,16 @@ const LocationMarker: React.FC<ILocationMarker> = ({
 	const markerRef = useRef<LeafLetMarker | null>(null);
 
 	useEffect(() => {
-		navigator.geolocation.getCurrentPosition((result) => {
-			const latlng = new LatLng(
-				result.coords.latitude,
-				result.coords.longitude,
-			);
-			setPosition(latlng);
+		const getGeolocation = async () => {
+			const pos = await GeolocationParser.getPosition();
+			const pos_latlng = new LatLng(pos.latitude, pos.longitude);
+			setPosition(pos_latlng);
 			setCenter(() => {
-				map.setView(latlng, 15);
-				console.log(latlng);
-				return latlng;
+				map.setView(pos_latlng, 15);
+				return pos_latlng;
 			});
-		});
+		};
+		getGeolocation();
 	}, []);
 
 	const pickLocation = () => {
@@ -49,7 +47,6 @@ const LocationMarker: React.FC<ILocationMarker> = ({
 				setPosition(marker.getLatLng());
 			} else {
 				marker = markerRef.current;
-				console.log('aaaaaaaaaa');
 				marker?.setLatLng(center);
 			}
 		}
@@ -74,9 +71,7 @@ const LocationMarker: React.FC<ILocationMarker> = ({
 				draggable={true}
 				eventHandlers={markerEvents}
 				ref={markerRef}
-			>
-				<Popup>Você está aqui</Popup>
-			</Marker>
+			/>
 			{center && <Circle center={center} radius={maxRadius} />}
 		</>
 	);
