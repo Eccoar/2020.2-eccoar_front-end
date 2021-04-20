@@ -50,9 +50,14 @@ const SubmitComplaintGeolocation = () => {
 
 	useEffect(() => {
 		const getGeolocation = async () => {
-			const pos = await GeolocationParser.getPosition();
-			const pos_latlng = new LatLng(pos.latitude, pos.longitude);
-			setPosition(pos_latlng);
+			try {
+				const pos = await GeolocationParser.getPosition();
+				const pos_latlng = new LatLng(pos.latitude, pos.longitude);
+				setPosition(pos_latlng);
+			} catch (error) {
+				alert(error.message);
+				history.replace('/');
+			}
 		};
 		getGeolocation();
 	}, []);

@@ -2,6 +2,7 @@ import { Circle, Marker, useMap } from 'react-leaflet';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { LatLng, Marker as LeafLetMarker } from 'leaflet';
 import GeolocationParser from '../utils/geolocation';
+import { useHistory } from 'react-router';
 interface ILocationMarker {
 	maxRadius: number;
 	position: LatLng;
@@ -17,16 +18,23 @@ const LocationMarker: React.FC<ILocationMarker> = ({
 
 	const map = useMap();
 	const markerRef = useRef<LeafLetMarker | null>(null);
+	const history = useHistory();
 
 	useEffect(() => {
 		const getGeolocation = async () => {
-			const pos = await GeolocationParser.getPosition();
-			const pos_latlng = new LatLng(pos.latitude, pos.longitude);
-			setPosition(pos_latlng);
-			setCenter(() => {
-				map.setView(pos_latlng, 15);
-				return pos_latlng;
-			});
+			if (!map) return;
+			try {
+				const pos = await GeolocationParser.getPosition();
+				const pos_latlng = new LatLng(pos.latitude, pos.longitude);
+				setPosition(pos_latlng);
+				setCenter(() => {
+					map.setView(pos_latlng, 15);
+					return pos_latlng;
+				});
+			} catch (error) {
+				alert(error.message);
+				history.replace('/');
+			}
 		};
 		getGeolocation();
 	}, []);
