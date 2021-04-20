@@ -1,4 +1,4 @@
-import { Circle, Marker, useMap } from 'react-leaflet';
+import { Circle, Marker, Popup, useMap } from 'react-leaflet';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { LatLng, Marker as LeafLetMarker } from 'leaflet';
 import GeolocationParser from '../utils/geolocation';
@@ -41,12 +41,6 @@ const LocationMarker: React.FC<ILocationMarker> = ({
 
 	const pickLocation = () => {
 		let marker = markerRef.current;
-		console.log(
-			Math.abs(
-				center?.distanceTo(marker?.getLatLng() || new LatLng(0, 0)) ||
-					0,
-			),
-		);
 		if (center !== null && position !== null) {
 			if (
 				marker !== null &&
@@ -79,7 +73,9 @@ const LocationMarker: React.FC<ILocationMarker> = ({
 				draggable={true}
 				eventHandlers={markerEvents}
 				ref={markerRef}
-			/>
+			>
+				<Popup>Me arraste</Popup>
+			</Marker>
 			{center && <Circle center={center} radius={maxRadius} />}
 		</>
 	);

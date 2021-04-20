@@ -34,7 +34,7 @@ export const createComplaint = async (data: {
 }): Promise<AxiosResponse | null> => {
 	try {
 		const { description, name, latitude, longitude, category } = data;
-		return await api.post('/complaint/create', {
+		return await api.post('/complaints', {
 			description,
 			name,
 			latitude,

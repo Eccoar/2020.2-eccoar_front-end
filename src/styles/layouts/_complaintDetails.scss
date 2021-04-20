@@ -2,9 +2,10 @@
 
 .containerDetails {
     padding: 1rem;
+    padding-bottom: 2rem;
     margin: auto;
     max-width: 420px;
-    height: 85vh;
+    height: 95vh;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 0.3fr 2.4fr;
@@ -30,6 +31,13 @@
             border-radius: 6px;
             object-fit: cover;
         }
+    }
+
+    &__map {
+        width: 100%;
+        height: 43vh;
+        border-radius: 6px;
+        margin-bottom: 1rem;
     }
 
     &__description {
