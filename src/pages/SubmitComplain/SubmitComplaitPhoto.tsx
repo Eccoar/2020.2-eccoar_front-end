@@ -28,9 +28,13 @@ const SubmitComplaitPhoto = () => {
 		const size = file.size / 1000000;
 
 		if (size <= 5) {
-			setPhoto(file);
-			setShowImage(URL.createObjectURL(file));
-			console.log(file);
+			if (photo?.type != 'image/jpeg' && photo?.type != 'image/png') {
+				alert('Tipo de arquivo não suportado');
+			} else {
+				setPhoto(file);
+				setShowImage(URL.createObjectURL(file));
+				console.log(file);
+			}
 		} else {
 			alert('Arquivo muito grande, selecione outra imagem!');
 		}
@@ -54,7 +58,7 @@ const SubmitComplaitPhoto = () => {
 			) : (
 				<img src={showImage} alt={photo.name} width='60%' />
 			)}
-			<Button text='Continuar' onClick={onSubmit} />
+			<Button text='Continuar' onClick={() => console.log(photo)} />
 		</div>
 	);
 };
