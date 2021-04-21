@@ -84,11 +84,10 @@ const ComplaintDetails = () => {
 	};
 
 	const handleDelete = async (complaint: complaintWithVote) => {
-		const response = await deleteComplaint({
+		await deleteComplaint({
 			userId: mockedUserId,
 			id: complaint.complaint_id,
 		});
-		console.log(response);
 		goToHomescreen();
 	};
 
