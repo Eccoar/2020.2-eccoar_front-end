@@ -53,6 +53,7 @@ const ComplaintDetails = () => {
 	function goToHomescreen() {
 		history.push('/');
 	}
+
 	useEffect(() => {
 		let ismounted = false;
 		async function setUpPage() {
@@ -80,6 +81,15 @@ const ComplaintDetails = () => {
 			}
 			return 'REPORTAR DENÚNCIA';
 		}
+	};
+
+	const handleDelete = async (complaint: complaintWithVote) => {
+		const response = await deleteComplaint({
+			userId: mockedUserId,
+			id: complaint.complaint_id,
+		});
+		console.log(response);
+		goToHomescreen();
 	};
 
 	const createComplaint = (
@@ -133,13 +143,7 @@ const ComplaintDetails = () => {
 					mockedUserId == complaint.complaint_userId ? (
 						<p
 							className='containerDetails__deleteText'
-							onClick={async () => {
-								await deleteComplaint({
-									userId: mockedUserId,
-									id: complaint.complaint_id,
-								});
-								goToHomescreen();
-							}}
+							onClick={() => handleDelete(complaint)}
 						>
 							Deletar Denúncia
 						</p>
