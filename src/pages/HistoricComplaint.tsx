@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import ComplainCard from '../components/complainCard';
-import { getVotes, createVote } from '../services/complaint';
+import { getVotes, createVote, removeVote } from '../services/complaint';
 import { useHistory } from 'react-router-dom';
 
 const Historic = () => {
 	const [data, setData] = useState([]);
 	const history = useHistory();
+	const mockedUserId = 1;
 
 	const id = 44;
 
@@ -71,6 +72,13 @@ const Historic = () => {
 									complaintVote(complaint_status),
 								)
 							}
+							removeClick={() => {
+								removeVote({
+									userId: mockedUserId,
+									id: complaint_id,
+									typeVote: complaintVote(complaint_status),
+								});
+							}}
 							cardClick={() => {
 								history.push(
 									`/complaint/details/${complaint_id}`,
