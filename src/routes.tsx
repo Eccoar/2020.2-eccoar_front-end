@@ -1,6 +1,7 @@
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
+import Historic from './pages/HistoricComplaint';
 import SubmitComplaintInfos from './pages/SubmitComplain/SubmitComplaintInfos';
 import SubmitComplaitOptionPhoto from './pages/SubmitComplain/SubmitComplaitOptionPhoto';
 import SubmitComplaintPhoto from './pages/SubmitComplain/SubmitComplaitPhoto';
@@ -22,6 +23,7 @@ const Routes = () => {
 				<Route component={RegisterAdress} path='/register/adress' />
 				<Route component={RegisterEmail} path='/register/email' />
 				<Route component={Home} path='/home' />
+				<Route component={Historic} path='/historic' />
 				<Route
 					component={SubmitComplaintInfos}
 					path='/submit-complaint/infos'

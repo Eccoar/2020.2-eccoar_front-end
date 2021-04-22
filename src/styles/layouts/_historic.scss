@@ -1,0 +1,12 @@
+.historic {
+	padding: 1rem;
+	margin: auto;
+	max-width: 420px;
+
+	&__title {
+		display: flex;
+		justify-content: center;
+		color: #9dded3;
+		@include font-style($style-name: 'default');
+	}
+}
