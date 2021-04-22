@@ -21,13 +21,22 @@ describe('Test SubmitComplaintPhoto screen', () => {
 	});
 	test('test screen history', () => {
 		jest.mock('history');
-		render(
+		const { container } = render(
 			<MemoryRouter>
 				<Router history={createMemoryHistory()}>
 					<SubmitComplaitPhoto />
 				</Router>
 			</MemoryRouter>,
 		);
+		fireEvent.drop(container.querySelector('input') as Element, {
+			DataTransfer: {
+				files: [
+					new File(['string'], 'chucknorris.png', {
+						type: 'image/png',
+					}),
+				],
+			},
+		});
 		fireEvent.click(screen.getByText('Continuar'));
 		expect(mockHistoryPush).toHaveBeenCalledTimes(1);
 	});
