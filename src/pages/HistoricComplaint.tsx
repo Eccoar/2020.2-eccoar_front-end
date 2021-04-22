@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import ComplainCard from '../components/complainCard';
 import { getVotes, createVote } from '../services/complaint';
 import { useHistory } from 'react-router-dom';
-import Button from '../components/Button';
 
 const Historic = () => {
 	const [data, setData] = useState([]);
@@ -34,19 +33,10 @@ const Historic = () => {
 		return 'complaintUpvote';
 	};
 
-	function changePage() {
-		history.push('/submit-complaint/infos');
-	}
-
 	return (
-		<div className='home'>
-			<div className='home__create'>
-				<Button
-					onClick={changePage}
-					text='CRIAR DENÚNCIA'
-					icon='megaphone'
-					pattern='secondary'
-				/>
+		<div className='historic'>
+			<div className='historic__title'>
+				<h1>Histórico de Sabanai</h1>
 			</div>
 			{data.map(
 				(
