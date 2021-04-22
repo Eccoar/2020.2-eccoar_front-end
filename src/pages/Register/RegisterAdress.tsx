@@ -16,17 +16,20 @@ const RegisterAdress = () => {
 	};
 
 	const push = () => {
-		history.push('/register/email', {
-			cpf,
-			cep,
-			adress,
-			name,
-			lastName,
-		});
-		console.log(name, lastName);
+		if (!cpf || !cep || !adress) {
+			alert('Preencha todos os campos corretamente!');
+		} else {
+			history.push('/register/email', {
+				cpf,
+				cep,
+				adress,
+				name,
+				lastName,
+			});
+		}
 	};
 	return (
-		<section className='containerRegister'>
+		<section className='containerRegister' data-testid='RegisterAdress'>
 			<section className='containerRegister__arrowArea'>
 				<img
 					src={arrow}
@@ -44,6 +47,7 @@ const RegisterAdress = () => {
 							label='CPF:'
 							value={cpf}
 							onChange={(e) => setCpf(e.target.value)}
+							testId='inputCPF'
 						/>
 					</section>
 					<section className='containerRegister__formsContainer-input'>
@@ -51,6 +55,7 @@ const RegisterAdress = () => {
 							label='CEP:'
 							value={cep}
 							onChange={(e) => setCep(e.target.value)}
+							testId='inputCEP'
 						/>
 					</section>
 					<section className='containerRegister__formsContainer-input'>
@@ -58,6 +63,7 @@ const RegisterAdress = () => {
 							label='ENDEREÇO:'
 							value={adress}
 							onChange={(e) => setAdress(e.target.value)}
+							testId='inputAdress'
 						/>
 					</section>
 				</section>

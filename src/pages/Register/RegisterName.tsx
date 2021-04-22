@@ -12,15 +12,18 @@ const RegisterName = () => {
 	const history = useHistory();
 
 	const push = () => {
-		history.push('/register/adress', {
-			name,
-			lastName,
-		});
-		console.log(name, lastName);
+		if (!name || !lastName) {
+			alert('Preencha todos os campos corretamente!');
+		} else {
+			history.push('/register/adress', {
+				name,
+				lastName,
+			});
+		}
 	};
 
 	return (
-		<section className='containerRegister'>
+		<section className='containerRegister' data-testid='RegisterName'>
 			<section className='containerRegister__arrowArea'>
 				<img
 					src={arrow}
@@ -38,6 +41,7 @@ const RegisterName = () => {
 							label='SEU NOME:'
 							value={name}
 							onChange={(e) => setName(e.target.value)}
+							testId='inputNome'
 						/>
 					</section>
 					<section className='containerRegister__formsContainer-input'>
@@ -45,6 +49,7 @@ const RegisterName = () => {
 							label='E SOBRENOME:'
 							value={lastName}
 							onChange={(e) => setLastName(e.target.value)}
+							testId='inputSobrenome'
 						/>
 					</section>
 				</section>

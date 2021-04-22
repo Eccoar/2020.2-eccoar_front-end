@@ -18,6 +18,7 @@ type InputBasicProps = {
 	): void;
 	/** Valor recebido do input */
 	value: string;
+	testId?: string;
 };
 
 const InputBasic: FC<InputBasicProps> = ({
@@ -27,6 +28,7 @@ const InputBasic: FC<InputBasicProps> = ({
 	value,
 	onChange,
 	inputContentType,
+	testId,
 }) => {
 	return (
 		<div className='input-container'>
@@ -64,6 +66,7 @@ const InputBasic: FC<InputBasicProps> = ({
 					className='input-container__input'
 					onChange={onChange}
 					value={value}
+					data-testid={testId}
 				/>
 			) : (
 				<input
@@ -72,6 +75,7 @@ const InputBasic: FC<InputBasicProps> = ({
 					className='input-container__input'
 					onChange={onChange}
 					value={value}
+					data-testid={testId}
 				/>
 			)}
 		</div>

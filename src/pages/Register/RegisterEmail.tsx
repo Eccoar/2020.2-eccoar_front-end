@@ -19,11 +19,17 @@ const RegisterEmail = () => {
 	};
 
 	const push = () => {
-		console.log(cpf, cep, adress, name, lastName, email, password);
+		if (!email || !password) {
+			alert('Preencha todos os campos corretamente');
+		} else {
+			console.log(cpf, cep, adress, name, lastName, email, password);
+			// FALTA INTEGRAR COM O BECK
+			history.push('/home');
+		}
 	};
 
 	return (
-		<section className='containerRegister'>
+		<section className='containerRegister' data-testid='RegisterEmail'>
 			<section className='containerRegister__arrowArea'>
 				<img
 					src={arrow}
@@ -41,6 +47,7 @@ const RegisterEmail = () => {
 							label='E-MAIL:'
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
+							testId='inputEmail'
 						/>
 					</section>
 					<section className='containerRegister__formsContainer-input'>
@@ -49,6 +56,7 @@ const RegisterEmail = () => {
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
 							inputContentType='password'
+							testId='inputPassword'
 						/>
 					</section>
 				</section>
