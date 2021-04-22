@@ -2,11 +2,12 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter, Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 import RegisterEmail from '../../../pages/Register/RegisterEmail';
+import * as ReactRouterDom from 'react-router-dom';
 
 const mockHistoryPush = jest.fn();
 
 jest.mock('react-router-dom', () => ({
-	...(jest.requireActual('react-router-dom') as any),
+	...(jest.requireActual('react-router-dom') as typeof ReactRouterDom),
 	useHistory: () => ({
 		push: mockHistoryPush,
 		location: {
