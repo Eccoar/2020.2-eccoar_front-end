@@ -23,19 +23,20 @@ const Navbar: React.FC = () => {
 
 	return (
 		<nav className='navbar'>
-			{pathname == '/' ? (
-				<img src={arrow} className='navbar__noArrow' alt='arrowImg' />
+			{pathname == '/home' ? (
+				<></>
 			) : (
 				<img
 					onClick={() => goBack()}
 					src={arrow}
 					className='navbar__Arrow'
 					alt='arrowImg'
+					data-testid='arrow'
 				/>
 			)}
 			<Drawer close={handleCloseDrawer} show={drawerOpen} />
 			{backDrop}
-			<Link to='/' data-testid='navbar__isotipo'>
+			<Link to='/home' data-testid='navbar__isotipo'>
 				<img src={isotipo} className='navbar__isotipo' alt='isotipo' />
 			</Link>
 			<button
