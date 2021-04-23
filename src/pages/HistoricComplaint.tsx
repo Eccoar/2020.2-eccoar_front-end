@@ -7,6 +7,10 @@ const Historic = () => {
 	const [data, setData] = useState([]);
 	const history = useHistory();
 
+	const id = 44;
+
+	const array = [44, 12, 10];
+
 	const confirmComplaint = async (
 		complaintId: number,
 		userId: number,
@@ -52,7 +56,7 @@ const Historic = () => {
 					},
 					index,
 				) => {
-					return (
+					return id == complaint_userId || vote_id === id ? (
 						<ComplainCard
 							key={index}
 							title={complaint_name}
@@ -71,9 +75,12 @@ const Historic = () => {
 								history.push(
 									`/complaint/details/${complaint_id}`,
 								);
+								console.log(complaint_userId);
 							}}
 							vote_id={vote_id}
 						/>
+					) : (
+						<></>
 					);
 				},
 			)}
