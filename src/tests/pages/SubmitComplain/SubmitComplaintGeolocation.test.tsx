@@ -12,6 +12,12 @@ jest.mock('react-router-dom', () => ({
 	}),
 }));
 
+jest.mock('../../../utils/geolocation', () => ({
+	getPosition: async () => Promise.resolve({ latitude: 0, longitude: 0 }),
+}));
+
+jest.mock('leaflet');
+
 describe('Test SubmitComplaintGeolocation screen', () => {
 	test('test screen history', () => {
 		render(

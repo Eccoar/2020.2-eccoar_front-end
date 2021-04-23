@@ -2,17 +2,19 @@ import { useParams } from 'react-router-dom';
 import Button from '../components/Button';
 import { createVote, getComplaintWithVote } from '../services/complaint';
 import { useState, useEffect } from 'react';
+import DisplayMap from '../components/DisplayMap';
+import { LatLng } from 'leaflet';
 
 interface urlParams {
 	id: string | undefined;
 }
 
-interface complaintWithVote {
+interface ComplaintWithVote {
 	complaint_id: number;
 	complaint_name: string;
 	complaint_description: string;
-	complaint_latitude: string;
-	complaint_longitude: string;
+	complaint_latitude: number;
+	complaint_longitude: number;
 	complaint_userId: number;
 	complaint_category: string;
 	complaint_creationDate: string;
@@ -33,7 +35,7 @@ const complaintVote = (status: string) => {
 };
 
 const ComplaintDetails = () => {
-	const [complaint, setComplaint] = useState<complaintWithVote | null>(null);
+	const [complaint, setComplaint] = useState<ComplaintWithVote | null>(null);
 
 	const [isVoted, setIsVoted] = useState<boolean | null>(null);
 
@@ -102,6 +104,17 @@ const ComplaintDetails = () => {
 							{complaint.complaint_description}
 						</p>
 					</div>
+
+					{complaint.complaint_latitude && (
+						<DisplayMap
+							center={
+								new LatLng(
+									complaint.complaint_latitude,
+									complaint.complaint_longitude,
+								)
+							}
+						/>
+					)}
 
 					<Button
 						text={choseButtonText()}
