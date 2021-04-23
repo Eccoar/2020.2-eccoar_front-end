@@ -12,6 +12,10 @@ const Historic = () => {
 
 	const array = [44, 12, 10];
 
+	const id = 44;
+
+	const array = [44, 12, 10];
+
 	const confirmComplaint = async (
 		complaintId: number,
 		userId: number,
