@@ -93,7 +93,49 @@ const ComplainCard: FC<ComplainCardProps> = ({
 			/>
 		);
 	};
-
+	if (status == 'finished') {
+		return (
+			<div className='complaint'>
+				<section
+					onClick={cardClick}
+					className='complaint__card-finished'
+				>
+					{photo ? (
+						<div className='complaint__content complaint__content--has-photo'>
+							<div>
+								<h1 className='complaint__title complaint__title--has-photo'>
+									{title}
+								</h1>
+								<p className='complaint__description'>
+									{formattedDescription}
+								</p>
+							</div>
+							<div className='complaint__photo-section'>
+								<img
+									className='complaint__photo'
+									src={photo}
+									alt='EchoImage'
+								/>
+								<div className='complaint__label'>
+									<p>{label}</p>
+								</div>
+							</div>
+						</div>
+					) : (
+						<div className='complaint__content'>
+							<h1 className='complaint__title'>{title}</h1>
+							<div className='complaint__label'>
+								<p>{label}</p>
+							</div>
+							<p className='complaint__description'>
+								{formattedDescription}
+							</p>
+						</div>
+					)}
+				</section>
+			</div>
+		);
+	}
 	return (
 		<div className='complaint'>
 			<section onClick={cardClick} className='complaint__card'>
