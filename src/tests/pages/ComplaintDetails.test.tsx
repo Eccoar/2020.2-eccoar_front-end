@@ -1,15 +1,19 @@
 import {
 	fireEvent,
-	act,
 	render,
 	screen,
 	waitFor,
+	cleanup,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ComplaintDetails from '../../pages/ComplaintDetails';
 import api from '../../services/api';
 import { MemoryRouter, Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
+
+jest.mock('../../context/auth', () => ({
+	useAuth: () => ({ userId: 'DoOJ8n4s5YuQFnE24ZlcL6zIbgTK' }),
+}));
 
 const mockHistoryPush = jest.fn();
 const mockReactRouterDom = jest.fn();
@@ -32,7 +36,7 @@ function mockComplaint(open: boolean) {
 			complaint_description: 'Thyroid vessel ligation',
 			complaint_latitude: 31.975314,
 			complaint_longitude: 35.196042,
-			complaint_userId: 1,
+			complaint_userId: 'DoOJ8n4s5YuQFnE24ZlcL6zIbgTK',
 			complaint_category: 'Hole',
 			complaint_creationDate: '2021-03-12T10:02:31.000Z',
 			complaint_closeDate: '2021-11-25T19:05:09.000Z',
@@ -52,14 +56,14 @@ const complaintWithVoteMock = (status: string, hasVote = true) => ({
 		'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
 	complaint_latitude: 36.275231,
 	complaint_longitude: 113.310158,
-	complaint_userId: 74,
+	complaint_userId: 'DoOJ8n4s5YuQFnE24ZlcL6zIbgTK',
 	complaint_category: 'Water',
 	complaint_creationDate: '2021-02-21T18:52:45.000Z',
 	complaint_closeDate: '2020-11-11T05:41:31.000Z',
 	complaint_picture: 'https://dummyimage.com/237x100.png/cc0000/ffffff',
 	complaint_status: status,
 	vote_id: hasVote ? 405 : null,
-	vote_userId: hasVote ? 1 : null,
+	vote_userId: hasVote ? 'DoOJ8n4s5YuQFnE24ZlcL6zIbgTK' : null,
 	vote_complaintId: hasVote ? 7 : null,
 	vote_typeVote: hasVote ? 'complaintUpvote' : null,
 });
@@ -71,14 +75,14 @@ const complaintWithVoteMockDelete = (status: string) => ({
 		'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
 	complaint_latitude: 36.275231,
 	complaint_longitude: 113.310158,
-	complaint_userId: 1,
+	complaint_userId: 'DoOJ8n4s5YuQFnE24ZlcL6zIbgTK',
 	complaint_category: 'Water',
 	complaint_creationDate: '2021-02-21T18:52:45.000Z',
 	complaint_closeDate: '2020-11-11T05:41:31.000Z',
 	complaint_picture: 'http://dummyimage.com/237x100.png/cc0000/ffffff',
 	complaint_status: status,
 	vote_id: 405,
-	vote_userId: 1,
+	vote_userId: 'DoOJ8n4s5YuQFnE24ZlcL6zIbgTK',
 	vote_complaintId: 7,
 	vote_typeVote: 'complaintUpvote',
 });
@@ -94,6 +98,18 @@ describe('Test ComplaintDetails With waiting complaint with vote', () => {
 
 		render(<ComplaintDetails />);
 		await waitFor(() => screen.getByText('Sub-Ex'));
+
+		jest.mock('../../context/auth', () => ({
+			useAuth: jest.fn(() => {
+				return { userId: 'DoOJ8n4s5YuQFnE24ZlcL6zIbgTK' };
+			}),
+		}));
+	});
+
+	afterEach(cleanup);
+
+	afterAll(() => {
+		jest.unmock('../../context/auth');
 	});
 
 	test('test confirm complaint click', async () => {
@@ -182,18 +198,17 @@ describe('Test ComplaintDetails', () => {
 		jest.spyOn(api, 'get').mockImplementationOnce(() =>
 			Promise.resolve({ data: complaintWithVoteMockDelete('open') }),
 		);
+
 		const mockApi = jest.fn();
 		jest.spyOn(api, 'delete').mockImplementationOnce(mockApi);
 
-		act(() => {
-			render(
-				<MemoryRouter>
-					<Router history={createMemoryHistory()}>
-						<ComplaintDetails />
-					</Router>
-				</MemoryRouter>,
-			);
-		});
+		render(
+			<MemoryRouter>
+				<Router history={createMemoryHistory()}>
+					<ComplaintDetails />
+				</Router>
+			</MemoryRouter>,
+		);
 
 		await waitFor(() => screen.getByText('Sub-Ex'));
 

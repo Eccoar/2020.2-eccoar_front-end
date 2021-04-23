@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter, Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
-import RegisterAdress from '../../../pages/Register/RegisterAdress';
+import SubmitComplaintInfos from '../../../pages/SubmitComplaint/SubmitComplaintInfos';
 
 const mockHistoryPush = jest.fn();
 const mockReactRouterDom = jest.fn();
@@ -10,37 +10,31 @@ jest.mock('react-router-dom', () => ({
 	...(jest.requireActual('react-router-dom') as typeof mockReactRouterDom),
 	useHistory: () => ({
 		push: mockHistoryPush,
-		location: {
-			state: {
-				name: 'Gabriel',
-				lastName: 'Sabanai',
-			},
-		},
 	}),
 }));
 
 describe('Test SubmitComplaintInfos screen', () => {
 	test('test screen history', () => {
 		jest.mock('history');
-		render(
+		const { container } = render(
 			<MemoryRouter>
 				<Router history={createMemoryHistory()}>
-					<RegisterAdress />
+					<SubmitComplaintInfos />
 				</Router>
 			</MemoryRouter>,
 		);
 
-		fireEvent.change(screen.getByTestId('inputCPF') as Element, {
-			target: { value: '04285184192' },
+		fireEvent.change(container.querySelector('input') as Element, {
+			target: { value: 'Buraco na rua' },
 		});
-		fireEvent.change(screen.getByTestId('inputCEP') as Element, {
-			target: { value: '70767080' },
+		fireEvent.change(container.querySelector('textarea') as Element, {
+			target: { value: 'descrição do buracao' },
 		});
-		fireEvent.change(screen.getByTestId('inputAdress') as Element, {
-			target: { value: 'Asa Norte' },
+		fireEvent.change(container.querySelector('select') as Element, {
+			target: { value: 'Buraco' },
 		});
 
-		fireEvent.click(screen.getByText('CONTINUAR'));
+		fireEvent.click(screen.getByText('Continuar'));
 		expect(mockHistoryPush).toBeCalledTimes(1);
 	});
 
@@ -49,18 +43,18 @@ describe('Test SubmitComplaintInfos screen', () => {
 		render(
 			<MemoryRouter>
 				<Router history={createMemoryHistory()}>
-					<RegisterAdress />
+					<SubmitComplaintInfos />
 				</Router>
 			</MemoryRouter>,
 		);
 
-		fireEvent.click(screen.getByText('CONTINUAR'));
+		fireEvent.click(screen.getByText('Continuar'));
 		expect(window.alert).toBeCalledTimes(1);
 	});
 
 	test('test screen rendering', () => {
-		render(<RegisterAdress />);
+		render(<SubmitComplaintInfos />);
 
-		expect(screen.getByTestId('RegisterAdress')).toBeInTheDocument();
+		expect(screen.getByTestId('SubmitComplaintInfos')).toBeInTheDocument();
 	});
 });

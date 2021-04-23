@@ -49,7 +49,13 @@ describe('Test Register Name screen', () => {
 	});
 
 	test('test screen rendering', () => {
-		render(<RegisterName />);
+		render(
+			<MemoryRouter>
+				<Router history={createMemoryHistory()}>
+					<RegisterName />
+				</Router>
+			</MemoryRouter>,
+		);
 
 		expect(screen.getByTestId('RegisterName')).toBeInTheDocument();
 	});

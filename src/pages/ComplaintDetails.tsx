@@ -9,6 +9,7 @@ import {
 import { useState, useEffect } from 'react';
 import DisplayMap from '../components/DisplayMap';
 import { LatLng } from 'leaflet';
+import { useAuth } from '../context/auth';
 
 interface urlParams {
 	id: string | undefined;
@@ -20,7 +21,7 @@ interface ComplaintWithVote {
 	complaint_description: string;
 	complaint_latitude: number;
 	complaint_longitude: number;
-	complaint_userId: number;
+	complaint_userId: string;
 	complaint_category: string;
 	complaint_creationDate: string;
 	complaint_closeDate: string;
@@ -31,8 +32,6 @@ interface ComplaintWithVote {
 	vote_complaintId: number;
 	vote_typeVote: string;
 }
-
-const mockedUserId = 1;
 
 const complaintVote = (status: string) => {
 	if (status == 'wait') {
@@ -48,6 +47,7 @@ const ComplaintDetails = () => {
 
 	const params = useParams<urlParams>();
 
+	const { userId } = useAuth();
 	const history = useHistory();
 
 	function goToHomescreen() {
@@ -55,18 +55,15 @@ const ComplaintDetails = () => {
 	}
 
 	useEffect(() => {
-		let ismounted = false;
 		async function setUpPage() {
-			const response = await getComplaintWithVote(1, Number(params.id));
-			if (!ismounted) {
-				setComplaint(response);
-				setIsVoted(response.vote_id);
-			}
+			const response = await getComplaintWithVote(
+				Number(params.id),
+				userId,
+			);
+			setComplaint(response);
+			setIsVoted(response.vote_id);
 		}
 		setUpPage();
-		return () => {
-			ismounted = true;
-		};
 	}, []);
 
 	const choseButtonText = () => {
@@ -85,23 +82,23 @@ const ComplaintDetails = () => {
 
 	const handleDelete = async (complaint: ComplaintWithVote) => {
 		await deleteComplaint({
-			userId: mockedUserId,
+			userId: userId,
 			id: complaint.complaint_id,
 		});
 		goToHomescreen();
 	};
 
-	const createComplaint = (
-		userId: number,
-		complaintId: number,
-		status: string,
-	) => {
-		createVote({
-			userId: userId,
-			complaintId: complaintId,
-			typeVote: complaintVote(status),
-		});
-		setIsVoted(!isVoted);
+	const createComplaint = (complaintId: number, status: string) => {
+		try {
+			createVote({
+				complaintId: complaintId,
+				typeVote: complaintVote(status),
+				userId,
+			});
+			setIsVoted(!isVoted);
+		} catch (err) {
+			alert('Houve um erro e a denúncia não foi confirmada!');
+		}
 	};
 
 	return (
@@ -139,7 +136,7 @@ const ComplaintDetails = () => {
 					)}
 
 					{complaint.complaint_status == 'open' &&
-					mockedUserId == complaint.complaint_userId ? (
+					userId == complaint.complaint_userId ? (
 						<p
 							className='containerDetails__deleteText'
 							onClick={() => handleDelete(complaint)}
@@ -165,12 +162,11 @@ const ComplaintDetails = () => {
 						onClick={() => {
 							!isVoted
 								? createComplaint(
-										mockedUserId,
 										complaint.complaint_id,
 										complaint.complaint_status,
 								  )
 								: removeVote({
-										userId: mockedUserId,
+										userId,
 										id: complaint.complaint_id,
 										typeVote: complaintVote(
 											complaint.complaint_status,

@@ -1,15 +1,22 @@
-import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import logo from '../../assets/Eccoar.png';
 import InputBasic from '../../components/inputBasic';
 import Button from '../../components/Button';
 import arrow from '../../assets/arrow.svg';
+import { useAuth } from '../../context/auth';
 
 const RegisterName = () => {
 	const [name, setName] = useState('');
 	const [lastName, setLastName] = useState('');
 
 	const history = useHistory();
+	const { userId } = useAuth();
+	useEffect(() => {
+		if (userId) {
+			history.replace('/home');
+		}
+	}, []);
 
 	const push = () => {
 		if (!name || !lastName) {
@@ -54,6 +61,9 @@ const RegisterName = () => {
 					</section>
 				</section>
 				<section className='containerRegister__buttonsContainer-buttonSize'>
+					<Link to='/login' className='login__registerLink'>
+						Já tem conta?
+					</Link>
 					<Button
 						text='CONTINUAR'
 						onClick={() => push()}

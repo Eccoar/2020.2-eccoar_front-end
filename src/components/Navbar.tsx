@@ -24,6 +24,7 @@ const Navbar: React.FC = () => {
 	if (drawerOpen) backDrop = <BackDrop close={handleCloseDrawer} />;
 
 	return pathname == '/' ||
+		pathname == '/login' ||
 		pathname == '/register/adress' ||
 		pathname == '/register/email' ||
 		pathname == '/register/name' ? (

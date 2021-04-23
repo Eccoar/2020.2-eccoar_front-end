@@ -4,11 +4,12 @@ import { getVotes, createVote, removeVote } from '../services/complaint';
 import { useHistory } from 'react-router-dom';
 import Button from '../components/Button';
 import GeolocationParser from '../utils/geolocation';
+import { useAuth } from '../context/auth';
 
-const Home = () => {
+const Home: React.FC = () => {
 	const [data, setData] = useState([]);
 	const history = useHistory();
-	const mockedUserId = 1;
+	const { userId } = useAuth();
 
 	useEffect(() => {
 		let mounted = true;
@@ -17,14 +18,14 @@ const Home = () => {
 			try {
 				const position = await GeolocationParser.getPosition();
 				const result = await getVotes(
-					1,
+					userId,
 					position.latitude,
 					position.longitude,
 				);
 				if (mounted) setData(result);
 			} catch (error) {
 				alert('Não foi possível obter sua localização!');
-				getVotes(1).then((result) => {
+				getVotes(userId).then((result) => {
 					if (mounted) setData(result);
 				});
 			}
@@ -34,6 +35,7 @@ const Home = () => {
 			mounted = false;
 		};
 	}, []);
+
 	const complaintVote = (status: string) => {
 		if (status == 'wait') {
 			return 'complaintConfirmed';
@@ -62,7 +64,6 @@ const Home = () => {
 						complaint_category,
 						complaint_description,
 						complaint_id,
-						complaint_userId,
 						complaint_status,
 						complaint_picture,
 						vote_id,
@@ -80,13 +81,13 @@ const Home = () => {
 							onClick={() => {
 								createVote({
 									complaintId: complaint_id,
-									userId: complaint_userId,
+									userId,
 									typeVote: complaintVote(complaint_status),
 								});
 							}}
 							removeClick={() => {
 								removeVote({
-									userId: mockedUserId,
+									userId,
 									id: complaint_id,
 									typeVote: complaintVote(complaint_status),
 								});

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import logo from '../../assets/Eccoar.png';
 import InputBasic from '../../components/inputBasic';
@@ -6,19 +6,26 @@ import Button from '../../components/Button';
 import emailValidation from '../../utils/emailValidation';
 import arrow from '../../assets/arrow.svg';
 import api from '../../services/api';
+import { useAuth } from '../../context/auth';
 
 const RegisterEmail = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [message, setMessage] = useState('');
 	const history = useHistory();
-	const { cpf, cep, adress, name, lastName } = history.location.state as {
+	const { cpf, cep, address, name, lastName } = history.location.state as {
 		cpf: string;
 		cep: string;
-		adress: string;
+		address: string;
 		name: string;
 		lastName: string;
 	};
+	const { userId } = useAuth();
+	useEffect(() => {
+		if (userId) {
+			history.replace('/home');
+		}
+	}, []);
 	const push = async () => {
 		if (!email || !password) {
 			setMessage('Preencha todos os campos corretamente');
@@ -26,6 +33,7 @@ const RegisterEmail = () => {
 			setMessage('A senha é muito curta!');
 		} else if (!emailValidation(email)) {
 			setMessage('Preencha o email corretamente!');
+			console.log(emailValidation(email));
 		} else {
 			try {
 				await api.post('/users', {
@@ -35,11 +43,12 @@ const RegisterEmail = () => {
 					password,
 					cpf,
 					cep,
-					adress,
+					address,
 				});
+				alert('Cheque o seu email para finalizar seu cadastro!');
 				history.push('/home');
 			} catch (error) {
-				console.log(error);
+				console.log(error.response);
 			}
 		}
 	};
