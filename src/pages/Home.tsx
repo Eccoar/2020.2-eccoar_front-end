@@ -16,19 +16,6 @@ const Home = () => {
 		await createVote({ userId, complaintId, typeVote });
 	};
 
-	if ('geolocation' in navigator) {
-		navigator.geolocation.getCurrentPosition(
-			function (position) {
-				console.log(position);
-			},
-			function (error) {
-				console.log(error);
-			},
-		);
-	} else {
-		alert('Não foi possível obter sua localização.');
-	}
-
 	useEffect(() => {
 		let mounted = true;
 		if ('geolocation' in navigator) {
@@ -43,21 +30,18 @@ const Home = () => {
 					});
 				},
 				function (error) {
+					alert('Não foi possível obter sua localização.');
+					getVotes(1).then((result) => {
+						if (mounted) setData(result);
+					});
 					console.log(error);
 				},
 			);
-		} else {
-			alert('Não foi possível obter sua localização.');
-			getVotes(1).then((result) => {
-				if (mounted) setData(result);
-			});
 		}
-
 		return () => {
 			mounted = false;
 		};
 	}, []);
-
 	const complaintVote = (status: string) => {
 		if (status == 'wait') {
 			return 'complaintConfirmed';
