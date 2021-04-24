@@ -66,9 +66,15 @@ export const createVote = async (data: {
 	}
 };
 
-export const getVotes = async (userId: number) => {
+export const getVotes = async (
+	userId: number,
+	latitude?: number,
+	longitude?: number,
+) => {
 	const params = {
 		userId: userId,
+		latitude,
+		longitude,
 	};
 	const userVote = await api.get('/votes', { params });
 

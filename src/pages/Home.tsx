@@ -31,9 +31,27 @@ const Home = () => {
 
 	useEffect(() => {
 		let mounted = true;
-		getVotes(1).then((result) => {
-			if (mounted) setData(result);
-		});
+		if ('geolocation' in navigator) {
+			navigator.geolocation.getCurrentPosition(
+				function (position) {
+					getVotes(
+						1,
+						position.coords.latitude,
+						position.coords.longitude,
+					).then((result) => {
+						if (mounted) setData(result);
+					});
+				},
+				function (error) {
+					console.log(error);
+				},
+			);
+		} else {
+			alert('Não foi possível obter sua localização.');
+			getVotes(1).then((result) => {
+				if (mounted) setData(result);
+			});
+		}
 
 		return () => {
 			mounted = false;
