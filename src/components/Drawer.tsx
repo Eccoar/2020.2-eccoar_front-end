@@ -51,7 +51,7 @@ const Drawer: React.FC<DrawerProps> = ({ show, close }: DrawerProps) => {
 							</Link>
 							<Link
 								className='side-drawer__text'
-								to='/'
+								to='/home'
 								onClick={close}
 							>
 								VER DENÚNCIAS
