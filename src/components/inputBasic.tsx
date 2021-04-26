@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import NumberFormat from 'react-number-format';
 
 type InputBasicProps = {
 	/** Definir Label do input */
@@ -6,10 +7,13 @@ type InputBasicProps = {
 	/** Definir input ou textarea */
 	inputType?: 'input' | 'textarea' | 'dropdown';
 	// Indica o type do input
-	inputContentType?: string;
+	inputContentType?: 'text' | 'password';
 	/** Indicar valores referentes ao dropdwon */
 	dropdownItems?: Array<string>;
 	/** Indica a função passada para capturar o valor do input */
+	format?: string;
+	// verifica se vai usar o NumberFormat
+	isNumber?: boolean;
 	onChange(
 		e:
 			| React.ChangeEvent<HTMLTextAreaElement>
@@ -29,6 +33,8 @@ const InputBasic: FC<InputBasicProps> = ({
 	onChange,
 	inputContentType,
 	testId,
+	format,
+	isNumber,
 }) => {
 	return (
 		<div className='input-container'>
@@ -59,16 +65,7 @@ const InputBasic: FC<InputBasicProps> = ({
 					})}
 					;
 				</select>
-			) : inputContentType === null ? (
-				<input
-					type='text'
-					name={label}
-					className='input-container__input'
-					onChange={onChange}
-					value={value}
-					data-testid={testId}
-				/>
-			) : (
+			) : !isNumber ? (
 				<input
 					type={inputContentType}
 					name={label}
@@ -76,6 +73,16 @@ const InputBasic: FC<InputBasicProps> = ({
 					onChange={onChange}
 					value={value}
 					data-testid={testId}
+				/>
+			) : (
+				<NumberFormat
+					type={inputContentType}
+					name={label}
+					className='input-container__input'
+					onChange={onChange}
+					value={value}
+					data-testid={testId}
+					format={format}
 				/>
 			)}
 		</div>

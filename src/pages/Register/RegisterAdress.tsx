@@ -47,7 +47,10 @@ const RegisterAdress = () => {
 							label='CPF:'
 							value={cpf}
 							onChange={(e) => setCpf(e.target.value)}
+							inputContentType='text'
 							testId='inputCPF'
+							format={'###.###.###-##'}
+							isNumber
 						/>
 					</section>
 					<section className='containerRegister__formsContainer-input'>
@@ -56,6 +59,9 @@ const RegisterAdress = () => {
 							value={cep}
 							onChange={(e) => setCep(e.target.value)}
 							testId='inputCEP'
+							inputContentType='text'
+							format={'#####-###'}
+							isNumber
 						/>
 					</section>
 					<section className='containerRegister__formsContainer-input'>

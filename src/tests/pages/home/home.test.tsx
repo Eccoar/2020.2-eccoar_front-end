@@ -29,7 +29,7 @@ const data = [
 const mockHistoryPush = jest.fn();
 
 jest.mock('react-router-dom', () => ({
-	...(jest.requireActual('react-router-dom') as any),
+	...(jest.requireActual('react-router-dom') as typeof ReactRouterDom),
 	useHistory: () => ({
 		push: mockHistoryPush,
 	}),
