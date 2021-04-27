@@ -1,0 +1,34 @@
+.containerFirstPage {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    &__componentsContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 50vh;
+    }
+
+    &__buttonsContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        width: 100%;
+        height: 50vh;
+    }
+
+    &__buttonsContainer-buttonSize {
+        width: 30%;
+        min-width: 20rem;
+        max-width: 30rem;
+        margin-bottom: 1.6rem;
+    }
+
+    &__buttonsContainer-button {
+        margin-bottom: 2rem;
+    }
+}
