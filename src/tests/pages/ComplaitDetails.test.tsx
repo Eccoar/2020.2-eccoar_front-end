@@ -3,8 +3,10 @@ import ComplaintDetails from '../../pages/ComplaintDetails';
 import * as ReactRouterDom from 'react-router-dom';
 
 const mockHistoryPush = jest.fn();
+const mockReactRouterDom = jest.fn();
+
 jest.mock('react-router-dom', () => ({
-	...(jest.requireActual('react-router-dom') as typeof ReactRouterDom),
+	...(jest.requireActual('react-router-dom') as typeof mockReactRouterDom),
 	useHistory: () => ({
 		push: mockHistoryPush,
 	}),
