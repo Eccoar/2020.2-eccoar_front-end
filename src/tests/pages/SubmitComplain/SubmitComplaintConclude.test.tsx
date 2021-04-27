@@ -2,7 +2,6 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter, Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 import SubmitComplaintConclude from '../../../pages/SubmitComplain/SubmitComplaintConclude';
-import * as ReactRouterDom from 'react-router-dom';
 
 const mockHistoryPush = jest.fn();
 const mockReactRouterDom = jest.fn();

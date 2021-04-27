@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import ComplaintDetails from '../../pages/ComplaintDetails';
-import * as ReactRouterDom from 'react-router-dom';
 
 const mockHistoryPush = jest.fn();
 const mockReactRouterDom = jest.fn();

@@ -1,9 +1,4 @@
-import {
-	Route,
-	Switch,
-	BrowserRouter as Router,
-	useLocation,
-} from 'react-router-dom';
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import SubmitComplaintInfos from './pages/SubmitComplain/SubmitComplaintInfos';

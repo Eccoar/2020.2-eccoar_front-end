@@ -5,7 +5,6 @@ import Home from '../../../pages/Home';
 import api from '../../../services/api';
 import userEvent from '@testing-library/user-event';
 import { act } from 'react-dom/test-utils';
-import * as ReactRouterDom from 'react-router-dom';
 
 const data = [
 	{
