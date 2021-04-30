@@ -1,4 +1,3 @@
-import React from 'react';
 import ThemeContextProvider from './context/theme';
 import './styles/styles.scss';
 import Routes from './routes';
