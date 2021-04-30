@@ -3,6 +3,7 @@ import ComplainCard from '../components/complainCard';
 import { getVotes, createVote } from '../services/complaint';
 import { useHistory } from 'react-router-dom';
 import Button from '../components/Button';
+import GeolocationParser from '../utils/geolocation';
 
 const Home = () => {
 	const [data, setData] = useState([]);
@@ -18,26 +19,24 @@ const Home = () => {
 
 	useEffect(() => {
 		let mounted = true;
-		if ('geolocation' in navigator) {
-			navigator.geolocation.getCurrentPosition(
-				function (position) {
-					getVotes(
-						1,
-						position.coords.latitude,
-						position.coords.longitude,
-					).then((result) => {
-						if (mounted) setData(result);
-					});
-				},
-				function (error) {
-					alert('Não foi possível obter sua localização.');
-					getVotes(1).then((result) => {
-						if (mounted) setData(result);
-					});
-					console.log(error);
-				},
-			);
+
+		async function setUpPage() {
+			try {
+				const position = await GeolocationParser.getPosition();
+				const result = await getVotes(
+					1,
+					position.latitude,
+					position.longitude,
+				);
+				if (mounted) setData(result);
+			} catch (error) {
+				alert('Não foi possível obter sua localização!');
+				getVotes(1).then((result) => {
+					if (mounted) setData(result);
+				});
+			}
 		}
+		setUpPage();
 		return () => {
 			mounted = false;
 		};
