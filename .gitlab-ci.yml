@@ -67,7 +67,7 @@ sonar metrics:
   image: debian
   stage: quality metrics
   variables:
-    METRICS_URL: https://sonarcloud.io/api/measures/component_tree?component=Eccoar_2020.2-eccoar_front-end&metricKeys=files,functions,complexity,comment_lines_density,duplicated_lines_density,security_rating,tests,test_success_density,test_execution_time,reliability_rating&ps=500
+    METRICS_URL: https://sonarcloud.io/api/measures/component_tree?component=Eccoar_2020.2-eccoar_front-end&metricKeys=files,functions,complexity,comment_lines_density,duplicated_lines_density,security_rating,tests,test_success_density,test_execution_time,reliability_rating,ncloc&ps=500
   before_script:
     - apt update
     - apt install wget git -y
