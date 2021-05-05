@@ -47,6 +47,32 @@ describe('Test RegisterEmail screen', () => {
 		expect(mockHistoryPush).toBeCalledTimes(1);
 	});
 
+	test('test error history', async () => {
+		jest.mock('history');
+		jest.spyOn(api, 'post').mockImplementationOnce(() =>
+			Promise.reject(Error),
+		);
+		const consoleSpy = jest.spyOn(console, 'log');
+
+		render(
+			<MemoryRouter>
+				<Router history={createMemoryHistory()}>
+					<RegisterEmail />
+				</Router>
+			</MemoryRouter>,
+		);
+
+		fireEvent.change(screen.getByTestId('inputEmail') as Element, {
+			target: { value: 'gabriel@gmail.com' },
+		});
+		fireEvent.change(screen.getByTestId('inputPassword') as Element, {
+			target: { value: '123456' },
+		});
+
+		await fireEvent.click(screen.getByText('CONTINUAR'));
+		expect(consoleSpy).toHaveBeenCalledWith(Error);
+	});
+
 	test('test  screen history fails', () => {
 		render(
 			<MemoryRouter>
@@ -61,6 +87,7 @@ describe('Test RegisterEmail screen', () => {
 			screen.getByText('Preencha todos os campos corretamente'),
 		).toBeInTheDocument();
 	});
+
 	test('test  password is too short', () => {
 		render(
 			<MemoryRouter>
@@ -79,7 +106,7 @@ describe('Test RegisterEmail screen', () => {
 		expect(screen.getByText('A senha é muito curta!')).toBeInTheDocument();
 	});
 
-	test('test  password is too short', () => {
+	test('test  email is wrong', () => {
 		render(
 			<MemoryRouter>
 				<Router history={createMemoryHistory()}>
