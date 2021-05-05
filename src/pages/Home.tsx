@@ -3,11 +3,16 @@ import ComplainCard from '../components/complainCard';
 import { getVotes, createVote } from '../services/complaint';
 import { useHistory } from 'react-router-dom';
 import Button from '../components/Button';
-
+import ToggleSwitch from '../components/ToggleSwitch';
 const Home = () => {
 	const [data, setData] = useState([]);
 	const history = useHistory();
 
+	const [value, setValue] = useState(false);
+
+	function switch1() {
+		setValue(!value);
+	}
 	const confirmComplaint = async (
 		complaintId: number,
 		userId: number,
