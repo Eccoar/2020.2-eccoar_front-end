@@ -1,4 +1,4 @@
-import { render, fireEvent, getByTestId } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import NavBar from '../../components/Navbar';
 import { MemoryRouter, Router } from 'react-router';
 import { createMemoryHistory } from 'history';
@@ -25,7 +25,7 @@ describe('Navbar com setinha', () => {
 			</MemoryRouter>,
 		);
 		expect(queryByTestId('arrow')).toBeInTheDocument();
-		expect(queryByTestId('navbar__button')).toBeTruthy();
+		expect(queryByTestId('navbar-button')).toBeTruthy();
 		expect(queryByAltText('isotipo')).toBeTruthy();
 	});
 
