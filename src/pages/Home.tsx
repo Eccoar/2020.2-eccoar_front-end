@@ -3,7 +3,8 @@ import ComplainCard from '../components/complainCard';
 import { getVotes, createVote } from '../services/complaint';
 import { useHistory } from 'react-router-dom';
 import Button from '../components/Button';
-import ToggleSwitch from '../components/ToggleSwitch';
+import { Multiselect } from 'multiselect-react-dropdown';
+
 const Home = () => {
 	const [data, setData] = useState([]);
 	const history = useHistory();
@@ -43,6 +44,8 @@ const Home = () => {
 		history.push('/submit-complaint/infos');
 	}
 
+	const objectArray: Array<string> = ['Apple', 'Orange', 'Banana'];
+
 	return (
 		<div className='home'>
 			<div className='home__create'>
@@ -51,6 +54,18 @@ const Home = () => {
 					text='CRIAR DENÚNCIA'
 					icon='megaphone'
 					pattern='secondary'
+				/>
+			</div>
+			<div>
+				<Multiselect
+					className='ddd'
+					options={objectArray}
+					displayValue='key'
+					showCheckbox={true}
+					showArrow={true}
+					groupBy='1'
+					emptyRecordMsg='ss'
+					// onSelect=
 				/>
 			</div>
 			{data.map(
