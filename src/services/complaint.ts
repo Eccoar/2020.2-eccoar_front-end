@@ -27,16 +27,12 @@ export const getComplaintWithVote = async (
 	return response.data;
 };
 
-enum Category {
-	'Buraco' = 'Hole',
-	'Água' = 'Water',
-	'Energia' = 'Electricity',
-}
-
 export const createComplaint = async (data: {
 	name: string;
 	description: string;
 	category: string;
+	latitude?: number;
+	longitude?: number;
 	picture: File;
 }): Promise<AxiosResponse | null> => {
 	try {
@@ -57,11 +53,11 @@ export const createComplaint = async (data: {
 			picture = await toBase64(data.picture);
 		}
 		const { description, name } = data;
-		return await api.post('/complaints', {
+		return await api.post('/complaints/', {
 			description,
 			name,
-			latitude,
-			longitude,
+			latitude: 10,
+			longitude: 10,
 			userId: 1,
 			category,
 			picture,

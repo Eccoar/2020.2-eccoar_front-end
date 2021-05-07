@@ -26,11 +26,8 @@ const RegisterEmail = () => {
 			setMessage('A senha é muito curta!');
 		} else if (!emailValidation(email)) {
 			setMessage('Preencha o email corretamente!');
-			console.log(emailValidation(email));
-			console.log(email);
 		} else {
 			try {
-				console.log(cpf, cep, adress, name, lastName, email, password);
 				await api.post('/users', {
 					email,
 					name,
@@ -40,7 +37,6 @@ const RegisterEmail = () => {
 					cep,
 					adress,
 				});
-				console.log('ola');
 				history.push('/home');
 			} catch (error) {
 				console.log(error);

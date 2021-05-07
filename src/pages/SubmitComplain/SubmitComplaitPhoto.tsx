@@ -25,13 +25,12 @@ const SubmitComplaitPhoto = () => {
 	const onChangePhoto = (event: ChangeEvent) => {
 		const target = event.target as HTMLInputElement;
 		const file: File = (target.files as FileList)[0];
-		const size = file.size / 1000000;
+		const size: number = (file?.size / 1000000) as number;
 
 		if (size <= 5) {
 			if (file.type === 'image/jpeg' || file.type === 'image/png') {
 				setPhoto(file);
 				setShowImage(URL.createObjectURL(file));
-				console.log(file);
 			} else {
 				alert('Tipo de arquivo não suportado');
 			}
@@ -52,6 +51,8 @@ const SubmitComplaitPhoto = () => {
 							onChange={(event) => onChangePhoto(event)}
 							className='submitComplaint__sendImage'
 							accept='image/png, image/jpeg'
+							data-testid='fileInput'
+							id='fileInput'
 						/>
 					</label>
 				</div>
