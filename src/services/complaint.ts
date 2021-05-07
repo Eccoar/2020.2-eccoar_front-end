@@ -33,7 +33,7 @@ export const createComplaint = async (data: {
 	category: string;
 	latitude?: number;
 	longitude?: number;
-	picture: File;
+	picture?: File;
 }): Promise<AxiosResponse | null> => {
 	try {
 		let category;

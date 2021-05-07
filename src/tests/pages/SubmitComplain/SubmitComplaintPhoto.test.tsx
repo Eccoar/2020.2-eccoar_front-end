@@ -46,7 +46,6 @@ describe('Test SubmitComplaintPhoto screen', () => {
 				},
 			});
 		});
-
 		fireEvent.click(screen.getByText('Continuar'));
 		expect(mockHistoryPush).toHaveBeenCalledTimes(1);
 	});
