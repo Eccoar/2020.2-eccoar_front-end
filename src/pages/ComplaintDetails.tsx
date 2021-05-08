@@ -83,7 +83,7 @@ const ComplaintDetails = () => {
 		}
 	};
 
-	const handleDelete = async (complaint: complaintWithVote) => {
+	const handleDelete = async (complaint: ComplaintWithVote) => {
 		await deleteComplaint({
 			userId: mockedUserId,
 			id: complaint.complaint_id,

@@ -56,4 +56,13 @@
         color: var(--color-primary);
         text-decoration: none;
     }
+
+    &__deleteText {
+        margin-bottom: 0.9rem;
+        margin-right: 1rem;
+        text-align: right;
+        font-family: "Spartan", sans-serif;
+        color: var(--color-primary);
+        text-decoration: none;
+    }
 }

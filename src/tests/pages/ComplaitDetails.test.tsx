@@ -95,10 +95,8 @@ describe('Test ComplaintDetails', () => {
 		jest.spyOn(api, 'get').mockImplementationOnce(() =>
 			Promise.resolve({ data: complaintWithVoteMock('open') }),
 		);
-
-		jest.spyOn(api, 'delete').mockImplementationOnce(() =>
-			Promise.resolve(),
-		);
+		const mockApi = jest.fn();
+		jest.spyOn(api, 'delete').mockImplementationOnce(mockApi);
 
 		act(() => {
 			render(
@@ -113,6 +111,6 @@ describe('Test ComplaintDetails', () => {
 		await waitFor(() => screen.getByText('Sub-Ex'));
 
 		userEvent.click(screen.getByText('Deletar Denúncia'));
-		expect(mockHistoryPush).toHaveBeenCalled();
+		expect(mockApi).toHaveBeenCalled();
 	});
 });
