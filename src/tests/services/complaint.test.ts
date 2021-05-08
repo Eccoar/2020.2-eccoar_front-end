@@ -73,7 +73,7 @@ describe('Complaint service', () => {
 		expect(response).toEqual(null);
 	});
 
-	test('Should create complaint', async () => {
+	test('Should create complaint with buraco category', async () => {
 		jest.spyOn(api, 'post').mockImplementationOnce(() =>
 			Promise.resolve({ status: 200 }),
 		);
@@ -83,6 +83,35 @@ describe('Complaint service', () => {
 			latitude: 0,
 			longitude: 0,
 			name: 'mockName',
+		});
+		expect(response?.status).toEqual(200);
+	});
+
+	test('Should create complaint with agua category', async () => {
+		jest.spyOn(api, 'post').mockImplementationOnce(() =>
+			Promise.resolve({ status: 200 }),
+		);
+		const response = await createComplaint({
+			category: 'Água',
+			description: 'mockDescription',
+			latitude: 0,
+			longitude: 0,
+			name: 'mockName',
+		});
+		expect(response?.status).toEqual(200);
+	});
+
+	test('Should create complaint with agua energia', async () => {
+		jest.spyOn(api, 'post').mockImplementationOnce(() =>
+			Promise.resolve({ status: 200 }),
+		);
+		const response = await createComplaint({
+			category: 'Energia',
+			description: 'mockDescription',
+			latitude: 0,
+			longitude: 0,
+			name: 'mockName',
+			picture: new File([''], 'EchoImage'),
 		});
 		expect(response?.status).toEqual(200);
 	});
