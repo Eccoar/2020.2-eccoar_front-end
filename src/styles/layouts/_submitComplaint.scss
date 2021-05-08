@@ -36,4 +36,10 @@
 		text-align: center;
 		margin-top: 2rem;
 	}
+	&__sendImageContainer {
+		display: flex;
+	}
+	&__sendImage {
+		display: none;
+	}
 }

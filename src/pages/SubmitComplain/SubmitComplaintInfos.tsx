@@ -7,6 +7,7 @@ const SubmitComplaintInfos = () => {
 	const [name, setName] = useState('');
 	const [description, setDescription] = useState('');
 	const [category, setCategory] = useState('');
+	const picture = null;
 
 	const history = useHistory();
 	const onSubmit = () => {
@@ -15,6 +16,7 @@ const SubmitComplaintInfos = () => {
 				name,
 				description,
 				category,
+				picture,
 			});
 		} else {
 			window.alert('Preencha todos os campos requisitados !!!');

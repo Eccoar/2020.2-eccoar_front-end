@@ -1,4 +1,10 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import {
+	fireEvent,
+	render,
+	RenderResult,
+	screen,
+	waitFor,
+} from '@testing-library/react';
 import { MemoryRouter, Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 import SubmitComplaitPhoto from '../../../pages/SubmitComplain/SubmitComplaitPhoto';
@@ -19,15 +25,27 @@ describe('Test SubmitComplaintPhoto screen', () => {
 		render(<SubmitComplaitPhoto />);
 		expect(screen.getByTestId('SubmitComplaintPhoto')).toBeInTheDocument();
 	});
-	test('test screen history', () => {
+
+	test.only('Accept image png', async () => {
 		jest.mock('history');
-		render(
+		const { container } = render(
 			<MemoryRouter>
 				<Router history={createMemoryHistory()}>
 					<SubmitComplaitPhoto />
 				</Router>
 			</MemoryRouter>,
 		);
+		await waitFor(() => {
+			fireEvent.change(container.querySelector('input') as Element, {
+				DataTransfer: {
+					files: [
+						new File(['string'], 'chucknorris.png', {
+							type: 'image/png',
+						}),
+					],
+				},
+			});
+		});
 		fireEvent.click(screen.getByText('Continuar'));
 		expect(mockHistoryPush).toHaveBeenCalledTimes(1);
 	});
