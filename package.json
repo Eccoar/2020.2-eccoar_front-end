@@ -95,5 +95,18 @@
 		"reportPath": "reports",
 		"reportFile": "test-report.xml",
 		"indent": 4
+	},
+	"jest": {
+		"collectCoverageFrom": [
+			"src/**/*.{js,ts,tsx}",
+			"<rootDir>/node_modules",
+			"<rootDir>/build",
+			"!src/index.tsx",
+			"!src/reportWebVitals.ts",
+			"!src/service-worker.ts",
+			"!src/serviceWorkerRegistration.ts",
+			"!src/services/flagr.ts",
+			"!src/context/theme.tsx"
+		]
 	}
 }

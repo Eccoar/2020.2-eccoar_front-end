@@ -82,6 +82,7 @@ export const createVote = async (data: {
 		});
 	} catch (err) {
 		console.error(err);
+		alert('Houve um erro e a denúncia não foi confirmada!');
 		return null;
 	}
 };
