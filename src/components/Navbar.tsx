@@ -18,6 +18,8 @@ const Navbar: React.FC = () => {
 		setDrawerOpen(false);
 	};
 
+	const onClick = () => setDrawerOpen(!drawerOpen);
+
 	let backDrop;
 	if (drawerOpen) backDrop = <BackDrop close={handleCloseDrawer} />;
 
@@ -46,9 +48,9 @@ const Navbar: React.FC = () => {
 			</Link>
 			<button
 				type='button'
-				onClick={() => setDrawerOpen(!drawerOpen)}
+				onClick={onClick}
 				className='navbar__button'
-				data-testid='navbar__button'
+				data-testid='navbar-button'
 			>
 				<div className='navbar__hamburguer'>
 					<div />

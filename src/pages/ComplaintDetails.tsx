@@ -68,16 +68,12 @@ const ComplaintDetails = () => {
 		complaintId: number,
 		status: string,
 	) => {
-		try {
-			createVote({
-				userId: userId,
-				complaintId: complaintId,
-				typeVote: complaintVote(status),
-			});
-			setIsVoted(!isVoted);
-		} catch (err) {
-			alert('Houve um erro e a denúncia não foi confirmada!');
-		}
+		createVote({
+			userId: userId,
+			complaintId: complaintId,
+			typeVote: complaintVote(status),
+		});
+		setIsVoted(!isVoted);
 	};
 
 	return (
@@ -117,6 +113,7 @@ const ComplaintDetails = () => {
 					)}
 
 					<Button
+						data-testid='confirmbutton'
 						text={choseButtonText()}
 						icon={
 							complaint.complaint_status == 'wait'

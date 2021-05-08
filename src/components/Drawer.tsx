@@ -38,6 +38,7 @@ const Drawer: React.FC<DrawerProps> = ({ show, close }: DrawerProps) => {
 						<img
 							role='button'
 							className='side-drawer__close'
+							data-testid='close-drawer'
 							src={closeButton}
 							onClick={close}
 						/>

@@ -26,7 +26,7 @@ describe('Test SubmitComplaintPhoto screen', () => {
 		expect(screen.getByTestId('SubmitComplaintPhoto')).toBeInTheDocument();
 	});
 
-	test.only('Accept image png', async () => {
+	test('Accept image png', async () => {
 		jest.mock('history');
 		const { container } = render(
 			<MemoryRouter>
