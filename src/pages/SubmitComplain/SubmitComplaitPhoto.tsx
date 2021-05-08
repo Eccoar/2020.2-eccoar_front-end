@@ -31,14 +31,12 @@ const SubmitComplaitPhoto = () => {
 			if (file.type === 'image/jpeg' || file.type === 'image/png') {
 				setPhoto(file);
 				setShowImage(URL.createObjectURL(file));
-				console.log(file);
 			} else {
 				alert('Tipo de arquivo não suportado');
 			}
 		} else {
 			alert('Arquivo muito grande, selecione outra imagem!');
 		}
-		setPhoto(file);
 	};
 
 	return (
