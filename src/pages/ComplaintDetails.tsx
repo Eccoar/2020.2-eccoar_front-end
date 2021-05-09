@@ -1,9 +1,10 @@
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import Button from '../components/Button';
 import {
 	createVote,
-	getComplaintWithVote,
 	removeVote,
+	deleteComplaint,
+	getComplaintWithVote,
 } from '../services/complaint';
 import { useState, useEffect } from 'react';
 import DisplayMap from '../components/DisplayMap';
@@ -47,6 +48,12 @@ const ComplaintDetails = () => {
 
 	const params = useParams<urlParams>();
 
+	const history = useHistory();
+
+	function goToHomescreen() {
+		history.push('/home');
+	}
+
 	useEffect(() => {
 		let ismounted = false;
 		async function setUpPage() {
@@ -74,6 +81,14 @@ const ComplaintDetails = () => {
 			}
 			return 'REPORTAR DENÚNCIA';
 		}
+	};
+
+	const handleDelete = async (complaint: ComplaintWithVote) => {
+		await deleteComplaint({
+			userId: mockedUserId,
+			id: complaint.complaint_id,
+		});
+		goToHomescreen();
 	};
 
 	const createComplaint = (
@@ -123,6 +138,15 @@ const ComplaintDetails = () => {
 						/>
 					)}
 
+					{complaint.complaint_status == 'open' &&
+					mockedUserId == complaint.complaint_userId ? (
+						<p
+							className='containerDetails__deleteText'
+							onClick={() => handleDelete(complaint)}
+						>
+							Deletar Denúncia
+						</p>
+					) : null}
 					<Button
 						data-testid='confirmbutton'
 						text={choseButtonText()}
@@ -141,17 +165,17 @@ const ComplaintDetails = () => {
 						onClick={() => {
 							!isVoted
 								? createComplaint(
-									mockedUserId,
-									complaint.complaint_id,
-									complaint.complaint_status,
-								)
-								: removeVote({
-									userId: mockedUserId,
-									id: complaint.complaint_id,
-									typeVote: complaintVote(
+										mockedUserId,
+										complaint.complaint_id,
 										complaint.complaint_status,
-									),
-								});
+								  )
+								: removeVote({
+										userId: mockedUserId,
+										id: complaint.complaint_id,
+										typeVote: complaintVote(
+											complaint.complaint_status,
+										),
+								  });
 							setIsVoted(!isVoted);
 						}}
 					/>

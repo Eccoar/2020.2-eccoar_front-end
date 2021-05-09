@@ -28,11 +28,11 @@ const SubmitComplaintGeolocation = () => {
 		try {
 			const { category, description, name, picture } = history.location
 				.state as {
-					name: string;
-					description: string;
-					category: string;
-					picture: File;
-				};
+				name: string;
+				description: string;
+				category: string;
+				picture: File;
+			};
 			if (position == null) {
 				throw new Error('Position not found');
 			}
@@ -40,6 +40,7 @@ const SubmitComplaintGeolocation = () => {
 				category,
 				description,
 				name,
+				picture,
 				latitude: position.lat,
 				longitude: position.lng,
 			});

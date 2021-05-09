@@ -103,6 +103,22 @@ export const removeVote = async (data: {
 	}
 };
 
+export const deleteComplaint = async (data: {
+	userId: number;
+	id: number;
+}): Promise<AxiosResponse | null> => {
+	try {
+		const { userId, id } = data;
+		const response = await api.delete(
+			`/complaints?id=${id}&userId=${userId}`,
+		);
+		return response;
+	} catch (err) {
+		console.error(err.message);
+		return null;
+	}
+};
+
 export const getVotes = async (
 	userId: number,
 	latitude?: number,

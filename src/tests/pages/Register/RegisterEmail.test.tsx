@@ -25,8 +25,8 @@ jest.mock('react-router-dom', () => ({
 
 describe('Test RegisterEmail screen', () => {
 	test('test screen history', async () => {
-		jest.mock('history');
-		jest.spyOn(api, 'post').mockImplementationOnce(() => Promise.resolve());
+		const mockApi = jest.fn();
+		jest.spyOn(api, 'post').mockImplementationOnce(mockApi);
 		render(
 			<MemoryRouter>
 				<Router history={createMemoryHistory()}>
@@ -42,9 +42,8 @@ describe('Test RegisterEmail screen', () => {
 			target: { value: '123456' },
 		});
 
-		// FALTA INTEGRAR COM O BECK
 		await fireEvent.click(screen.getByText('CONTINUAR'));
-		expect(mockHistoryPush).toBeCalledTimes(1);
+		expect(mockApi).toBeCalledTimes(1);
 	});
 
 	test('test error history', async () => {
