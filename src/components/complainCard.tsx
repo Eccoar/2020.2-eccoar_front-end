@@ -19,11 +19,14 @@ type ComplainCardProps = {
 	status?: string;
 	/** Define a id do voto */
 	vote_id?: number;
+	/** Função que é chamada ao clicar em denuncias já votadas*/
+	removeClick: VoidFunction;
 };
 
 const ComplainCard: FC<ComplainCardProps> = ({
 	onClick,
 	cardClick,
+	removeClick,
 	title,
 	label,
 	description,
@@ -59,15 +62,6 @@ const ComplainCard: FC<ComplainCardProps> = ({
 	const complaintStatus = `${
 		status == 'wait' ? buttonConfirmed : buttonClassName
 	} complaint__upvote`;
-
-	const checkIsVoted = () => {
-		if (!isConfirmed) {
-			onClick();
-			setConfirmed(true);
-		} else {
-			alert('Denuncia já votada');
-		}
-	};
 
 	const renderIcon = () => {
 		if (status == 'wait') {
@@ -132,7 +126,15 @@ const ComplainCard: FC<ComplainCardProps> = ({
 			</section>
 			<button
 				type='button'
-				onClick={checkIsVoted}
+				onClick={() => {
+					if (!isConfirmed) {
+						onClick();
+						setConfirmed(true);
+					} else {
+						removeClick();
+						setConfirmed(false);
+					}
+				}}
 				data-testid='button-id'
 				className={complaintStatus}
 			>

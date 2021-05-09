@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ComplainCard from '../../components/complainCard';
@@ -14,6 +13,7 @@ describe('Tests ComplainCard Component', () => {
 				label={'Buraco'}
 				description={'Que buracao meu'}
 				onClick={onClick}
+				removeClick={jest.fn()}
 			/>,
 		);
 
@@ -31,6 +31,8 @@ describe('Tests ComplainCard Component', () => {
 				description={'Que buracao meu'}
 				onClick={onClick}
 				status={'open'}
+				removeClick={jest.fn()}
+				vote_id={1}
 			/>,
 		);
 		userEvent.click(screen.getByTestId('echo-icon'));
@@ -41,7 +43,7 @@ describe('Tests ComplainCard Component', () => {
 		);
 	});
 
-	test('test setConfirmed state', () => {
+	test('test remove upvote click event', () => {
 		const onClick = jest.fn();
 		render(
 			<ComplainCard
@@ -49,11 +51,17 @@ describe('Tests ComplainCard Component', () => {
 				label={'Buraco'}
 				description={'Que buracao meu'}
 				onClick={onClick}
-				vote_id={1}
+				status={'open'}
+				removeClick={jest.fn()}
+				vote_id={undefined}
 			/>,
 		);
+		userEvent.click(screen.getByTestId('echo-icon'));
 		userEvent.click(screen.getByTestId('button-id'));
-		expect(window.alert).toBeCalledTimes(1);
+		expect(onClick).toHaveBeenCalledTimes(1);
+		expect(screen.getByTestId('echo-icon')).toHaveClass(
+			'complaint__icon--unselected complaint__icon',
+		);
 	});
 
 	test('test confirmed click event', () => {
@@ -65,6 +73,7 @@ describe('Tests ComplainCard Component', () => {
 				description={'Que buracao meu'}
 				onClick={onClick}
 				status={'wait'}
+				removeClick={jest.fn()}
 			/>,
 		);
 		userEvent.click(screen.getByTestId('check-icon'));
@@ -84,11 +93,31 @@ describe('Tests ComplainCard Component', () => {
 				description={'Que buracao meu'}
 				onClick={onClick}
 				status={'open'}
+				removeClick={jest.fn()}
 			/>,
 		);
 		userEvent.click(screen.getByTestId('echo-icon'));
 
 		expect(onClick).toHaveBeenCalledTimes(1);
+		expect(screen.getByTestId('echo-icon')).toHaveClass('complaint__icon');
+	});
+
+	test('test remove upvote click event', () => {
+		const removeClick = jest.fn();
+		render(
+			<ComplainCard
+				title={'Buraco na rua!'}
+				label={'Buraco'}
+				description={'Que buracao meu'}
+				onClick={jest.fn()}
+				status={'open'}
+				removeClick={removeClick}
+				vote_id={1}
+			/>,
+		);
+		userEvent.click(screen.getByTestId('echo-icon'));
+
+		expect(removeClick).toHaveBeenCalledTimes(1);
 		expect(screen.getByTestId('echo-icon')).toHaveClass('complaint__icon');
 	});
 
@@ -101,6 +130,7 @@ describe('Tests ComplainCard Component', () => {
 				description={'Que buracao meu'}
 				onClick={onClick}
 				status={'wait'}
+				removeClick={jest.fn()}
 			/>,
 		);
 		userEvent.click(screen.getByTestId('button-id'));
@@ -120,6 +150,7 @@ describe('Tests ComplainCard Component', () => {
 				description={'Que buracao meu'}
 				onClick={onClick}
 				status={'open'}
+				removeClick={jest.fn()}
 			/>,
 		);
 		userEvent.click(screen.getByTestId('button-id'));

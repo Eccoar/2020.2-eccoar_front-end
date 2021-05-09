@@ -1,6 +1,10 @@
 import { useParams } from 'react-router-dom';
 import Button from '../components/Button';
-import { createVote, getComplaintWithVote } from '../services/complaint';
+import {
+	createVote,
+	getComplaintWithVote,
+	removeVote,
+} from '../services/complaint';
 import { useState, useEffect } from 'react';
 import DisplayMap from '../components/DisplayMap';
 import { LatLng } from 'leaflet';
@@ -27,6 +31,8 @@ interface ComplaintWithVote {
 	vote_typeVote: string;
 }
 
+const mockedUserId = 1;
+
 const complaintVote = (status: string) => {
 	if (status == 'wait') {
 		return 'complaintConfirmed';
@@ -40,13 +46,20 @@ const ComplaintDetails = () => {
 	const [isVoted, setIsVoted] = useState<boolean | null>(null);
 
 	const params = useParams<urlParams>();
+
 	useEffect(() => {
+		let ismounted = false;
 		async function setUpPage() {
 			const response = await getComplaintWithVote(1, Number(params.id));
-			setComplaint(response);
-			setIsVoted(response.vote_id);
+			if (!ismounted) {
+				setComplaint(response);
+				setIsVoted(response.vote_id);
+			}
 		}
 		setUpPage();
+		return () => {
+			ismounted = true;
+		};
 	}, []);
 
 	const choseButtonText = () => {
@@ -85,9 +98,7 @@ const ComplaintDetails = () => {
 						{complaint.complaint_name}{' '}
 					</h1>
 					<div>
-						{complaint.complaint_picture == null ? (
-							''
-						) : (
+						{complaint.complaint_picture == null ? null : (
 							<span className='containerDetails__imageBox'>
 								<img
 									className='containerDetails__imageBox-image'
@@ -130,11 +141,18 @@ const ComplaintDetails = () => {
 						onClick={() => {
 							!isVoted
 								? createComplaint(
-										1,
-										complaint.complaint_id,
+									mockedUserId,
+									complaint.complaint_id,
+									complaint.complaint_status,
+								)
+								: removeVote({
+									userId: mockedUserId,
+									id: complaint.complaint_id,
+									typeVote: complaintVote(
 										complaint.complaint_status,
-								  )
-								: alert('Denuncia já votada');
+									),
+								});
+							setIsVoted(!isVoted);
 						}}
 					/>
 				</>

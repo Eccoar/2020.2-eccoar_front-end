@@ -17,6 +17,10 @@ type ButtonProps = {
 	onClick?: VoidFunction;
 	/** Varíavel que define se o botão aumenta */
 	bigger?: boolean;
+	/** Define a id do voto */
+	vote_id?: number;
+	/** Define o status da denúncia, que pode ser 'open', 'wait' ou 'finished' */
+	status?: string;
 };
 
 const Button: FC<ButtonProps> = ({
