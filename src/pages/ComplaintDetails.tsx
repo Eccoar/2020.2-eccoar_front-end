@@ -51,7 +51,7 @@ const ComplaintDetails = () => {
 	const history = useHistory();
 
 	function goToHomescreen() {
-		history.push('/');
+		history.push('/home');
 	}
 
 	useEffect(() => {

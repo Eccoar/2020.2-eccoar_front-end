@@ -13,7 +13,7 @@ const SubmitComplaintConclude = () => {
 		<>
 			<p>SUA DENÚNCIA FOI ADICIONADA O NOSSO SISTEMA!!</p>
 			<IoCheckmarkDoneOutline />
-			<Button text='Finalizar' onClick={() => history.push('/')} />
+			<Button text='Finalizar' onClick={() => history.push('/home')} />
 		</>
 	);
 
@@ -21,7 +21,7 @@ const SubmitComplaintConclude = () => {
 		<>
 			<p>ERRO AO ADICIONAR A SUA DENÚNCIA AO SISTEMA!!</p>
 			<IoCheckmarkDoneOutline />
-			<Button text='Finalizar' onClick={() => history.push('/')} />
+			<Button text='Finalizar' onClick={() => history.push('/home')} />
 		</>
 	);
 
