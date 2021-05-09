@@ -28,7 +28,6 @@ const RegisterEmail = () => {
 			setMessage('Preencha o email corretamente!');
 		} else {
 			try {
-				console.log('skks');
 				await api.post('/users', {
 					email,
 					name,
@@ -38,7 +37,6 @@ const RegisterEmail = () => {
 					cep,
 					adress,
 				});
-				console.log('2skks');
 				history.push('/home');
 			} catch (error) {
 				console.log(error);

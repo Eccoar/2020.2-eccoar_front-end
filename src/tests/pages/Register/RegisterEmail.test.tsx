@@ -42,7 +42,6 @@ describe('Test RegisterEmail screen', () => {
 			target: { value: '123456' },
 		});
 
-		// FALTA INTEGRAR COM O BECK
 		await fireEvent.click(screen.getByText('CONTINUAR'));
 		expect(mockApi).toBeCalledTimes(1);
 	});
