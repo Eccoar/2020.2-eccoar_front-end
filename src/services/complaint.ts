@@ -1,5 +1,6 @@
 import api from './api';
 import { AxiosResponse } from 'axios';
+import { getFlag } from '../services/flagr';
 
 const toBase64 = (file: File) =>
 	new Promise((resolve, reject) => {
@@ -74,11 +75,14 @@ export const createVote = async (data: {
 	typeVote: string;
 }): Promise<AxiosResponse | null> => {
 	try {
+		const flag = await getFlag('3');
+		const voteFlag = flag.data.variants[0]?.key;
 		const { complaintId, typeVote } = data;
 		return await api.post('/votes', {
 			userId: 1,
 			complaintId,
 			typeVote,
+			voteFlag,
 		});
 	} catch (err) {
 		console.error(err);
