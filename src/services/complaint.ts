@@ -123,7 +123,8 @@ export const getVotes = async (
 	userId: number,
 	latitude?: number,
 	longitude?: number,
-) => {	const params = {
+) => {
+	const params = {
 		userId: userId,
 		latitude,
 		longitude,

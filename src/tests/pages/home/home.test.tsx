@@ -104,6 +104,6 @@ describe('Home page test', () => {
 
 		userEvent.click(complaintButton);
 
-		expect(complaintButton).toHaveClass('complaint__upvote--submitted');
+		expect(complaintButton).toHaveClass('complaint__upvote');
 	});
 });
