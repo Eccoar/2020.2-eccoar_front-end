@@ -165,17 +165,17 @@ const ComplaintDetails = () => {
 						onClick={() => {
 							!isVoted
 								? createComplaint(
-									mockedUserId,
-									complaint.complaint_id,
-									complaint.complaint_status,
-								)
-								: removeVote({
-									userId: mockedUserId,
-									id: complaint.complaint_id,
-									typeVote: complaintVote(
+										mockedUserId,
+										complaint.complaint_id,
 										complaint.complaint_status,
-									),
-								});
+								  )
+								: removeVote({
+										userId: mockedUserId,
+										id: complaint.complaint_id,
+										typeVote: complaintVote(
+											complaint.complaint_status,
+										),
+								  });
 							setIsVoted(!isVoted);
 						}}
 					/>
