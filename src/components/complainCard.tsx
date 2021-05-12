@@ -21,6 +21,8 @@ type ComplainCardProps = {
 	vote_id?: number;
 	/** Função que é chamada ao clicar em denuncias já votadas*/
 	removeClick: VoidFunction;
+	// Vê se foi o usuário que criou essa complaint
+	my_complaint?: boolean;
 };
 
 const ComplainCard: FC<ComplainCardProps> = ({
@@ -33,6 +35,7 @@ const ComplainCard: FC<ComplainCardProps> = ({
 	photo,
 	status,
 	vote_id,
+	my_complaint,
 }) => {
 	const [isConfirmed, setConfirmed] = useState(false);
 
@@ -55,7 +58,7 @@ const ComplainCard: FC<ComplainCardProps> = ({
 	}`;
 
 	const formattedDescription =
-		description.length > 95
+		description?.length > 95
 			? description.slice(0, 95) + '...'
 			: description;
 
@@ -166,22 +169,24 @@ const ComplainCard: FC<ComplainCardProps> = ({
 					</div>
 				)}
 			</section>
-			<button
-				type='button'
-				onClick={() => {
-					if (!isConfirmed) {
-						onClick();
-						setConfirmed(true);
-					} else {
-						removeClick();
-						setConfirmed(false);
-					}
-				}}
-				data-testid='button-id'
-				className={complaintStatus}
-			>
-				{renderIcon()}
-			</button>
+			{my_complaint ? null : (
+				<button
+					type='button'
+					onClick={() => {
+						if (!isConfirmed) {
+							onClick();
+							setConfirmed(true);
+						} else {
+							removeClick();
+							setConfirmed(false);
+						}
+					}}
+					data-testid='button-id'
+					className={complaintStatus}
+				>
+					{renderIcon()}
+				</button>
+			)}
 		</div>
 	);
 };

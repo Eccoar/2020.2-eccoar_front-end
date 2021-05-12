@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 import ComplainCard from '../components/complainCard';
-import { getVotes, createVote, removeVote } from '../services/complaint';
+import {
+	getUserIdComplaints,
+	createVote,
+	removeVote,
+} from '../services/complaint';
 import { useHistory } from 'react-router-dom';
 
 const Historic = () => {
@@ -8,13 +12,7 @@ const Historic = () => {
 	const history = useHistory();
 	const mockedUserId = 1;
 
-	const id = 44;
-
-	const array = [44, 12, 10];
-
-	const id = 44;
-
-	const array = [44, 12, 10];
+	const id = 'J5XePUMKi9XJdrs1L4zbYgB8haUY';
 
 	const confirmComplaint = async (
 		complaintId: number,
@@ -24,15 +22,14 @@ const Historic = () => {
 		await createVote({ userId, complaintId, typeVote });
 	};
 
-	useEffect(() => {
-		let mounted = true;
-		getVotes(1).then((result) => {
-			if (mounted) setData(result);
-		});
+	const getComplaint = async () => {
+		const res = await getUserIdComplaints(id);
+		console.log(res);
+		setData(res);
+	};
 
-		return () => {
-			mounted = false;
-		};
+	useEffect(() => {
+		getComplaint();
 	}, []);
 
 	const complaintVote = (status: string) => {
@@ -50,10 +47,10 @@ const Historic = () => {
 			{data.map(
 				(
 					{
-						complaint_name,
-						complaint_category,
-						complaint_description,
-						complaint_id,
+						name,
+						category,
+						description,
+						id,
 						complaint_userId,
 						complaint_status,
 						complaint_picture,
@@ -61,17 +58,18 @@ const Historic = () => {
 					},
 					index,
 				) => {
-					return id == complaint_userId || vote_id === id ? (
+					return (
 						<ComplainCard
 							key={index}
-							title={complaint_name}
-							label={complaint_category}
-							description={complaint_description}
+							title={name}
+							label={category}
+							description={description}
 							status={complaint_status}
 							photo={complaint_picture}
+							my_complaint
 							onClick={() =>
 								confirmComplaint(
-									complaint_id,
+									id,
 									complaint_userId,
 									complaintVote(complaint_status),
 								)
@@ -79,20 +77,16 @@ const Historic = () => {
 							removeClick={() => {
 								removeVote({
 									userId: mockedUserId,
-									id: complaint_id,
+									id: id,
 									typeVote: complaintVote(complaint_status),
 								});
 							}}
 							cardClick={() => {
-								history.push(
-									`/complaint/details/${complaint_id}`,
-								);
+								history.push(`/complaint/details/${id}`);
 								console.log(complaint_userId);
 							}}
 							vote_id={vote_id}
 						/>
-					) : (
-						<></>
 					);
 				},
 			)}

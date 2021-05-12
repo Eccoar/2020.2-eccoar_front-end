@@ -137,3 +137,12 @@ export const getVotes = async (
 
 	return userVote.data;
 };
+
+export const getUserIdComplaints = async (userId: string) => {
+	const params = {
+		userId: userId,
+	};
+	const userComplaint = await api.get('/complaints/user', { params });
+
+	return userComplaint.data;
+};
