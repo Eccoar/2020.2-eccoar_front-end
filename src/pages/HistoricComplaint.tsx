@@ -6,11 +6,15 @@ import {
 	removeVote,
 } from '../services/complaint';
 import { useHistory } from 'react-router-dom';
+// import jwt_decode from "jwt-decode";
 
 const Historic = () => {
 	const [data, setData] = useState([]);
 	const history = useHistory();
 	const mockedUserId = 1;
+	// const token = localStorage.getItem('@eccoar/token');
+	// const name = jwt_decode('token');
+	// console.log(name);
 
 	const id = 'J5XePUMKi9XJdrs1L4zbYgB8haUY';
 
@@ -42,7 +46,9 @@ const Historic = () => {
 	return (
 		<div className='historic'>
 			<div className='historic__title'>
-				<h1>Histórico de Sabanai</h1>
+				<h1>Histórico de</h1>
+				{'⠀'}
+				<h1 className='historic__name'>name</h1>
 			</div>
 			{data.map(
 				(

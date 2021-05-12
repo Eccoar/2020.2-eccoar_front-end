@@ -6,7 +6,14 @@
 	&__title {
 		display: flex;
 		justify-content: center;
+		align-items: center;
 		color: #9dded3;
-		@include font-style($style-name: 'default');
+	}
+
+	&__name {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: #F87171;
 	}
 }
