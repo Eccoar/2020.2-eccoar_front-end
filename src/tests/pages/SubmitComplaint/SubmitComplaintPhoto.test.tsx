@@ -1,13 +1,7 @@
-import {
-	fireEvent,
-	render,
-	RenderResult,
-	screen,
-	waitFor,
-} from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
-import SubmitComplaitPhoto from '../../../pages/SubmitComplain/SubmitComplaitPhoto';
+import SubmitComplaitPhoto from '../../../pages/SubmitComplaint/SubmitComplaitPhoto';
 
 const mockHistoryPush = jest.fn();
 const mockReactRouterDom = jest.fn();

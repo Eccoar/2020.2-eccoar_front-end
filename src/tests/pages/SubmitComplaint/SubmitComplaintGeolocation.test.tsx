@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
-import SubmitComplaintGeolocation from '../../../pages/SubmitComplain/SubmitComplaintGeolocation';
+import SubmitComplaintGeolocation from '../../../pages/SubmitComplaint/SubmitComplaintGeolocation';
 import GeolocationParser from '../../../utils/geolocation';
 
 const mockHistoryPush = jest.fn();
@@ -15,9 +15,10 @@ jest.mock('react-router-dom', () => ({
 		replace: mockHistoryReplace,
 		location: {
 			state: {
-				name: 'Feo',
-				description: 'Muito gente boa!',
-				category: 'Fodao demais',
+				name: 'Biodex',
+				description:
+					'at velit vivamus vel nulla eget eros elementum pellentesque quisque porta volutpat erat quisque erat eros viverra eget congue eget semper rutrum nulla nunc purus',
+				category: 'Hole',
 			},
 		},
 	}),

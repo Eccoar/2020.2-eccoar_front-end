@@ -33,7 +33,7 @@ const LocationMarker: React.FC<ILocationMarker> = ({
 				});
 			} catch (error) {
 				alert(error.message);
-				history.replace('/');
+				history.replace('/home');
 			}
 		};
 		getGeolocation();

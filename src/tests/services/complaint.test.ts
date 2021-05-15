@@ -42,10 +42,10 @@ describe('Complaint service', () => {
 			Promise.resolve({ data }),
 		);
 
-		const userId = 1;
-		const complaintId = 1;
-
-		const response = await getComplaintWithVote(userId, complaintId);
+		const response = await getComplaintWithVote(
+			1,
+			'DoOJ8n4s5YuQFnE24ZlcL6zIbgTK',
+		);
 		expect(response).toBe(data);
 	});
 
@@ -53,8 +53,15 @@ describe('Complaint service', () => {
 		jest.spyOn(api, 'post').mockImplementationOnce(() =>
 			Promise.resolve({ status: 200 }),
 		);
+		jest.spyOn(api, 'get').mockImplementationOnce(() =>
+			Promise.resolve({
+				data: {
+					variants: [{ key: '' }],
+				},
+			}),
+		);
 		const response = await createVote({
-			userId: 1,
+			userId: 'DoOJ8n4s5YuQFnE24ZlcL6zIbgTK',
 			complaintId: 1,
 			typeVote: 'complaintUpvote',
 		});
@@ -65,8 +72,15 @@ describe('Complaint service', () => {
 		jest.spyOn(api, 'post').mockImplementationOnce(() =>
 			Promise.reject(Error),
 		);
+		jest.spyOn(api, 'get').mockImplementationOnce(() =>
+			Promise.resolve({
+				data: {
+					variants: [{ key: '' }],
+				},
+			}),
+		);
 		const response = await createVote({
-			userId: 1,
+			userId: 'DoOJ8n4s5YuQFnE24ZlcL6zIbgTK',
 			complaintId: 1,
 			typeVote: 'complaintUpvote',
 		});
@@ -79,10 +93,12 @@ describe('Complaint service', () => {
 		);
 		const response = await createComplaint({
 			category: 'Buraco',
-			description: 'mockDescription',
+			description:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent malesuada.',
 			latitude: 0,
 			longitude: 0,
 			name: 'mockName',
+			userId: 'fWkjDryVHnP81VOqTrabFp99iAf3',
 		});
 		expect(response?.status).toEqual(200);
 	});
@@ -97,6 +113,7 @@ describe('Complaint service', () => {
 			latitude: 0,
 			longitude: 0,
 			name: 'mockName',
+			userId: 'DoOJ8n4s5YuQFnE24ZlcL6zIbgTK',
 		});
 		expect(response?.status).toEqual(200);
 	});
@@ -112,6 +129,7 @@ describe('Complaint service', () => {
 			longitude: 0,
 			name: 'mockName',
 			picture: new File([''], 'EchoImage'),
+			userId: 'DoOJ8n4s5YuQFnE24ZlcL6zIbgTK',
 		});
 		expect(response?.status).toEqual(200);
 	});
@@ -122,10 +140,12 @@ describe('Complaint service', () => {
 		);
 		const response = await createComplaint({
 			category: 'Buraco',
-			description: 'mockDescription',
+			description:
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent malesuada.',
 			latitude: 0,
 			longitude: 0,
 			name: 'mockName',
+			userId: 'fWkjDryVHnP81VOqTrabFp99iAf3',
 		});
 		expect(response).toEqual(null);
 	});

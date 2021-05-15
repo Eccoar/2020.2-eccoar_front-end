@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { LatLng } from 'leaflet';
 import { MapContainer } from 'react-leaflet';
 import LocationMarker from '../../components/LocationMarker';

@@ -6,6 +6,7 @@ import { ThemeContext } from '../context/theme';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { getFlag } from '../services/flagr';
+import { useAuth } from '../context/auth';
 
 export interface DrawerProps {
 	show: boolean;
@@ -14,6 +15,7 @@ export interface DrawerProps {
 
 const Drawer: React.FC<DrawerProps> = ({ show, close }: DrawerProps) => {
 	const colorChanger = useContext(ThemeContext);
+	const { userId, handleLogout } = useAuth();
 
 	let drawerClass = 'side-drawer';
 	if (show) drawerClass = 'side-drawer open';
@@ -25,7 +27,9 @@ const Drawer: React.FC<DrawerProps> = ({ show, close }: DrawerProps) => {
 				'',
 			);
 			if (navigator.userAgent.includes(browser)) {
-				colorChanger?.changeTheme(response.data.variants[0].key);
+				if (response.data.variants[0]) {
+					colorChanger?.changeTheme(response.data.variants[0].key);
+				}
 			}
 		});
 	}, []);
@@ -57,8 +61,43 @@ const Drawer: React.FC<DrawerProps> = ({ show, close }: DrawerProps) => {
 							>
 								VER DENÚNCIAS
 							</Link>
+							<Link
+								to='/profile'
+								className='side-drawer__text'
+								onClick={close}
+							>
+								PERFIL
+							</Link>
+							<Link
+								to='/history'
+								className='side-drawer__text'
+								onClick={close}
+							>
+								HISTÓRICO
+							</Link>
 						</div>
 					</div>
+					{userId ? (
+						<Link
+							to='/login'
+							className='side-drawer__log'
+							data-testid='logout-button'
+							onClick={async () => {
+								await handleLogout();
+								close();
+							}}
+						>
+							SAIR
+						</Link>
+					) : (
+						<Link
+							to='/login'
+							className='side-drawer__log'
+							onClick={close}
+						>
+							ENTRAR
+						</Link>
+					)}
 					{colorChanger?.color === 'light' ? (
 						<div
 							onClick={() => colorChanger?.changeTheme('dark')}

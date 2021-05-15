@@ -6,6 +6,7 @@ import LocationMarker from '../../components/LocationMarker';
 import { useEffect, useState } from 'react';
 import { LatLng } from 'leaflet';
 import GeolocationParser from '../../utils/geolocation';
+import { useAuth } from '../../context/auth';
 interface IHistory {
 	success?: boolean;
 	name?: string;
@@ -20,6 +21,7 @@ interface IMapOptions {
 
 const SubmitComplaintGeolocation = () => {
 	const history = useHistory<IHistory>();
+	const { userId } = useAuth();
 
 	const [position, setPosition] = useState<LatLng | null>(null);
 
@@ -43,6 +45,7 @@ const SubmitComplaintGeolocation = () => {
 				picture,
 				latitude: position.lat,
 				longitude: position.lng,
+				userId,
 			});
 			success = true;
 		} catch (err) {
@@ -59,7 +62,7 @@ const SubmitComplaintGeolocation = () => {
 				setPosition(pos_latlng);
 			} catch (error) {
 				alert(error.message);
-				history.replace('/');
+				history.replace('/home');
 			}
 		};
 		getGeolocation();

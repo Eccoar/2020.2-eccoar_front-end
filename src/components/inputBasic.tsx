@@ -37,7 +37,7 @@ const InputBasic: FC<InputBasicProps> = ({
 	isNumber,
 }) => {
 	return (
-		<div className='input-container'>
+		<div className='input-container' data-testid='input'>
 			<h1 className='input-container__label'>{label}</h1>
 			{inputType == 'textarea' ? (
 				<textarea

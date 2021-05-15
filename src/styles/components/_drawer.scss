@@ -95,6 +95,23 @@
 		}
 	}
 
+	&__log {
+		text-decoration: none;
+		color: var(--color-primary);
+		font-family: $font-default;
+		font-size: 23px;
+		padding-top: 2.5em;
+		text-align: center;
+		@media (max-width: 370px) {
+			font-size: 18px;
+			padding-top: 2rem;
+		}
+		@media (max-width: 300px) {
+			font-size: 10px;
+			padding-top: 1.5rem;
+		}
+	}
+
 	&__bottom_text {
 		text-decoration: none;
 		color: var(--color-primary);

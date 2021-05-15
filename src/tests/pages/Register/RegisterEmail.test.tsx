@@ -69,7 +69,7 @@ describe('Test RegisterEmail screen', () => {
 		});
 
 		await fireEvent.click(screen.getByText('CONTINUAR'));
-		expect(consoleSpy).toHaveBeenCalledWith(Error);
+		expect(consoleSpy).toHaveBeenCalled();
 	});
 
 	test('test  screen history fails', () => {

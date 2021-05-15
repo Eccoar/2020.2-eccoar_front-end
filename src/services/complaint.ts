@@ -16,8 +16,8 @@ export const listComplaints = async () => {
 };
 
 export const getComplaintWithVote = async (
-	userId: number,
 	complaintId: number,
+	userId: string,
 ) => {
 	const response = await api.get('/complaints/votes', {
 		params: {
@@ -28,6 +28,12 @@ export const getComplaintWithVote = async (
 	return response.data;
 };
 
+enum Category {
+	'Buraco' = 'Hole',
+	'Água' = 'Water',
+	'Energia' = 'Electricity',
+}
+
 export const createComplaint = async (data: {
 	name: string;
 	description: string;
@@ -35,32 +41,28 @@ export const createComplaint = async (data: {
 	latitude?: number;
 	longitude?: number;
 	picture?: File;
+	userId: string;
 }): Promise<AxiosResponse | null> => {
 	try {
-		let category;
 		let picture;
-		switch (data.category) {
-			case 'Buraco':
-				category = 'Hole';
-				break;
-			case 'Água':
-				category = 'Water';
-				break;
-			case 'Energia':
-				category = 'Eletricity';
-				break;
-		}
 		if (data.picture) {
 			picture = await toBase64(data.picture);
 		}
-		const { description, name } = data;
+		const {
+			description,
+			name,
+			category,
+			userId,
+			latitude,
+			longitude,
+		} = data;
 		return await api.post('/complaints/', {
 			description,
 			name,
-			latitude: 10,
-			longitude: 10,
-			userId: 1,
-			category,
+			latitude,
+			longitude,
+			userId,
+			category: Category[category as keyof typeof Category],
 			picture,
 		});
 	} catch (err) {
@@ -70,16 +72,16 @@ export const createComplaint = async (data: {
 };
 
 export const createVote = async (data: {
-	userId: number;
 	complaintId: number;
 	typeVote: string;
+	userId: string;
 }): Promise<AxiosResponse | null> => {
 	try {
 		const flag = await getFlag('3');
 		const voteFlag = flag.data.variants[0]?.key;
-		const { complaintId, typeVote } = data;
+		const { complaintId, typeVote, userId } = data;
 		return await api.post('/votes', {
-			userId: 1,
+			userId,
 			complaintId,
 			typeVote,
 			voteFlag,
@@ -92,7 +94,7 @@ export const createVote = async (data: {
 };
 
 export const removeVote = async (data: {
-	userId: number;
+	userId: string;
 	id: number;
 	typeVote: string;
 }): Promise<AxiosResponse | null> => {
@@ -108,7 +110,7 @@ export const removeVote = async (data: {
 };
 
 export const deleteComplaint = async (data: {
-	userId: number;
+	userId: string;
 	id: number;
 }): Promise<AxiosResponse | null> => {
 	try {
@@ -124,16 +126,15 @@ export const deleteComplaint = async (data: {
 };
 
 export const getVotes = async (
-	userId: number,
+	userId: string,
 	latitude?: number,
 	longitude?: number,
 ) => {
 	const params = {
-		userId: userId,
+		userId,
 		latitude,
 		longitude,
 	};
 	const userVote = await api.get('/votes', { params });
-
 	return userVote.data;
 };

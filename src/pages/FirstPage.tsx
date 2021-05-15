@@ -1,9 +1,19 @@
 import logo from '../assets/Eccoar.png';
 import Button from '../components/Button';
 import { useHistory } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useAuth } from '../context/auth';
 
 const FirstPage = () => {
 	const history = useHistory();
+
+	const { userId } = useAuth();
+	useEffect(() => {
+		if (userId) {
+			history.replace('/home');
+		}
+	}, []);
+
 	return (
 		<section className='containerFirstPage'>
 			<section className='containerFirstPage__componentsContainer'>
@@ -11,7 +21,11 @@ const FirstPage = () => {
 			</section>
 			<section className='containerFirstPage__buttonsContainer'>
 				<section className='containerFirstPage__buttonsContainer-buttonSize'>
-					<Button text='LOGIN' pattern='secondary' />
+					<Button
+						text='LOGIN'
+						onClick={() => history.push('/login')}
+						pattern='secondary'
+					/>
 				</section>
 				<section className='containerFirstPage__buttonsContainer-buttonSize'>
 					<Button
