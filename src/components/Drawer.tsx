@@ -27,7 +27,9 @@ const Drawer: React.FC<DrawerProps> = ({ show, close }: DrawerProps) => {
 				'',
 			);
 			if (navigator.userAgent.includes(browser)) {
-				colorChanger?.changeTheme(response.data.variants[0].key);
+				if (response.data.variants[0]) {
+					colorChanger?.changeTheme(response.data.variants[0].key);
+				}
 			}
 		});
 	}, []);
