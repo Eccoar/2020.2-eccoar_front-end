@@ -49,44 +49,6 @@ describe('Complaint service', () => {
 		expect(response).toBe(data);
 	});
 
-	test('Should create vote', async () => {
-		jest.spyOn(api, 'post').mockImplementationOnce(() =>
-			Promise.resolve({ status: 200 }),
-		);
-		jest.spyOn(api, 'get').mockImplementationOnce(() =>
-			Promise.resolve({
-				data: {
-					variants: [{ key: '' }],
-				},
-			}),
-		);
-		const response = await createVote({
-			userId: 'DoOJ8n4s5YuQFnE24ZlcL6zIbgTK',
-			complaintId: 1,
-			typeVote: 'complaintUpvote',
-		});
-		expect(response?.status).toEqual(200);
-	});
-
-	test('Should not create vote', async () => {
-		jest.spyOn(api, 'post').mockImplementationOnce(() =>
-			Promise.reject(Error),
-		);
-		jest.spyOn(api, 'get').mockImplementationOnce(() =>
-			Promise.resolve({
-				data: {
-					variants: [{ key: '' }],
-				},
-			}),
-		);
-		const response = await createVote({
-			userId: 'DoOJ8n4s5YuQFnE24ZlcL6zIbgTK',
-			complaintId: 1,
-			typeVote: 'complaintUpvote',
-		});
-		expect(response).toEqual(null);
-	});
-
 	test('Should create complaint with buraco category', async () => {
 		jest.spyOn(api, 'post').mockImplementationOnce(() =>
 			Promise.resolve({ status: 200 }),
